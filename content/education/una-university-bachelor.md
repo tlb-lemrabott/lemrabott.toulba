@@ -6,7 +6,7 @@ draft: false
 tags: ["Computer Architecture", "C language", "Java", "Linux commands", "Turing machine", "Java", "Algorithms and Complexity", "Probability", "Statistics", "Graphs", "SQL language", XML", "Algebra", Geometric, "Physics"]
 weight: 103
 cover:
-    image: "/education/una-university-master/una.png"
+    image: "education/una-university-master/una.png"
 ---
 
 # University Website

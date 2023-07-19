@@ -6,7 +6,7 @@ draft: false
 tags: ["Data Structure", "Algorithms", "Problem Solving", "Java 7", "Java 8", "Object Oriented Programming", "Java Functional Programming", "Java Stream API", "Angular", "Nodejs", "Express", "MongoDB", "Database Optimization", "MySQL", "RESTFul API"]
 weight: 101
 cover:
-    image: "/education/miu-university/miu_logo.png"
+    image: "education/miu-university/miu_logo.png"
 ---
 
 # University Website

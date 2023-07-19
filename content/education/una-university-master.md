@@ -6,7 +6,7 @@ draft: false
 tags: ["Java 7", "Java 2EE", "ORM", "Hibernate", "Spring Framwork", "JavaScript", "TypeScript", "Angular", "React.js", "Python", "MongoDB", "MySQL", "Design patterns", "Hadoop", "NMAP - Network Scanner", "Web Services", "RESTful API", "SOAP", "XML", "JSON", "WSDL", "Agile methods"]
 weight: 102
 cover:
-    image: "/education/una-university-master/una.png"
+    image: "education/una-university-master/una.png"
 ---
 
 # University Website
