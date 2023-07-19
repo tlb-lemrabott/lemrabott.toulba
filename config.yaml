@@ -1,0 +1,141 @@
+baseURL: "https://arkalim.org"
+languageCode: en-us
+title: Lemrabott Toulba
+theme: PaperMod
+
+menu:
+  main:
+    - identifier: home
+      name: Home
+      url: /
+      weight: 10
+    - identifier: education
+      name: Education
+      url: /education
+      weight: 40
+    - identifier: projects
+      name: Projects
+      url: /projects
+      weight: 30
+    - identifier: experience
+      name: Experience
+      url: /experience
+      weight: 20
+    - identifier: search
+      name: Search
+      url: /search
+      weight: 50
+    # - identifier: tags
+    #   name: Tags
+    #   url: /tags
+    #   weight: 60
+    # - identifier: notes
+    #   name: Notes
+    #   url: https://notes.arkalim.org
+    #   weight: 70
+
+params:
+  # theme
+  showToc: true
+  TocOpen: false
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  hideMeta: false
+
+  # for enchanced SEO
+  env: production
+
+  # Home Page
+  profileMode:
+    enabled: true
+    title: "Lemrabott Toulba"
+    subtitle: Full-Stack Developer | Available for W2 Employment | I help companies to build Scalable, High-Quality Systems | Achieving 100% Time-to-Market Reductions | I am Willing to Relocate
+    text: |- 
+      Hi 👋! I'm Lemrabott, an ambitious Java Full-stack Developer with 2 years of professional experience, 
+      dedicated to improving processes, systems, and codebases. Skilled in Angular, Nodejs, Java, Spring Boot, Microservices and RESTful APIs. 
+    subtext1: I have a proven track record of delivering efficient solutions and achieving measurable results, 
+      including optimizing performance and contributing to successful project completion. 
+    achievements_title: ACHIEVEMENTS DONE
+    achievements: |-     
+      ✅ Successfully integrated the mobile payment platform for BNM Bank with 100+ external entities, achieving 100% Time-to-Market Reductions.
+        
+      ✅ Achieved 99% reduction in lost logs for BPM Bank and a 40% increase in client satisfaction through an enhanced logging system.
+
+      ✅ Collaborated on developing a scalable web app for Mauribit, capable of handling 500K simultaneous users during national exam result announcements.
+    subtext2: |-
+      Committed to continuous growth and maintaining high-quality standards. Focused on exceptional quality and scalability.
+    stacks:
+      backend:
+        - stack1: Java
+        - stack2: Spring Framework
+        - stack3: Javascript
+        - stack4: NodeJs Platform
+      frontend:
+        - stack1: HTML
+        - stack2: CSS
+        - stack3: Javascript
+        - stack4: Angular Framework
+        - stack5: Ionic Framework
+      databases:
+        - db1: MySQL
+        - db2: PostgreSQL
+        - db3: MongoDB
+      webServices:
+        - ws1: RESTful
+        - ws2: SOAP
+      cloud:
+        - cloud1: Firebase Cloud Functions
+        - cloud2: Firebase Cloud Firestore
+      webSecurity:
+        - security1: Firebase Authentication
+        - security2: JWT
+        - security3: Bcrypt
+    imageUrl: "home/lemrabott_pic.png"
+    imageWidth: 220
+    imageHeight: 220
+    # buttons:
+    #   - name: Resume
+    #     url: ""
+
+  # List View
+  hideDescriptionInList: false
+
+  # cover image for posts
+  cover:
+    hiddenInList: false # hide on list pages and home
+    hiddenInSingle: false # hide on single page
+
+  socialIcons:
+    - name: "phone"
+      url: "+9293369859"
+    - name: "email"
+      url: "mailto:lemrabott.toulba@yahoo.com"
+    - name: "linkedin"
+      url: "https://www.linkedin.com/in/lemrabott-toulba"
+    - name: "github"
+      url: "https://github.com/tlb-lemrabott/"
+    - name: "resume"
+      url: "https://drive.google.com/file/d/1E_QZMIFpIy2Vx0PNAFD2MG697ex4uT13/view?usp=sharing"
+
+  # text search
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    keys: ["title", "permalink", "summary", "content"]
+
+# for search using Fuse.js
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+# allow HTML in MD
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
