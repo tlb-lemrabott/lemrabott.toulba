@@ -6,8 +6,8 @@ draft: true
 tags: ["JAVA", "Spring boot", "Nodejs", "JavaScript"]
 showToc: false
 weight: 208
-cover:
-    image: "projects/next-project3/cover.jpg"
+#cover:
+#    image: "projects/next-project3/cover.jpg"
 --- 
 
 ## Description
