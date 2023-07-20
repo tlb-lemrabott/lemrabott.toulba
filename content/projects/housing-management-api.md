@@ -6,7 +6,7 @@ draft: false
 tags: ["JavaScript", "Nodejs", "Express.js", "RESTful API", "Docker", "MongoDB Database"]
 weight: 202
 cover:
-    image: "projects/housing-managemnt-api/cover.png"
+    image: "projects/housing-management-api/cover.png"
 ---
 
 ## Intro
