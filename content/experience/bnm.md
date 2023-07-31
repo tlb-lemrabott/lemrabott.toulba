@@ -1,5 +1,5 @@
 ---
-title: "NATIONAL BANQUE OF MAURITANIA"
+title: "NATIONAL BANK OF MAURITANIA"
 description: "Technical Lead"
 dateString: Aug 2021 - Sep 2022
 draft: false
