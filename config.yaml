@@ -115,7 +115,7 @@ params:
     - name: "github"
       url: "https://github.com/tlb-lemrabott/"
     - name: "resume"
-      url: "https://drive.google.com/file/d/1E_QZMIFpIy2Vx0PNAFD2MG697ex4uT13/view?usp=sharing"
+      url: "mailto:lemrabott.toulba@yahoo.com"
 
   # text search
   fuseOpts:
