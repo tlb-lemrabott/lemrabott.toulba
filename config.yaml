@@ -49,10 +49,10 @@ params:
   profileMode:
     enabled: true
     title: "Lemrabott Toulba"
-    subtitle: Full-Stack Developer | Available for W2 Employment | I help companies to build Scalable, High-Quality Systems | Achieving 100% Time-to-Market Reductions | I am Willing to Relocate
+    subtitle: Java Backend Developer | Available for W2 Employment | Skilled in Enterprise Application Development | Willing to Relocate
     text: |- 
-      Hi 👋! I'm Lemrabott, an ambitious Full-stack Developer with more than 2 years of professional experience, 
-      dedicated to improving processes, systems, and codebases. Skilled in Angular, Nodejs, Java, Spring Boot, Microservices and RESTful APIs. 
+      Hi 👋! I'm Lemrabott, an ambitious Backend Developer with 2+ years of professional experience, 
+      dedicated to improving processes, systems, and codebases. Skilled in Java, Java EE, Jakarta EE, Spring Framwork(Boot, MVC, Data), Microservices, RESTful API Development, Angular, and Nodejs. 
     subtext1: I have a proven track record of delivering efficient solutions and achieving measurable results, 
       including optimizing performance and contributing to successful project completion. 
     achievements_title: ACHIEVEMENTS DONE
