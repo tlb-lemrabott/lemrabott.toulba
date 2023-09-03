@@ -1,24 +1,22 @@
 ---
 title: "NATIONAL BANK OF MAURITANIA"
-description: "Technical Lead"
+description: "Software Developer - Full-time"
 dateString: Aug 2021 - Sep 2022
 draft: false
-tags: ["Java", "Spring Boot", "Angular", "RESTful API", "JavaScript", "MySQL", Git]
+tags: ["Java", "Spring Boot", "Angular", "RESTful API", "JavaScript", "MySQL", Git, Miro visual Platform]
 showToc: false
 weight: 301
 --- 
 
 ### Main Tasks
 
-Managed all technical functions for the new mobile payment platform of the Bank by streamlining the development process that efficiency improved and reduced time-to-market.
-- Successfully integrated mobile payment system with 100+ external entities. 
-- Developed custom endpoints and cron jobs to optimize functionality and enhance features. 
-- Conducted comprehensive testing to ensure high-quality and reliable implementation. 
-- Managed admin panel tools, resolving technical issues promptly and developing reusable modules for 50% optimization.
-- Oversaw a training program for 200+ agents, ensuring smooth transaction processing and data integrity.
-- Collaborated with finance department for secure and accurate accounting operations.
-- Improved client information exchange security and operational efficiency.
-- Developed web application for testing transaction process and enhancing control and maintenance capabilities that is still actively used by the bank.
+Functioned as a lead developer for 2 programmers and IT support in collaboration with a software provider company to create a new mobile payment application, that resulted in streamlining the payment to the bank.
+- Used REST APIs and JavaScript to create Webhooks that ensure real-time communication and data synchronization with third parties (Government national agencies, insurance, Central Bank).
+- Used Webhooks ensure data synchronization between the internal application services.
+- Managed admin panel tools, promptly resolved technical issues and Used JavaScript to develop reusable modules, and automated Back-office tasks, achieving a 50% optimization rate.
+- Utilized Angular, Java, and Spring Boot to develop a web tool for simulating financial and accounting operations in collaboration with the finance department, resulting in secure and precise accounting operations.
+- Oversaw a training program for 200+ sales point agents, ensuring smooth transaction processing and data integrity.
+- Designed application architectures and workflows, and documented functionality requirements.
 
 #### 🔗 [**NATIONAL BANQUE OF MAURITANIA**](http://www.bnm.mr/)
 ##### 🔗 [**Mobile Payment Platform**](http://www.click.mr/)
