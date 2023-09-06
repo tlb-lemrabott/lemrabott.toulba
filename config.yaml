@@ -83,6 +83,7 @@ params:
       webServices:
         - ws1: RESTful
         - ws2: SOAP
+        - ws3: Microservices
       cloud:
         - cloud1: Firebase Cloud Functions
         - cloud2: Firebase Cloud Firestore
