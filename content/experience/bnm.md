@@ -3,7 +3,7 @@ title: "NATIONAL BANK OF MAURITANIA"
 description: "Software Developer - Full-time"
 dateString: Aug 2021 - Sep 2022
 draft: false
-tags: ["Java", "Spring Boot", "Angular", "RESTful API", "JavaScript", "MySQL", Git, Miro visual Platform]
+tags: ["Java", "Spring Boot", "Angular", "RESTful API", Postman, "JavaScript", "MySQL", Git, Miro visual Platform]
 showToc: false
 weight: 301
 --- 
