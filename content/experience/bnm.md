@@ -1,22 +1,18 @@
 ---
-title: "NATIONAL BANK OF MAURITANIA"
+title: "National Bank of Mauritania"
 description: "Software Developer - Full-time"
 dateString: Aug 2021 - Sep 2022
 draft: false
-tags: ["Java", "Spring Boot", "Angular", "RESTful API", Postman, "JavaScript", "MySQL", Git, Miro visual Platform]
+tags: ["Java", "Spring boot", "Angular", "RESTful API", Postman, "JavaScript", "MySQL", Git, Miro visual Platform]
 showToc: false
 weight: 301
 --- 
 
 ### Main Tasks
 
-Functioned as a lead developer for 2 programmers and IT support in collaboration with a software provider company to create a new mobile payment application, that resulted in streamlining the payment to the bank.
-- Used REST APIs and JavaScript to create Webhooks that ensure real-time communication and data synchronization with third parties (Government national agencies, insurance, Central Bank).
-- Used Webhooks ensure data synchronization between the internal application services.
-- Managed admin panel tools, promptly resolved technical issues and Used JavaScript to develop reusable modules, and automated Back-office tasks, achieving a 50% optimization rate.
-- Utilized Angular, Java, and Spring Boot to develop a web tool for simulating financial and accounting operations in collaboration with the finance department, resulting in secure and precise accounting operations.
-- Oversaw a training program for 200+ sales point agents, ensuring smooth transaction processing and data integrity.
-- Designed application architectures and workflows, and documented functionality requirements.
+- Implemented the creation and integration with third-party companies of a payment platform. Resulted in streamlining the payments to the bank.
+- Used RESTful APIs, JavaScript, Webhooks to implement the integration.
+- Used Angular, Java, and Spring boot to develop a web tool for simulating financial and accounting operations. Resulted in secure, successful, and balanced accounting operations.
 
 #### 🔗 [**NATIONAL BANQUE OF MAURITANIA**](http://www.bnm.mr/)
 ##### 🔗 [**Mobile Payment Platform**](http://www.click.mr/)

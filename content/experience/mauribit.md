@@ -9,15 +9,8 @@ weight: 303
 ---
 
 ## Description
-Contributed to building the new version of a web application project using AWS serverless technologies. 
-- Maximized scalability during high traffic periods of 500K users when announcing national exam results for over 150K students/year by utilizing DynamoDB and Lambda Function.
-- Designed the frontend using Vue.js framework, delivering a modern and intuitive user experience.
-- Developed an admin panel to simplify indexing and publishing operations.
-#### *My Specific Tasks*:
-- Enhanced the UI by creating Vue.js components for the frontend.
-- Implemented JavaScript functions to accurately compute logic for determining student results and exam ranks.
-- Utilized Trello for streamlined project management and task tracking, ensuring seamless coordination and on-time task delivery.
-- Enabled multi-language support on the website.
-- Utilized Git and Bitbucket, following a specific team contribution workflow.
+- Worked within a team of developers to enhance functionalities of a company’s web application. Resulted in scalable web app capable of handling 500K simultaneous users.
+- Used HTML, CSS, JavaScript, Vue.js to enhance the UI. Resulted in a modern and intuitive UX.
+- Utilized Git, Bitbucket and Trello. Resulted in a more efficient and streamlined workflow.
 
 #### 🔗 [**MAURIBAC**](https://www.mauribac.com/fr/)
