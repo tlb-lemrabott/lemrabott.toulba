@@ -66,9 +66,10 @@ params:
     stacks:
       backend:
         - stack1: Java
-        - stack2: Spring Framework
-        - stack3: Javascript
-        - stack4: NodeJs Platform
+        - stack2: Spring boot
+        - stack3: Spring MVC
+        - stack4: Javascript
+        - stack5: NodeJs Platform
       frontend:
         - stack1: HTML
         - stack2: CSS
