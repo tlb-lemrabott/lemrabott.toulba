@@ -1,7 +1,7 @@
 ---
 title: "National Bank of Mauritania"
 description: "Software Developer - Full-time"
-dateString: Aug 2021 - Sep 2022
+dateString: Jan 2021 - Sep 2022
 draft: false
 tags: ["Java", "Spring boot", "Angular", "RESTful API", Postman, "JavaScript", "MySQL", Git, Miro visual Platform]
 showToc: false
@@ -10,9 +10,9 @@ weight: 301
 
 ### Main Tasks
 
-- Implemented the creation and integration with third-party companies of a payment platform. Resulted in streamlining the payments to the bank.
-- Used RESTful APIs, JavaScript, Webhooks to implement the integration.
-- Used Angular, Java, and Spring boot to develop a web tool for simulating financial and accounting operations. Resulted in secure, successful, and balanced accounting operations.
+- Integrated third-party clients with the Bank’s online payment platform. Example clients: Gimtel debit card vendor, Insurance, Wireless providers, and the Gov. Census agency.
+- Implemented with RESTful APIs and Webhooks. 
+- Used Angular, Java, and Spring boot to develop a Web tool to simulate financial transactions. Helped to ensure the safety and accuracy of the accounting operations.
 
 #### 🔗 [**NATIONAL BANQUE OF MAURITANIA**](http://www.bnm.mr/)
 ##### 🔗 [**Mobile Payment Platform**](http://www.click.mr/)
