@@ -11,7 +11,7 @@ weight: 301
 ### Main Tasks
 
 - Integrated third-party clients with the Bank’s online payment platform. Example clients: Gimtel debit card vendor, Insurance, Wireless providers, and the Gov. Census agency.
-- Implemented with RESTful APIs and Webhooks. 
+- Implemented with Nodejs, RESTful APIs, and Webhooks. 
 - Used Angular, Java, and Spring boot to develop a Web tool to simulate financial transactions. Helped to ensure the safety and accuracy of the accounting operations.
 
 #### 🔗 [**NATIONAL BANQUE OF MAURITANIA**](http://www.bnm.mr/)
