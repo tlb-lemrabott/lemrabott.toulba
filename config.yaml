@@ -49,9 +49,10 @@ params:
   profileMode:
     enabled: true
     title: "Lemrabott Toulba"
-    subtitle: Software Developer | Java | Spring boot | WebDev | NodeJS | Eligible for Full-time W-2 Employment | Willing to Relocate
+    subtitle: Software Engineer | Java | Spring boot | WebDev | NodeJS | Eligible for Full-time W-2 Employment | Willing to Relocate
     text: |- 
-      M.S degree in Information Systems. Seeking an opportunity to learn, build and be a part of a bigger team. Over 3 years of production-level experience. Key interests: Java, Spring boot, NodeJs, and Angular. Familiar with Micro-Services infrastructure and tools such as PubSub and Message Queues to decouple backend components.
+      M.S. in Computer Science. Seeking an opportunity to learn, build, and be a part of a bigger team. Over 3 years of production-level experience. 
+      Proficient: Java, Spring boot, Nodejs, Angular, and React.js. Strong foundation in Cloud, RESTful, and Micro-Services architectures.
     subtext1: I have a proven track record of delivering efficient solutions and achieving measurable results, 
       including optimizing performance and contributing to successful project completion. 
     achievements_title: ACHIEVEMENTS DONE
@@ -85,8 +86,8 @@ params:
         - ws2: SOAP
         - ws3: Microservices
       cloud:
-        - cloud1: Firebase Cloud Functions
-        - cloud2: Firebase Cloud Firestore
+        - cloud1: Google Cloud Firebase
+        - cloud2: AWS Cloud 
       webSecurity:
         - security1: Firebase Authentication
         - security2: JWT
