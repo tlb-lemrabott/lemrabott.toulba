@@ -1,7 +1,7 @@
 ---
 title: "PEOPLE’S BANK OF MAURITANIA"
 description: "Software Engineer - Full time"
-dateString: May 2020 - Dec 2020
+dateString: Jan 2020 - Dec 2020
 draft: false
 tags: ["Java", "Spring boot", "Microservices", "RESTful-API", "Google Firebase", "Angular", "Ionic", "Cordova", "Node.js", "JavaScript", "Typescript", "Bootstrap", "Java Unit Tests", "PostgreSQL", "JWT", "FTP Server", "Git", "SQLite", "Astah UML, MS Project Management"]
 showToc: false
