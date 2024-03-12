@@ -77,8 +77,8 @@ params:
         - stack1: HTML
         - stack2: CSS
         - stack3: Javascript
-        - stack4: Angular Framework
-        - stack5: Ionic Framework
+        - stack4: Angular
+        - stack5: React.js
       databases:
         - db1: MySQL
         - db2: PostgreSQL
@@ -89,7 +89,7 @@ params:
         - ws3: Microservices
       cloud:
         - cloud1: Google Cloud Firebase
-        - cloud2: AWS Cloud 
+        - cloud2: AWS Cloud Services 
       webSecurity:
         - security1: Firebase Authentication
         - security2: JWT
