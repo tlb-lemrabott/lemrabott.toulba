@@ -51,10 +51,7 @@ params:
     title: "Lemrabott Toulba"
     subtitle: Software Engineer | Java | Spring boot | WebDev | NodeJS | Eligible for Full-time W-2 Employment | Willing to Relocate
     text: |- 
-      Result-driven Software Engineer with an M.S. in Computer Science and over 5 years of production-level experience. 
-      Deep understanding of enterprise applications, SDLC, cloud architectures, CI/CD, object-oriented, 
-      aspect orientated, and functional programming. 
-      Seeking an opportunity to collaborate and build highly scalable services.
+      Full-satck Developer with an M.S. in Computer Science. Located in New York City. Seeking an opportunity to collaborate and build highly scalable services.
     subtext1: I have a proven track record of delivering efficient solutions and achieving measurable results, 
       including optimizing performance and contributing to successful project completion. 
     achievements_title: ACHIEVEMENTS DONE
@@ -70,19 +67,18 @@ params:
       backend:
         - stack1: Java
         - stack2: Spring boot
-        - stack3: Spring MVC
-        - stack4: Javascript
-        - stack5: NodeJs Platform
+        - stack3: Javascript ES6+
+        - stack4: NodeJs Platform
       frontend:
         - stack1: HTML
         - stack2: CSS
-        - stack3: Javascript
-        - stack4: Angular
-        - stack5: React.js
+        - stack3: Angular
+        - stack4: React.js
       databases:
         - db1: MySQL
         - db2: PostgreSQL
         - db3: MongoDB
+        - db4: DynamoDB
       webServices:
         - ws1: RESTful
         - ws2: SOAP
