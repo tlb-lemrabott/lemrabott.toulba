@@ -9,8 +9,8 @@ weight: 303
 ---
 
 ## Description
-- Used AWS Services such as Lambda functions and Cloudfront to scale Mauribac.com to handle 500K users.
-- Migrated the website from Angular 1.5 to Vue.js 2.6.
+- Worked within a team of software developers to build a new version of mauribac.com website using AWS serverless technologies.
+- Used HTML, CSS, JavaScript, and TypeScript with Vue.js to develop front-end components.
 - Utilized Git, Bitbucket and Trello. Resulted in a more efficient and streamlined workflow.
 
 #### 🔗 [**MAURIBAC**](https://www.mauribac.com/fr/)
