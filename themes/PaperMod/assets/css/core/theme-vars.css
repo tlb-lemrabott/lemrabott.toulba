@@ -1,4 +1,7 @@
 :root {
+    --md-green-800: #2E7D32;
+    --md-green-300: #81C784;
+
     --gap: 24px;
     --content-gap: 20px;
     --nav-width: 1024px;
@@ -15,6 +18,8 @@
     --hljs-bg: rgb(28, 29, 33);
     --code-bg: rgb(245, 245, 245);
     --border: rgb(238, 238, 238);
+    --cta-background: var(--md-green-800);
+    --cta-color: rgb(255, 255, 255);
 }
 
 .dark {
@@ -27,6 +32,8 @@
     --hljs-bg: rgb(46, 46, 51);
     --code-bg: rgb(55, 56, 62);
     --border: rgb(51, 51, 51);
+    --cta-background: var(--md-green-300);
+    --cta-color: rgb(0, 0, 0);
 }
 
 .list {

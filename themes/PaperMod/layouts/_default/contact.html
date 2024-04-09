@@ -1,0 +1,65 @@
+{{- define "main" }}
+
+<header class="page-header">
+  {{- partial "breadcrumbs.html" . }}
+  <h1>
+    {{ .Title }}
+    {{- if and (or (eq .Kind `term`) (eq .Kind `section`)) (.Param "ShowRssButtonInSectionTermList") }}
+    {{- with .OutputFormats.Get "rss" }}
+    <a href="{{ .RelPermalink }}" title="RSS" aria-label="RSS">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" height="23">
+        <path d="M4 11a9 9 0 0 1 9 9" />
+        <path d="M4 4a16 16 0 0 1 16 16" />
+        <circle cx="5" cy="19" r="1" />
+      </svg>
+    </a>
+    {{- end }}
+    {{- end }}
+  </h1>
+  {{- if .Description }}
+  <div class="post-description">
+    {{ .Description | markdownify }}
+  </div>
+  {{- end }}
+</header>
+
+{{- if .Content }}
+<div class="post-content">
+  {{- if not (.Param "disableAnchoredHeadings") }}
+  {{- partial "anchored_headings.html" .Content -}}
+  {{- else }}{{ .Content }}{{ end }}
+</div>
+{{- end }}
+
+<form id="emailForm" class="email-form">
+    <input id="fromEmail" class="from-email" type="email" placeholder="Email" required/>
+    <div class="error-message" id="emailError"></div>
+    <input class="subject" type="text" placeholder="Subject" />
+    <textarea class="content" type="text" placeholder="Your message" rows="6"></textarea>
+    <br />
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+    const emailForm = document.getElementById('emailForm');
+    const emailInput = document.getElementById('fromEmail');
+
+    emailForm.addEventListener('input', function(event) {
+        let isValid = true;
+
+        const emailValue = emailInput.value.trim();
+        if (!emailValue.match(/^[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/)) {
+            emailError.textContent = 'Please enter a valid email address.';
+            isValid = false;
+        } else {
+            emailError.textContent = '';
+        }
+
+        if (!isValid) {
+            event.preventDefault();
+        }
+    });
+</script>
+
+{{- end }}{{- /* end main */ -}}
