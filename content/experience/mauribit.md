@@ -1,16 +1,18 @@
 ---
 title: "MAURIBIT"
-description: "Software Engineer - Full time "
+description: "Web Developer - Full time "
 dateString: Jul 2018 - Dec 2019 
 draft: false
-tags: ["Vue.js", "HTML", "CSS", "JavaScript", "Typescript", "Node.js", "AWS Lambda", "Amazon API Gateway", "Amazon DynamoDB", "Amazon S3", "Redis Database", "Git", "But-Bucket", "Google analytics", "Trello", "Yarn"]
+tags: ["HTML", "CSS", "JavaScript", "Git", "Bitbucket", "Google analytics", "Trello", "Yarn"]
 showToc: false
 weight: 303
 ---
 
 ## Description
-- Worked within a team of software developers to build a new version of mauribac.com website using AWS serverless technologies.
-- Used HTML, CSS, JavaScript, and TypeScript with Vue.js to develop front-end components.
+- Collaborated with a team of developers to design and implement a responsive web application.
+- Implemented front-end functionalities using HTML, CSS, and JavaScript, ensuring a seamless user experience.
+- Participated in code maintainability, debugging, and bug fixing to improve application stability.
+- Documented technical specifications and created user manuals for internal use.
 - Utilized Git, Bitbucket and Trello. Resulted in a more efficient and streamlined workflow.
 
 #### 🔗 [**MAURIBAC**](https://www.mauribac.com/fr/)

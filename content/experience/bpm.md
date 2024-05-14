@@ -10,8 +10,11 @@ weight: 302
 
 ### Main Tasks
 
-- Built a robust log management and backup automation system. Improved data accessibility and security.
-- Used Java, Spring MVC, and Spring boot to develop RESTful APIs and Microservices for the system.
-- Used Angular, Ionic, Nodejs and Firebase to build a web dashboard (Hybrid App) for the system UI.
+- Built a robust logging management and backup automation system. Improved data accessibility and integrity. 
+- Used Java, and Spring boot to develop RESTful APIs and Microservices for the backend process.
+- Developed a real time hybrid application (web and mobile) for the system monitoring dashboard.
+- Used Ionic, Cordova, Android SDK, Angular for the UI development.
+- Used JavaScript, Nodejs, JWT, Firebase (cloud-functions, fire-store, and authentication) for the backend process.
+- Integrated the bank's SMS API for risk alerting, ensuring timely notifications to administrators for critical issues.
 
 #### 🔗 [**PEOPLE’S BANK OF MAURITANIA**](https://www.bpm.mr/)

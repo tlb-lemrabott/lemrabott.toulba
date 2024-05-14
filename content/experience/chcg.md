@@ -2,7 +2,7 @@
 title: "ETS CHCG"
 description: "Junior Software Developer - Full time"
 dateString: Jan 2017 - Dec 2017 
-draft: false
+draft: true
 tags: ["Java", "Spring boot", "Angular", "HTML", "CSS", "Bootstrap", "Git", "Github", "Junit", "MySQL"]
 showToc: false
 weight: 304
@@ -15,4 +15,4 @@ weight: 304
 - Optimized application performance for faster loading.
 - Conducted functionality testing for the application efficiency and accuracy.
 
-#### 🔗 [**MAURIBAC**](https://www.chcg.mr/fr/)
+#### 🔗 [**ETS CHCG**](https://www.chcg.mr/fr/)
