@@ -2,34 +2,34 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>TypeScript on Lemrabott Toulba</title>
-    <link>https://arkalim.org/tags/typescript/</link>
+    <link>https://www.lemrabotttoulba.com/tags/typescript/</link>
     <description>Recent content in TypeScript on Lemrabott Toulba</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://arkalim.org/tags/typescript/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://www.lemrabotttoulba.com/tags/typescript/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Nouakchott University</title>
-      <link>https://arkalim.org/education/una-university-master/</link>
+      <link>https://www.lemrabotttoulba.com/education/una-university-master/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://arkalim.org/education/una-university-master/</guid>
+      <guid>https://www.lemrabotttoulba.com/education/una-university-master/</guid>
       <description>Master&amp;#39;s degree, Information Systems</description>
     </item>
     
     <item>
       <title>MEAN-Stack application - Language Learning Platform</title>
-      <link>https://arkalim.org/projects/mean-stack-app/</link>
+      <link>https://www.lemrabotttoulba.com/projects/mean-stack-app/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://arkalim.org/projects/mean-stack-app/</guid>
+      <guid>https://www.lemrabotttoulba.com/projects/mean-stack-app/</guid>
       <description>Full stack web application designed to help users lerning new languages</description>
     </item>
     
     <item>
       <title>PEOPLE’S BANK OF MAURITANIA</title>
-      <link>https://arkalim.org/experience/bpm/</link>
+      <link>https://www.lemrabotttoulba.com/experience/bpm/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://arkalim.org/experience/bpm/</guid>
+      <guid>https://www.lemrabotttoulba.com/experience/bpm/</guid>
       <description>Software Engineer - Full time</description>
     </item>
     
