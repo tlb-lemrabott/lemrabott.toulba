@@ -99,5 +99,5 @@ jobs:
           SOURCE_DIR: 'public'      # optional: defaults to entire repository
 
       # Optional: Invalidate CloudFront Cache after deployment (using secret)
-      # - name: Invalidate CloudFront Cache (optional)
-      #   run: aws cloudfront invalidate --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
+      - name: Invalidate CloudFront Cache (optional)
+        run: aws cloudfront invalidate --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
