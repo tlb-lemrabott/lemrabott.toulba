@@ -98,6 +98,12 @@ jobs:
           AWS_REGION: 'us-east-1'   # optional: defaults to us-east-1
           SOURCE_DIR: 'public'      # optional: defaults to entire repository
 
-      # Optional: Invalidate CloudFront Cache after deployment (using secret)
-      - name: Invalidate CloudFront Cache (optional)
-        run: aws cloudfront invalidate --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
+      - name: Invalidate CloudFront cache
+        id: invalidate_cache
+        uses: chetan/invalidate-cloudfront-action@v1
+        env:
+          DISTRIBUTION: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
+          PATHS: '/*'
+          AWS_REGION: 'us-east-1'  # optional: defaults to us-east-1
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
