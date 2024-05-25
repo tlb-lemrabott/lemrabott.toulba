@@ -2,43 +2,43 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Git on Lemrabott Toulba</title>
-    <link>http://www.lemrabotttoulba.com.s3-website-us-east-1.amazonaws.com/tags/git/</link>
+    <link>https://www.lemrabotttoulba.com/tags/git/</link>
     <description>Recent content in Git on Lemrabott Toulba</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://www.lemrabotttoulba.com.s3-website-us-east-1.amazonaws.com/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://www.lemrabotttoulba.com/tags/git/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>National Bank of Mauritania</title>
-      <link>http://www.lemrabotttoulba.com.s3-website-us-east-1.amazonaws.com/experience/bnm/</link>
+      <link>https://www.lemrabotttoulba.com/experience/bnm/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.lemrabotttoulba.com.s3-website-us-east-1.amazonaws.com/experience/bnm/</guid>
+      <guid>https://www.lemrabotttoulba.com/experience/bnm/</guid>
       <description>Software Developer - Full-time</description>
     </item>
     
     <item>
       <title>PEOPLE’S BANK OF MAURITANIA</title>
-      <link>http://www.lemrabotttoulba.com.s3-website-us-east-1.amazonaws.com/experience/bpm/</link>
+      <link>https://www.lemrabotttoulba.com/experience/bpm/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.lemrabotttoulba.com.s3-website-us-east-1.amazonaws.com/experience/bpm/</guid>
+      <guid>https://www.lemrabotttoulba.com/experience/bpm/</guid>
       <description>Software Engineer - Full time</description>
     </item>
     
     <item>
       <title>MAURIBIT</title>
-      <link>http://www.lemrabotttoulba.com.s3-website-us-east-1.amazonaws.com/experience/mauribit/</link>
+      <link>https://www.lemrabotttoulba.com/experience/mauribit/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.lemrabotttoulba.com.s3-website-us-east-1.amazonaws.com/experience/mauribit/</guid>
+      <guid>https://www.lemrabotttoulba.com/experience/mauribit/</guid>
       <description>Web Developer - Full time </description>
     </item>
     
     <item>
       <title>ETS CHCG</title>
-      <link>http://www.lemrabotttoulba.com.s3-website-us-east-1.amazonaws.com/experience/chcg/</link>
+      <link>https://www.lemrabotttoulba.com/experience/chcg/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.lemrabotttoulba.com.s3-website-us-east-1.amazonaws.com/experience/chcg/</guid>
+      <guid>https://www.lemrabotttoulba.com/experience/chcg/</guid>
       <description>Junior Software Developer - Full time</description>
     </item>
     

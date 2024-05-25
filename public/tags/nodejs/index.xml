@@ -2,61 +2,61 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Nodejs on Lemrabott Toulba</title>
-    <link>http://www.lemrabotttoulba.com.s3-website-us-east-1.amazonaws.com/tags/nodejs/</link>
+    <link>https://www.lemrabotttoulba.com/tags/nodejs/</link>
     <description>Recent content in Nodejs on Lemrabott Toulba</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://www.lemrabotttoulba.com.s3-website-us-east-1.amazonaws.com/tags/nodejs/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://www.lemrabotttoulba.com/tags/nodejs/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Maharishi International University</title>
-      <link>http://www.lemrabotttoulba.com.s3-website-us-east-1.amazonaws.com/education/miu-university/</link>
+      <link>https://www.lemrabotttoulba.com/education/miu-university/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.lemrabotttoulba.com.s3-website-us-east-1.amazonaws.com/education/miu-university/</guid>
+      <guid>https://www.lemrabotttoulba.com/education/miu-university/</guid>
       <description>Master of Science in Computer Science</description>
     </item>
     
     <item>
       <title>MEAN-Stack application - Language Learning Platform</title>
-      <link>http://www.lemrabotttoulba.com.s3-website-us-east-1.amazonaws.com/projects/mean-stack-app/</link>
+      <link>https://www.lemrabotttoulba.com/projects/mean-stack-app/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.lemrabotttoulba.com.s3-website-us-east-1.amazonaws.com/projects/mean-stack-app/</guid>
+      <guid>https://www.lemrabotttoulba.com/projects/mean-stack-app/</guid>
       <description>Full stack web application designed to help users lerning new languages</description>
     </item>
     
     <item>
       <title>Housing Management System</title>
-      <link>http://www.lemrabotttoulba.com.s3-website-us-east-1.amazonaws.com/projects/housing-management-api/</link>
+      <link>https://www.lemrabotttoulba.com/projects/housing-management-api/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.lemrabotttoulba.com.s3-website-us-east-1.amazonaws.com/projects/housing-management-api/</guid>
+      <guid>https://www.lemrabotttoulba.com/projects/housing-management-api/</guid>
       <description>A custom Backend RESTful API for the Housing Management System</description>
     </item>
     
     <item>
       <title>My next project</title>
-      <link>http://www.lemrabotttoulba.com.s3-website-us-east-1.amazonaws.com/projects/next-project1/</link>
+      <link>https://www.lemrabotttoulba.com/projects/next-project1/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.lemrabotttoulba.com.s3-website-us-east-1.amazonaws.com/projects/next-project1/</guid>
+      <guid>https://www.lemrabotttoulba.com/projects/next-project1/</guid>
       <description>N/A</description>
     </item>
     
     <item>
       <title>My second next project</title>
-      <link>http://www.lemrabotttoulba.com.s3-website-us-east-1.amazonaws.com/projects/next-project2/</link>
+      <link>https://www.lemrabotttoulba.com/projects/next-project2/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.lemrabotttoulba.com.s3-website-us-east-1.amazonaws.com/projects/next-project2/</guid>
+      <guid>https://www.lemrabotttoulba.com/projects/next-project2/</guid>
       <description>N/A</description>
     </item>
     
     <item>
       <title>My third next project</title>
-      <link>http://www.lemrabotttoulba.com.s3-website-us-east-1.amazonaws.com/projects/next-project3/</link>
+      <link>https://www.lemrabotttoulba.com/projects/next-project3/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.lemrabotttoulba.com.s3-website-us-east-1.amazonaws.com/projects/next-project3/</guid>
+      <guid>https://www.lemrabotttoulba.com/projects/next-project3/</guid>
       <description>N/A</description>
     </item>
     

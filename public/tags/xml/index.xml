@@ -2,25 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>XML&#34; on Lemrabott Toulba</title>
-    <link>http://www.lemrabotttoulba.com.s3-website-us-east-1.amazonaws.com/tags/xml/</link>
+    <link>https://www.lemrabotttoulba.com/tags/xml/</link>
     <description>Recent content in XML&#34; on Lemrabott Toulba</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://www.lemrabotttoulba.com.s3-website-us-east-1.amazonaws.com/tags/xml/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://www.lemrabotttoulba.com/tags/xml/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Nouakchott University</title>
-      <link>http://www.lemrabotttoulba.com.s3-website-us-east-1.amazonaws.com/education/una-university-master/</link>
+      <link>https://www.lemrabotttoulba.com/education/una-university-master/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.lemrabotttoulba.com.s3-website-us-east-1.amazonaws.com/education/una-university-master/</guid>
+      <guid>https://www.lemrabotttoulba.com/education/una-university-master/</guid>
       <description>Master&amp;#39;s degree, Information Systems</description>
     </item>
     
     <item>
       <title>Nouakchott University</title>
-      <link>http://www.lemrabotttoulba.com.s3-website-us-east-1.amazonaws.com/education/una-university-bachelor/</link>
+      <link>https://www.lemrabotttoulba.com/education/una-university-bachelor/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.lemrabotttoulba.com.s3-website-us-east-1.amazonaws.com/education/una-university-bachelor/</guid>
+      <guid>https://www.lemrabotttoulba.com/education/una-university-bachelor/</guid>
       <description>Bachelor&amp;#39;s degree in Mathematics and Computer Science</description>
     </item>
     
