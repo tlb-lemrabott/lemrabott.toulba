@@ -76,8 +76,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - name: Use a secret securely
-        run: echo "My secret was used (value hidden)" && echo ${{ secrets.AWS_REGION }} >> secret_file.txt
+      # - name: Use a secret securely
+      #   run: echo "My secret was used (value hidden)" && echo ${{ secrets.AWS_REGION }} >> secret_file.txt
 
       - name: Deploy to GitHub Pages
         id: deployment
