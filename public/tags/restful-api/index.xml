@@ -2,52 +2,52 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>RESTFul API on Lemrabott Toulba</title>
-    <link>https://www.lemrabotttoulba.com/tags/restful-api/</link>
+    <link>http://www.lemrabotttoulba.com.s3-website-us-east-1.amazonaws.com/tags/restful-api/</link>
     <description>Recent content in RESTFul API on Lemrabott Toulba</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://www.lemrabotttoulba.com/tags/restful-api/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="http://www.lemrabotttoulba.com.s3-website-us-east-1.amazonaws.com/tags/restful-api/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Maharishi International University</title>
-      <link>https://www.lemrabotttoulba.com/education/miu-university/</link>
+      <link>http://www.lemrabotttoulba.com.s3-website-us-east-1.amazonaws.com/education/miu-university/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://www.lemrabotttoulba.com/education/miu-university/</guid>
+      <guid>http://www.lemrabotttoulba.com.s3-website-us-east-1.amazonaws.com/education/miu-university/</guid>
       <description>Master of Science in Computer Science</description>
     </item>
     
     <item>
       <title>Nouakchott University</title>
-      <link>https://www.lemrabotttoulba.com/education/una-university-master/</link>
+      <link>http://www.lemrabotttoulba.com.s3-website-us-east-1.amazonaws.com/education/una-university-master/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://www.lemrabotttoulba.com/education/una-university-master/</guid>
+      <guid>http://www.lemrabotttoulba.com.s3-website-us-east-1.amazonaws.com/education/una-university-master/</guid>
       <description>Master&amp;#39;s degree, Information Systems</description>
     </item>
     
     <item>
       <title>Housing Management System</title>
-      <link>https://www.lemrabotttoulba.com/projects/housing-management-api/</link>
+      <link>http://www.lemrabotttoulba.com.s3-website-us-east-1.amazonaws.com/projects/housing-management-api/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://www.lemrabotttoulba.com/projects/housing-management-api/</guid>
+      <guid>http://www.lemrabotttoulba.com.s3-website-us-east-1.amazonaws.com/projects/housing-management-api/</guid>
       <description>A custom Backend RESTful API for the Housing Management System</description>
     </item>
     
     <item>
       <title>National Bank of Mauritania</title>
-      <link>https://www.lemrabotttoulba.com/experience/bnm/</link>
+      <link>http://www.lemrabotttoulba.com.s3-website-us-east-1.amazonaws.com/experience/bnm/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://www.lemrabotttoulba.com/experience/bnm/</guid>
+      <guid>http://www.lemrabotttoulba.com.s3-website-us-east-1.amazonaws.com/experience/bnm/</guid>
       <description>Software Developer - Full-time</description>
     </item>
     
     <item>
       <title>PEOPLE’S BANK OF MAURITANIA</title>
-      <link>https://www.lemrabotttoulba.com/experience/bpm/</link>
+      <link>http://www.lemrabotttoulba.com.s3-website-us-east-1.amazonaws.com/experience/bpm/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://www.lemrabotttoulba.com/experience/bpm/</guid>
+      <guid>http://www.lemrabotttoulba.com.s3-website-us-east-1.amazonaws.com/experience/bpm/</guid>
       <description>Software Engineer - Full time</description>
     </item>
     
