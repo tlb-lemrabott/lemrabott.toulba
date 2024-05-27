@@ -21,10 +21,10 @@ menu:
       name: Experience
       url: /experience
       weight: 20
-    # - identifier: contact
-    #   name: Contact
-    #   url: /contact
-    #   weight: 50
+    - identifier: contact
+      name: Contact
+      url: /contact
+      weight: 50
     - identifier: search
       name: Search
       url: /search
