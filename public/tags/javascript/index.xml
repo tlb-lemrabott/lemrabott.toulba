@@ -34,33 +34,6 @@
     </item>
     
     <item>
-      <title>My next project</title>
-      <link>https://www.lemrabotttoulba.com/projects/next-project1/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.lemrabotttoulba.com/projects/next-project1/</guid>
-      <description>N/A</description>
-    </item>
-    
-    <item>
-      <title>My second next project</title>
-      <link>https://www.lemrabotttoulba.com/projects/next-project2/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.lemrabotttoulba.com/projects/next-project2/</guid>
-      <description>N/A</description>
-    </item>
-    
-    <item>
-      <title>My third next project</title>
-      <link>https://www.lemrabotttoulba.com/projects/next-project3/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.lemrabotttoulba.com/projects/next-project3/</guid>
-      <description>N/A</description>
-    </item>
-    
-    <item>
       <title>National Bank of Mauritania</title>
       <link>https://www.lemrabotttoulba.com/experience/bnm/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -76,15 +49,6 @@
       
       <guid>https://www.lemrabotttoulba.com/experience/bpm/</guid>
       <description>Software Engineer - Full time</description>
-    </item>
-    
-    <item>
-      <title>MAURIBIT</title>
-      <link>https://www.lemrabotttoulba.com/experience/mauribit/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.lemrabotttoulba.com/experience/mauribit/</guid>
-      <description>Web Developer - Full time </description>
     </item>
     
   </channel>
