@@ -1,7 +1,7 @@
 ---
 title: "Maharishi International University"
 description: "Master of Science in Computer Science"
-dateString: In progress via distance education - expected completion May 2025
+dateString: In progress via distance education - expected completion Jun 2025
 draft: false
 tags: ["Data Structure", "Algorithms", "Problem Solving", "Java 7", "Java 8", "Object Oriented Programming", "Java Functional Programming", "Java Stream API", "Angular", "Nodejs", "Express", "MongoDB", "Database Optimization", "MySQL", "RESTFul API"]
 weight: 101

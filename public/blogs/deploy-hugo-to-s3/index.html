@@ -100,8 +100,8 @@
   "keywords": [
     "Hogo", "StaticSiteGenerator", "HTML", "CSS", "JavaScript", "Nodejs", "GithubActions", "AWS", "S3"
   ],
-  "articleBody": "Description The [Deploy Hugo website on Amazon S3 Blog] is a full guide and documentation on how to deploy a static hugo website on Amazon S3 bucket.\nBlog Link: The source code and documentation for this project can be found in the following GitHub repository: 🔗 Deploy Hugo website on Amazon S3 Blog.\n",
-  "wordCount" : "53",
+  "articleBody": "Introduction Deploying a static website can often seem daunting, especially when aiming for automation and continuous integration/continuous deployment (CI/CD). Hugo, a popular static site generator, simplifies the creation process. Coupled with Amazon S3 for hosting and GitHub Actions for automation, you can set up a robust CI/CD pipeline to deploy your Hugo site seamlessly. This guide will walk you through the steps to deploy a Hugo site to Amazon S3 using GitHub Actions in 2024.\nPrerequisites Before we dive into the setup, ensure you have the following:\nA Hugo site ready for deployment. An AWS account with S3 permissions. A GitHub account. Basic knowledge of YAML syntax and Git. Setting Up Your Hugo Site First, if you haven’t already, set up your Hugo site: # Install Hugo brew install hugo # Create a new Hugo site hugo new site my-hugo-site # Navigate to the site directory cd my-hugo-site # Add a theme (optional | e.g., Ananke) git init git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke echo 'theme = \"ananke\"' \u003e\u003e config.toml # Create some content hugo new posts/my-first-post.md You can also add your theme manually: Choose your prefered theme by visiting: 🔗Complete List | Hugo Themes Clone it into your project, using git clone your-choosen-theme-repository-url Configuring Amazon S3 Next, configure your S3 bucket to host the static site:\nCreate an S3 Bucket: Go to the S3 console and create a new bucket. Name the bucket (e.g., my-hugo-site). Set Bucket Permissions: Enable static website hosting in the bucket properties. Set the index document to index.html. Set the error document to 404.html. Bucket Policy: Add a bucket policy to make the content publicly accessible. Replace your-bucket-name with your actual bucket name: { \"Version\": \"2012-10-17\", \"Statement\": [ { \"Effect\": \"Allow\", \"Principal\": \"*\", \"Action\": \"s3:GetObject\", \"Resource\": \"arn:aws:s3:::your-bucket-name/*\" } ] } Create an IAM User: Create a new IAM user with programmatic access. Attach a policy to grant the user permission to upload to S3: { \"Version\": \"2012-10-17\", \"Statement\": [ { \"Effect\": \"Allow\", \"Action\": \"s3:PutObject\", \"Resource\": \"arn:aws:s3:::your-bucket-name/*\" } ] } - Note down the Access Key ID and Secret Access Key\rSetting Up GitHub Repository Initialize a Git repository and push your Hugo site to GitHub:\n# Initialize Git git init git remote add origin https://github.com/yourusername/my-hugo-site.git # Commit and push your site git add . git commit -m \"Initial commit\" git push -u origin master Creating GitHub Actions Workflow Create a GitHub Actions workflow to automate the deployment process:\nCreate Workflow File: Create a workflow file under .github/workflows in your project Make sure the file configuration is in YAML format Configure Workflow: Bellow is an exemple of a workflow file configuration name: Deploy Hugo Site to S3 on: push: branches: - master jobs: build: runs-on: ubuntu-latest steps: - name: Checkout code uses: actions/checkout@v3 - name: Setup Hugo uses: peaceiris/actions-hugo@v2 with: hugo-version: 'latest' - name: Install dependencies run: | npm install - name: Build site run: | hugo - name: Deploy to S3 uses: jakejarvis/s3-sync-action@v0.5.0 with: args: --acl public-read --follow-symlinks --delete env: AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }} AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }} SOURCE_DIR: 'public' - Push your local code to your GitHub repository.\rAdd Secrets: In your GitHub repository, go to Settings \u003e Secrets and add the following secrets: AWS_S3_BUCKET: Your S3 bucket name. AWS_ACCESS_KEY_ID: Your IAM user’s access key ID. AWS_SECRET_ACCESS_KEY: Your IAM user’s secret access key. Testing the CI/CD Pipeline Push a commit to the main branch to trigger the workflow:\ngit add . git commit -m \"Trigger deployment\" git push origin master Monitor the Actions tab in your GitHub repository to ensure the workflow runs successfully. Once completed, your Hugo site should be deployed to your S3 bucket.\nCongratulations 🎉🥳 You have successfully set up a CI/CD pipeline to deploy your Hugo site to Amazon S3 using GitHub Actions.\nThis automated process ensures that your site is always up-to-date with the latest changes, making your workflow more efficient and reliable.\nSource: 🔗Hugo Documentation - Comprehensive guide on Hugo static site generator, including installation and usage instructions. 🔗AWS S3 Documentation - Detailed information on configuring and using Amazon S3 for static website hosting. 🔗GitHub Actions Documentation - Official documentation on setting up and configuring GitHub Actions for CI/CD pipelines. 🔗Peaceiris GitHub Actions for Hugo - GitHub Actions for building and deploying Hugo sites. 🔗Jake Jarvis S3 Sync Action - GitHub Action for syncing files and directories to an S3 bucket. 🔗Amazon S3 Simple Storage Service - Medium article written by Pr. Unubold Tumenbayar explaining Amazon S3 and its features for storage and static website hosting. ",
+  "wordCount" : "751",
   "inLanguage": "en",
   "image":"https://www.lemrabotttoulba.com/blogs/deploy-hugo-to-s3/deploy-hugo-site-on-s3.png","datePublished": "0001-01-01T00:00:00Z",
   "dateModified": "0001-01-01T00:00:00Z",
@@ -227,20 +227,212 @@ May 2024
 
         <div class="inner"><ul>
                 <li>
-                    <a href="#description" aria-label="Description">Description</a></li>
+                    <a href="#introduction" aria-label="Introduction">Introduction</a></li>
                 <li>
-                    <a href="#blog-link" aria-label="Blog Link:">Blog Link:</a>
+                    <a href="#prerequisites" aria-label="Prerequisites">Prerequisites</a></li>
+                <li>
+                    <a href="#setting-up-your-hugo-site" aria-label="Setting Up Your Hugo Site">Setting Up Your Hugo Site</a></li>
+                <li>
+                    <a href="#configuring-amazon-s3" aria-label="Configuring Amazon S3">Configuring Amazon S3</a></li>
+                <li>
+                    <a href="#setting-up-github-repository" aria-label="Setting Up GitHub Repository">Setting Up GitHub Repository</a></li>
+                <li>
+                    <a href="#creating-github-actions-workflow" aria-label="Creating GitHub Actions Workflow">Creating GitHub Actions Workflow</a></li>
+                <li>
+                    <a href="#testing-the-cicd-pipeline" aria-label="Testing the CI/CD Pipeline">Testing the CI/CD Pipeline</a></li>
+                <li>
+                    <a href="#congratulations-" aria-label="Congratulations 🎉🥳">Congratulations 🎉🥳</a></li>
+                <li>
+                    <a href="#source" aria-label="Source:">Source:</a>
                 </li>
             </ul>
         </div>
     </details>
 </div>
 
-  <div class="post-content"><h2 id="description">Description<a hidden class="anchor" aria-hidden="true" href="#description">#</a></h2>
-<p>The [<strong>Deploy Hugo website on Amazon S3 Blog</strong>] is a full guide and documentation on how to deploy a static hugo website on Amazon S3 bucket.</p>
-<h2 id="blog-link">Blog Link:<a hidden class="anchor" aria-hidden="true" href="#blog-link">#</a></h2>
-<p>The source code and documentation for this project can be found in the following GitHub repository:
-🔗 <a href="https://github.com/tlb-lemrabott/"><strong>Deploy Hugo website on Amazon S3 Blog</strong></a>.</p>
+  <div class="post-content"><h2 id="introduction">Introduction<a hidden class="anchor" aria-hidden="true" href="#introduction">#</a></h2>
+<p>Deploying a static website can often seem daunting, especially when aiming for automation and continuous integration/continuous deployment (CI/CD). Hugo, a popular static site generator, simplifies the creation process. Coupled with Amazon S3 for hosting and GitHub Actions for automation, you can set up a robust CI/CD pipeline to deploy your Hugo site seamlessly. This guide will walk you through the steps to deploy a Hugo site to Amazon S3 using GitHub Actions in 2024.</p>
+<h2 id="prerequisites">Prerequisites<a hidden class="anchor" aria-hidden="true" href="#prerequisites">#</a></h2>
+<p>Before we dive into the setup, ensure you have the following:</p>
+<ul>
+<li>A Hugo site ready for deployment.</li>
+<li>An AWS account with S3 permissions.</li>
+<li>A GitHub account.</li>
+<li>Basic knowledge of YAML syntax and Git.</li>
+</ul>
+<h2 id="setting-up-your-hugo-site">Setting Up Your Hugo Site<a hidden class="anchor" aria-hidden="true" href="#setting-up-your-hugo-site">#</a></h2>
+<p>First, if you haven&rsquo;t already, set up your Hugo site:
+<img loading="lazy" src="../../static/blogs/deploy-hugo-to-s3/deploy-hugo-site-on-s3.png" alt="Description of Image"  />
+</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install Hugo</span>
+</span></span><span style="display:flex;"><span>brew install hugo
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create a new Hugo site</span>
+</span></span><span style="display:flex;"><span>hugo new site my-hugo-site
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Navigate to the site directory</span>
+</span></span><span style="display:flex;"><span>cd my-hugo-site
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Add a theme (optional | e.g., Ananke)</span>
+</span></span><span style="display:flex;"><span>git init
+</span></span><span style="display:flex;"><span>git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#39;theme = &#34;ananke&#34;&#39;</span> &gt;&gt; config.toml
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create some content</span>
+</span></span><span style="display:flex;"><span>hugo new posts/my-first-post.md
+</span></span></code></pre></div><ul>
+<li><strong>You can also add your theme manually:</strong>
+<ul>
+<li>Choose your prefered theme by visiting: 🔗<a href="https://themes.gohugo.io">Complete List | Hugo Themes</a></li>
+<li>Clone it into your project, using <code>git clone your-choosen-theme-repository-url</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="configuring-amazon-s3">Configuring Amazon S3<a hidden class="anchor" aria-hidden="true" href="#configuring-amazon-s3">#</a></h2>
+<p>Next, configure your S3 bucket to host the static site:</p>
+<ul>
+<li><strong>Create an S3 Bucket:</strong>
+<ul>
+<li>Go to the S3 console and create a new bucket.</li>
+<li>Name the bucket (e.g., my-hugo-site).</li>
+</ul>
+</li>
+<li><strong>Set Bucket Permissions:</strong>
+<ul>
+<li>Enable static website hosting in the bucket properties.</li>
+<li>Set the index document to index.html.</li>
+<li>Set the error document to 404.html.</li>
+</ul>
+</li>
+<li><strong>Bucket Policy:</strong>
+<ul>
+<li>Add a bucket policy to make the content publicly accessible. Replace your-bucket-name with your actual bucket name:</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Version&#34;</span>: <span style="color:#e6db74">&#34;2012-10-17&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Statement&#34;</span>: [
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Effect&#34;</span>: <span style="color:#e6db74">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Principal&#34;</span>: <span style="color:#e6db74">&#34;*&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Action&#34;</span>: <span style="color:#e6db74">&#34;s3:GetObject&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;Resource&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:s3:::your-bucket-name/*&#34;</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li><strong>Create an IAM User:</strong>
+<ul>
+<li>Create a new IAM user with programmatic access.</li>
+<li>Attach a policy to grant the user permission to upload to S3:</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Version&#34;</span>: <span style="color:#e6db74">&#34;2012-10-17&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Statement&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Effect&#34;</span>: <span style="color:#e6db74">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Action&#34;</span>: <span style="color:#e6db74">&#34;s3:PutObject&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Resource&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:s3:::your-bucket-name/*&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><pre><code>- Note down the Access Key ID and Secret Access Key
+</code></pre>
+<h2 id="setting-up-github-repository">Setting Up GitHub Repository<a hidden class="anchor" aria-hidden="true" href="#setting-up-github-repository">#</a></h2>
+<p>Initialize a Git repository and push your Hugo site to GitHub:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Initialize Git</span>
+</span></span><span style="display:flex;"><span>git init
+</span></span><span style="display:flex;"><span>git remote add origin https://github.com/yourusername/my-hugo-site.git
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Commit and push your site</span>
+</span></span><span style="display:flex;"><span>git add .
+</span></span><span style="display:flex;"><span>git commit -m <span style="color:#e6db74">&#34;Initial commit&#34;</span>
+</span></span><span style="display:flex;"><span>git push -u origin master
+</span></span></code></pre></div><h2 id="creating-github-actions-workflow">Creating GitHub Actions Workflow<a hidden class="anchor" aria-hidden="true" href="#creating-github-actions-workflow">#</a></h2>
+<p>Create a GitHub Actions workflow to automate the deployment process:</p>
+<ul>
+<li><strong>Create Workflow File:</strong>
+<ul>
+<li>Create a workflow file under .github/workflows in your project</li>
+<li>Make sure the file configuration is in <code>YAML</code> format</li>
+</ul>
+</li>
+<li><strong>Configure Workflow:</strong>
+<ul>
+<li>Bellow is an exemple of a workflow file configuration</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">Deploy Hugo Site to S3</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">on</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">push</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">branches</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">master</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">jobs</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">build</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Checkout code</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/checkout@v3</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Setup Hugo</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">peaceiris/actions-hugo@v2</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">with</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">hugo-version</span>: <span style="color:#e6db74">&#39;latest&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Install dependencies</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        npm install</span>        
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Build site</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        hugo</span>        
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Deploy to S3</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">jakejarvis/s3-sync-action@v0.5.0</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">with</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">args</span>: --<span style="color:#ae81ff">acl public-read --follow-symlinks --delete</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">env</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">AWS_S3_BUCKET</span>: <span style="color:#ae81ff">${{ secrets.AWS_S3_BUCKET }}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">AWS_ACCESS_KEY_ID</span>: <span style="color:#ae81ff">${{ secrets.AWS_ACCESS_KEY_ID }}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">AWS_SECRET_ACCESS_KEY</span>: <span style="color:#ae81ff">${{ secrets.AWS_SECRET_ACCESS_KEY }}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">SOURCE_DIR</span>: <span style="color:#e6db74">&#39;public&#39;</span>
+</span></span></code></pre></div><pre><code>- Push your local code to your GitHub repository.
+</code></pre>
+<ul>
+<li><strong>Add Secrets:</strong>
+In your GitHub repository, go to <code>Settings</code> &gt; <code>Secrets</code> and add the following secrets:
+<ul>
+<li><code>AWS_S3_BUCKET</code>: Your S3 bucket name.</li>
+<li><code>AWS_ACCESS_KEY_ID</code>: Your IAM user&rsquo;s access key ID.</li>
+<li><code>AWS_SECRET_ACCESS_KEY</code>: Your IAM user&rsquo;s secret access key.</li>
+</ul>
+</li>
+</ul>
+<h2 id="testing-the-cicd-pipeline">Testing the CI/CD Pipeline<a hidden class="anchor" aria-hidden="true" href="#testing-the-cicd-pipeline">#</a></h2>
+<p>Push a commit to the <code>main</code> branch to trigger the workflow:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git add .
+</span></span><span style="display:flex;"><span>git commit -m <span style="color:#e6db74">&#34;Trigger deployment&#34;</span>
+</span></span><span style="display:flex;"><span>git push origin master
+</span></span></code></pre></div><p>Monitor the <code>Actions</code> tab in your GitHub repository to ensure the workflow runs successfully. Once completed, your Hugo site should be deployed to your S3 bucket.</p>
+<h2 id="congratulations-">Congratulations 🎉🥳<a hidden class="anchor" aria-hidden="true" href="#congratulations-">#</a></h2>
+<p>You have successfully set up a CI/CD pipeline to deploy your Hugo site to Amazon S3 using GitHub Actions.</p>
+<p>This automated process ensures that your site is always up-to-date with the latest changes, making your workflow more efficient and reliable.</p>
+<h2 id="source">Source:<a hidden class="anchor" aria-hidden="true" href="#source">#</a></h2>
+<ul>
+<li>🔗<a href="https://gohugo.io/documentation/">Hugo Documentation</a> - Comprehensive guide on Hugo static site generator, including installation and usage instructions.</li>
+<li>🔗<a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html">AWS S3 Documentation</a> - Detailed information on configuring and using Amazon S3 for static website hosting.</li>
+<li>🔗<a href="https://docs.github.com/en/actions">GitHub Actions Documentation</a> - Official documentation on setting up and configuring GitHub Actions for CI/CD pipelines.</li>
+<li>🔗<a href="https://github.com/peaceiris/actions-hugo">Peaceiris GitHub Actions for Hugo</a> - GitHub Actions for building and deploying Hugo sites.</li>
+<li>🔗<a href="https://github.com/jakejarvis/s3-sync-action">Jake Jarvis S3 Sync Action</a> - GitHub Action for syncing files and directories to an S3 bucket.</li>
+<li>🔗<a href="https://medium.com/handpro/amazon-s3-simple-storage-service-c02f39ac8c6c">Amazon S3 Simple Storage Service</a> - Medium article written by <strong>Pr. Unubold Tumenbayar</strong> explaining Amazon S3 and its features for storage and static website hosting.</li>
+</ul>
 
 
   </div>

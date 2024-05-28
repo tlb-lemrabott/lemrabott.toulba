@@ -1,5 +1,5 @@
 ---
-title: "National Bank of Mauritania"
+title: "NATIONAL BANK OF MAURITANIA"
 description: "Software Developer - Full-time"
 dateString: Jan 2021 - Sep 2022
 draft: false
