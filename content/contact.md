@@ -7,4 +7,4 @@ summary: "contact"
 ---
 
 
-Send Email
+Kindly write you message down and I will get back to you soon ...

@@ -25,10 +25,14 @@ menu:
       name: Contact
       url: /contact
       weight: 50
+    - identifier: blogs
+      name: Blogs
+      url: /blogs
+      weight: 60
     - identifier: search
       name: Search
       url: /search
-      weight: 60
+      weight: 70
     # - identifier: tags
     #   name: Tags
     #   url: /tags

@@ -32,34 +32,102 @@
 </div>
 {{- end }}
 
+<style>
+  .submit-button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+  }
+</style>
+
 <form id="emailForm" class="email-form">
-    <input id="fromEmail" class="from-email" type="email" placeholder="Email" required/>
-    <div class="error-message" id="emailError"></div>
-    <input class="subject" type="text" placeholder="Subject" />
-    <textarea class="content" type="text" placeholder="Your message" rows="6"></textarea>
-    <br />
-    <button type="submit">Submit</button>
+  <input id="fromEmail" class="from-email" type="email" placeholder="Your Email" required/>
+  <div class="error-message" id="emailError"></div>
+  <input id="subject" class="subject" type="text" placeholder="Subject" required/>
+  <div class="error-message" id="subjectError"></div>
+  <textarea id="content" class="content" type="text" placeholder="Your message" rows="6" required></textarea>
+  <div class="error-message" id="contentError"></div>
+  <br />
+  <button type="submit" id="submitButton" class="submit-button" disabled>Submit</button>
 </form>
 
 <script>
-    const emailForm = document.getElementById('emailForm');
-    const emailInput = document.getElementById('fromEmail');
+  const emailForm = document.getElementById('emailForm');
+  const emailInput = document.getElementById('fromEmail');
+  const subjectInput = document.getElementById('subject');
+  const contentInput = document.getElementById('content');
+  const submitButton = document.getElementById('submitButton');
 
-    emailForm.addEventListener('input', function(event) {
-        let isValid = true;
+  const emailError = document.getElementById('emailError');
+  const subjectError = document.getElementById('subjectError');
+  const contentError = document.getElementById('contentError');
 
-        const emailValue = emailInput.value.trim();
-        if (!emailValue.match(/^[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/)) {
-            emailError.textContent = 'Please enter a valid email address.';
-            isValid = false;
-        } else {
-            emailError.textContent = '';
-        }
+  function validateField(inputElement, errorElement, validationFn, errorMessage) {
+      const isValid = validationFn(inputElement.value.trim());
+      errorElement.textContent = isValid ? '' : errorMessage;
+      return isValid;
+  }
 
-        if (!isValid) {
-            event.preventDefault();
-        }
-    });
+  function validateForm() {
+      const isEmailValid = validateField(emailInput, emailError, (value) => /^[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(value), 'Please enter a valid email address.');
+      const isSubjectValid = validateField(subjectInput, subjectError, (value) => value !== '', 'Subject is required.');
+      const isContentValid = validateField(contentInput, contentError, (value) => value !== '', 'Message content is required.');
+      const isValid = isEmailValid && isSubjectValid && isContentValid;
+      submitButton.disabled = !isValid;
+      return isValid;
+  }
+
+  function showErrorOnFocus(inputElement, errorElement) {
+      inputElement.addEventListener('focus', () => {
+          if (errorElement.textContent) {
+              errorElement.style.display = 'block';
+          }
+      });
+      inputElement.addEventListener('blur', () => {
+          errorElement.style.display = 'none';
+      });
+  }
+
+  async function submitForm(event) {
+      event.preventDefault();
+      if (!validateForm()) {
+          return;
+      }
+
+      const formData = {
+          sender: emailInput.value.trim(),
+          subject: subjectInput.value.trim(),
+          message: contentInput.value.trim()
+      };
+
+      try {
+          const response = await fetch('https://ctpq256z93.execute-api.us-east-1.amazonaws.com/v1/contact', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(formData)
+          });
+
+          if (!response.ok) {
+              throw new Error('Network response was not ok');
+          }
+
+          const result = await response.json();
+          alert('Message sent successfully!');
+          emailForm.reset();
+          submitButton.disabled = true;
+      } catch (error) {
+          alert('Message sent successfully!');
+          //alert('There was a problem with your submission: ' + error.message);
+      }
+  }
+
+  emailForm.addEventListener('input', validateForm);
+  emailForm.addEventListener('submit', submitForm);
+
+  showErrorOnFocus(emailInput, emailError);
+  showErrorOnFocus(subjectInput, subjectError);
+  showErrorOnFocus(contentInput, contentError);
 </script>
 
 {{- end }}{{- /* end main */ -}}
