@@ -53,7 +53,7 @@ Next, configure your S3 bucket to host the static site:
     - Enable static website hosting in the bucket properties.
     - Set the index document to index.html.
     - Set the error document to 404.html.
-- **Bucket Policy:**
+- **Bucket Policy**
     - Add a bucket policy to make the content publicly accessible. Replace your-bucket-name with your actual bucket name: 
 ```json
 {
@@ -68,7 +68,7 @@ Next, configure your S3 bucket to host the static site:
     ]
 }
 ```
-- **Create an IAM User:**
+- **Create an IAM User**
     - Create a new IAM user with programmatic access.
     - Attach a policy to grant the user permission to upload to S3:
 ```json
@@ -101,10 +101,10 @@ git push -u origin master
 ## Creating GitHub Actions Workflow
 Create a GitHub Actions workflow to automate the deployment process:
 
-- **Create Workflow File:**
+- **Create Workflow File**
     - Create a workflow file under .github/workflows in your project
     - Make sure the file configuration is in `YAML` format 
-- **Configure Workflow:**
+- **Configure Workflow**
     - Bellow is an exemple of a workflow file configuration
 ```yaml
 name: Deploy Hugo Site to S3
@@ -146,7 +146,7 @@ jobs:
         SOURCE_DIR: 'public'
 ```
     - Push your local code to your GitHub repository.
-- **Add Secrets:**
+- **Add Secrets**
     In your GitHub repository, go to `Settings` > `Secrets` and add the following secrets:
     - `AWS_S3_BUCKET`: Your S3 bucket name.
     - `AWS_ACCESS_KEY_ID`: Your IAM user's access key ID.
@@ -167,7 +167,7 @@ You have successfully set up a CI/CD pipeline to deploy your Hugo site to Amazon
 
 This automated process ensures that your site is always up-to-date with the latest changes, making your workflow more efficient and reliable. 
 
-## Source:
+## Source
 - 🔗[Hugo Documentation](https://gohugo.io/documentation/) - Comprehensive guide on Hugo static site generator, including installation and usage instructions.
 - 🔗[AWS S3 Documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html) - Detailed information on configuring and using Amazon S3 for static website hosting.
 - 🔗[GitHub Actions Documentation](https://docs.github.com/en/actions) - Official documentation on setting up and configuring GitHub Actions for CI/CD pipelines.
