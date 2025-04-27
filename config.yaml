@@ -75,25 +75,28 @@ params:
       backend:
         - stack1: Java
         - stack2: Spring boot
-        - stack3: Javascript ES6+
-        - stack4: NodeJs Platform
+        - stack3: Spring Cloud
+        - stack4: Java EE
       frontend:
         - stack1: HTML
         - stack2: CSS
         - stack3: Angular
-        - stack4: React.js
+        - stack4: Reactjs
       databases:
         - db1: MySQL
         - db2: PostgreSQL
         - db3: MongoDB
         - db4: DynamoDB
       webServices:
-        - ws1: RESTful
-        - ws2: SOAP
-        - ws3: Microservices
+        - ws1: REST API
+        - ws2: Kubernates
+        - ws3: Eureka
+        - ws4: Docker
+        - ws5: RabbbitMQ
       cloud:
-        - cloud1: Google Cloud Firebase
-        - cloud2: AWS Cloud Services 
+        - cloud1: AWS Services
+        - cloud2: Firebase
+        - cloud3: Github Actions
       webSecurity:
         - security1: Firebase Authentication
         - security2: JWT
