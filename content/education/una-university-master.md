@@ -1,6 +1,6 @@
 ---
 title: "Nouakchott University"
-description: "Master's degree, Information Systems"
+description: "Master of Science in Computer Science"
 dateString: Oct 2018 - Dec 2020
 draft: false
 tags: ["Java 7", "Java 2EE", "ORM", "Hibernate", "Spring Framwork", "JavaScript", "TypeScript", "Angular", "React.js", "Python", "MongoDB", "MySQL", "Design patterns", "Hadoop", "NMAP - Network Scanner", "Web Services", "RESTful API", "SOAP", "XML", "JSON", "WSDL", "Agile methods"]
