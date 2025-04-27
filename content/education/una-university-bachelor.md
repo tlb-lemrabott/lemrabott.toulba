@@ -1,6 +1,6 @@
 ---
 title: "Nouakchott University"
-description: "Bachelor's degree in Mathematics and Computer Science"
+description: "Bachelor's degree in Math and Computer Science"
 dateString: Oct 2015 - Jun 2018
 draft: false
 tags: ["Computer Architecture", "C language", "Java", "Linux commands", "Turing machine", "Java", "Algorithms and Complexity", "Probability", "Statistics", "Graphs", "SQL language", XML", "Algebra", Geometric, "Physics"]
