@@ -88,19 +88,18 @@ params:
         - db3: MongoDB
         - db4: DynamoDB
       webServices:
-        - ws1: REST API
-        - ws2: Kubernates
+        - ws1: RESTful APIs
+        - ws2: RabbbitMQ
         - ws3: Eureka
         - ws4: Docker
-        - ws5: RabbbitMQ
       cloud:
         - cloud1: AWS Services
-        - cloud2: Firebase
+        - cloud2: GC Firebase
         - cloud3: Github Actions
       webSecurity:
-        - security1: Firebase Authentication
+        - security1: OAuth2
         - security2: JWT
-        - security3: Bcrypt
+        - security3: IAM
     imageUrl: "home/lemrabott_pic.png"
     imageWidth: 220
     imageHeight: 220
