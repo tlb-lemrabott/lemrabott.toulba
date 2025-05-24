@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><meta charset="utf-8">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
@@ -9,17 +9,18 @@
 <meta name="keywords" content="Hogo, StaticSiteGenerator, HTML, CSS, JavaScript, Nodejs, GithubActions, AWS, S3">
 <meta name="description" content="Full guide on how to deploy a static hugo website to Amazon S3 using Github Actions CI/CD Pipeline in 2024">
 <meta name="author" content="">
-<link rel="canonical" href="https://www.lemrabotttoulba.com/blogs/deploy-hugo-to-s3/">
+<link rel="canonical" href="http://localhost:1313/blogs/deploy-hugo-to-s3/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.css" integrity="" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.js" integrity=""
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="https://www.lemrabotttoulba.com/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://www.lemrabotttoulba.com/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://www.lemrabotttoulba.com/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://www.lemrabotttoulba.com/apple-touch-icon.png">
-<link rel="mask-icon" href="https://www.lemrabotttoulba.com/safari-pinned-tab.svg">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/blogs/deploy-hugo-to-s3/">
 <noscript>
     <style>
         #theme-toggle,
@@ -59,13 +60,13 @@
 </noscript><meta property="og:title" content="Deploy a Hugo site to Amazon S3 with CI/CD Pipeline" />
 <meta property="og:description" content="Full guide on how to deploy a static hugo website to Amazon S3 using Github Actions CI/CD Pipeline in 2024" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.lemrabotttoulba.com/blogs/deploy-hugo-to-s3/" />
-<meta property="og:image" content="https://www.lemrabotttoulba.com/blogs/deploy-hugo-to-s3/deploy-hugo-site-on-s3.png" /><meta property="article:section" content="blogs" />
+<meta property="og:url" content="http://localhost:1313/blogs/deploy-hugo-to-s3/" />
+<meta property="og:image" content="http://localhost:1313/blogs/deploy-hugo-to-s3/deploy-hugo-site-on-s3.png" /><meta property="article:section" content="blogs" />
 
 
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://www.lemrabotttoulba.com/blogs/deploy-hugo-to-s3/deploy-hugo-site-on-s3.png" />
+<meta name="twitter:image" content="http://localhost:1313/blogs/deploy-hugo-to-s3/deploy-hugo-site-on-s3.png" />
 <meta name="twitter:title" content="Deploy a Hugo site to Amazon S3 with CI/CD Pipeline"/>
 <meta name="twitter:description" content="Full guide on how to deploy a static hugo website to Amazon S3 using Github Actions CI/CD Pipeline in 2024"/>
 
@@ -74,18 +75,18 @@
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [, 
+  "itemListElement": [
     {
       "@type": "ListItem",
-      "position":  2 ,
+      "position":  1 ,
       "name": "Blogs",
-      "item": "https://www.lemrabotttoulba.com/blogs/"
+      "item": "http://localhost:1313/blogs/"
     }, 
     {
       "@type": "ListItem",
-      "position":  3 ,
+      "position":  2 ,
       "name": "Deploy a Hugo site to Amazon S3 with CI/CD Pipeline",
-      "item": "https://www.lemrabotttoulba.com/blogs/deploy-hugo-to-s3/"
+      "item": "http://localhost:1313/blogs/deploy-hugo-to-s3/"
     }
   ]
 }
@@ -103,18 +104,18 @@
   "articleBody": "Introduction Deploying a static website can often seem daunting, especially when aiming for automation and continuous integration/continuous deployment (CI/CD). Hugo, a popular static site generator, simplifies the creation process. Coupled with Amazon S3 for hosting and GitHub Actions for automation, you can set up a robust CI/CD pipeline to deploy your Hugo site seamlessly. This guide will walk you through the steps to deploy a Hugo site to Amazon S3 using GitHub Actions in 2024.\nPrerequisites Before we dive into the setup, ensure you have the following:\nA Hugo site ready for deployment. An AWS account with S3 permissions. A GitHub account. Basic knowledge of YAML syntax and Git. Setting Up Your Hugo Site First, if you haven’t already, set up your Hugo site: # Install Hugo brew install hugo # Create a new Hugo site hugo new site my-hugo-site # Navigate to the site directory cd my-hugo-site # Add a theme (optional | e.g., Ananke) git init git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke echo 'theme = \"ananke\"' \u003e\u003e config.toml # Create some content hugo new posts/my-first-post.md You can also add your theme manually: Choose your prefered theme by visiting: 🔗Complete List | Hugo Themes Clone it into your project, using git clone your-choosen-theme-repository-url Configuring Amazon S3 Next, configure your S3 bucket to host the static site:\nCreate an S3 Bucket: Go to the S3 console and create a new bucket. Name the bucket (e.g., my-hugo-site). Set Bucket Permissions: Enable static website hosting in the bucket properties. Set the index document to index.html. Set the error document to 404.html. Bucket Policy Add a bucket policy to make the content publicly accessible. Replace your-bucket-name with your actual bucket name: { \"Version\": \"2012-10-17\", \"Statement\": [ { \"Effect\": \"Allow\", \"Principal\": \"*\", \"Action\": \"s3:GetObject\", \"Resource\": \"arn:aws:s3:::your-bucket-name/*\" } ] } Create an IAM User Create a new IAM user with programmatic access. Attach a policy to grant the user permission to upload to S3: { \"Version\": \"2012-10-17\", \"Statement\": [ { \"Effect\": \"Allow\", \"Action\": \"s3:PutObject\", \"Resource\": \"arn:aws:s3:::your-bucket-name/*\" } ] } - Note down the Access Key ID and Secret Access Key\rSetting Up GitHub Repository Initialize a Git repository and push your Hugo site to GitHub:\n# Initialize Git git init git remote add origin https://github.com/yourusername/my-hugo-site.git # Commit and push your site git add . git commit -m \"Initial commit\" git push -u origin master Creating GitHub Actions Workflow Create a GitHub Actions workflow to automate the deployment process:\nCreate Workflow File Create a workflow file under .github/workflows in your project Make sure the file configuration is in YAML format Configure Workflow Bellow is an exemple of a workflow file configuration name: Deploy Hugo Site to S3 on: push: branches: - master jobs: build: runs-on: ubuntu-latest steps: - name: Checkout code uses: actions/checkout@v3 - name: Setup Hugo uses: peaceiris/actions-hugo@v2 with: hugo-version: 'latest' - name: Install dependencies run: | npm install - name: Build site run: | hugo - name: Deploy to S3 uses: jakejarvis/s3-sync-action@v0.5.0 with: args: --acl public-read --follow-symlinks --delete env: AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }} AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }} SOURCE_DIR: 'public' - Push your local code to your GitHub repository.\rAdd Secrets In your GitHub repository, go to Settings \u003e Secrets and add the following secrets: AWS_S3_BUCKET: Your S3 bucket name. AWS_ACCESS_KEY_ID: Your IAM user’s access key ID. AWS_SECRET_ACCESS_KEY: Your IAM user’s secret access key. Testing the CI/CD Pipeline Push a commit to the main branch to trigger the workflow:\ngit add . git commit -m \"Trigger deployment\" git push origin master Monitor the Actions tab in your GitHub repository to ensure the workflow runs successfully. Once completed, your Hugo site should be deployed to your S3 bucket.\nCongratulations 🎉🥳 You have successfully set up a CI/CD pipeline to deploy your Hugo site to Amazon S3 using GitHub Actions.\nThis automated process ensures that your site is always up-to-date with the latest changes, making your workflow more efficient and reliable.\nSource 🔗Hugo Documentation - Comprehensive guide on Hugo static site generator, including installation and usage instructions. 🔗AWS S3 Documentation - Detailed information on configuring and using Amazon S3 for static website hosting. 🔗GitHub Actions Documentation - Official documentation on setting up and configuring GitHub Actions for CI/CD pipelines. 🔗Peaceiris GitHub Actions for Hugo - GitHub Actions for building and deploying Hugo sites. 🔗Jake Jarvis S3 Sync Action - GitHub Action for syncing files and directories to an S3 bucket. 🔗Amazon S3 Simple Storage Service - Medium article written by Pr. Unubold Tumenbayar explaining Amazon S3 and its features for storage and static website hosting. ",
   "wordCount" : "751",
   "inLanguage": "en",
-  "image":"https://www.lemrabotttoulba.com/blogs/deploy-hugo-to-s3/deploy-hugo-site-on-s3.png","datePublished": "0001-01-01T00:00:00Z",
+  "image":"http://localhost:1313/blogs/deploy-hugo-to-s3/deploy-hugo-site-on-s3.png","datePublished": "0001-01-01T00:00:00Z",
   "dateModified": "0001-01-01T00:00:00Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://www.lemrabotttoulba.com/blogs/deploy-hugo-to-s3/"
+    "@id": "http://localhost:1313/blogs/deploy-hugo-to-s3/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "Lemrabott Toulba",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://www.lemrabotttoulba.com/favicon.ico"
+      "url": "http://localhost:1313/favicon.ico"
     }
   }
 }
@@ -136,7 +137,7 @@
 <header class="header sticky-header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://www.lemrabotttoulba.com" accesskey="h" title="Lemrabott Toulba (Alt + H)">Lemrabott Toulba</a>
+            <a href="http://localhost:1313/" accesskey="h" title="Lemrabott Toulba (Alt + H)">Lemrabott Toulba</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -158,41 +159,43 @@
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
                 </button>
+                <ul class="lang-switch"><li>|</li>
+                </ul>
             </span>
         </div>
         <ul id="menu">
             <li>
-                <a href="https://www.lemrabotttoulba.com/" title="Home">
+                <a href="http://localhost:1313/" title="Home">
                     <span>Home</span>
                 </a>
             </li>
             <li>
-                <a href="https://www.lemrabotttoulba.com/experience" title="Experience">
+                <a href="http://localhost:1313/experience" title="Experience">
                     <span>Experience</span>
                 </a>
             </li>
             <li>
-                <a href="https://www.lemrabotttoulba.com/projects" title="Projects">
+                <a href="http://localhost:1313/projects" title="Projects">
                     <span>Projects</span>
                 </a>
             </li>
             <li>
-                <a href="https://www.lemrabotttoulba.com/education" title="Education">
+                <a href="http://localhost:1313/education" title="Education">
                     <span>Education</span>
                 </a>
             </li>
             <li>
-                <a href="https://www.lemrabotttoulba.com/contact" title="Contact">
+                <a href="http://localhost:1313/contact" title="Contact">
                     <span>Contact</span>
                 </a>
             </li>
             <li>
-                <a href="https://www.lemrabotttoulba.com/blogs" title="Blogs">
+                <a href="http://localhost:1313/blogs" title="Blogs">
                     <span>Blogs</span>
                 </a>
             </li>
             <li>
-                <a href="https://www.lemrabotttoulba.com/search" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="http://localhost:1313/search" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
@@ -203,7 +206,7 @@
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://www.lemrabotttoulba.com">Home</a>&nbsp;»&nbsp;<a href="https://www.lemrabotttoulba.com/blogs/">Blogs</a></div>
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/blogs/">Blogs</a></div>
     <h1 class="post-title">
       Deploy a Hugo site to Amazon S3 with CI/CD Pipeline
     </h1>
@@ -217,7 +220,7 @@ May 2024
 
 </div>
   </header> 
-<figure class="entry-cover"><img loading="lazy" src="https://www.lemrabotttoulba.com/blogs/deploy-hugo-to-s3/deploy-hugo-site-on-s3.png" alt="">
+<figure class="entry-cover"><img loading="lazy" src="http://localhost:1313/blogs/deploy-hugo-to-s3/deploy-hugo-site-on-s3.png" alt="">
         
 </figure><div class="toc">
     <details >
@@ -388,11 +391,11 @@ May 2024
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Install dependencies</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        npm install</span>        
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        npm install</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Build site</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        hugo</span>        
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        hugo</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Deploy to S3</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">jakejarvis/s3-sync-action@v0.5.0</span>
@@ -439,22 +442,22 @@ In your GitHub repository, go to <code>Settings</code> &gt; <code>Secrets</code>
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://www.lemrabotttoulba.com/tags/hogo/">Hogo</a></li>
-      <li><a href="https://www.lemrabotttoulba.com/tags/staticsitegenerator/">StaticSiteGenerator</a></li>
-      <li><a href="https://www.lemrabotttoulba.com/tags/html/">HTML</a></li>
-      <li><a href="https://www.lemrabotttoulba.com/tags/css/">CSS</a></li>
-      <li><a href="https://www.lemrabotttoulba.com/tags/javascript/">JavaScript</a></li>
-      <li><a href="https://www.lemrabotttoulba.com/tags/nodejs/">Nodejs</a></li>
-      <li><a href="https://www.lemrabotttoulba.com/tags/githubactions/">GithubActions</a></li>
-      <li><a href="https://www.lemrabotttoulba.com/tags/aws/">AWS</a></li>
-      <li><a href="https://www.lemrabotttoulba.com/tags/s3/">S3</a></li>
+      <li><a href="http://localhost:1313/tags/hogo/">Hogo</a></li>
+      <li><a href="http://localhost:1313/tags/staticsitegenerator/">StaticSiteGenerator</a></li>
+      <li><a href="http://localhost:1313/tags/html/">HTML</a></li>
+      <li><a href="http://localhost:1313/tags/css/">CSS</a></li>
+      <li><a href="http://localhost:1313/tags/javascript/">JavaScript</a></li>
+      <li><a href="http://localhost:1313/tags/nodejs/">NodeJs</a></li>
+      <li><a href="http://localhost:1313/tags/githubactions/">GithubActions</a></li>
+      <li><a href="http://localhost:1313/tags/aws/">AWS</a></li>
+      <li><a href="http://localhost:1313/tags/s3/">S3</a></li>
     </ul>
   </footer>
 </article>
     </main>
     
 <footer class="footer">
-    <span>&copy; 2024 <a href="https://www.lemrabotttoulba.com">Lemrabott Toulba</a></span>
+    <span>&copy; 2025 <a href="http://localhost:1313/">Lemrabott Toulba</a></span>
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
