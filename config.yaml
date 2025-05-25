@@ -12,11 +12,11 @@ menu:
     - identifier: education
       name: Education
       url: /education
-      weight: 40
+      weight: 30
     - identifier: projects
       name: Projects
       url: /projects
-      weight: 30
+      weight: 40
     - identifier: experience
       name: Experience
       url: /experience
@@ -24,11 +24,11 @@ menu:
     - identifier: contact
       name: Contact
       url: /contact
-      weight: 50
+      weight: 60
     - identifier: blogs
       name: Blogs
       url: /blogs
-      weight: 60
+      weight: 50
     - identifier: search
       name: Search
       url: /search
@@ -56,10 +56,10 @@ params:
   # Home Page
   profileMode:
     enabled: true
-    title: "Lemrabott Toulba"
-    subtitle: Software Engineer | Java | Spring boot | WebDev | NodeJS | Eligible for Full-time W-2 Employment | Willing to Relocate
+    title: "Software Engineer"
+    subtitle: Java | Spring Boot | RESTful APIs | SQL | Microservices
     text: |- 
-      Full-satck Developer with an M.S. in Computer Science. Located in New York City. Seeking an opportunity to collaborate and build highly scalable services.
+      Full-satck Developer with an M.S. in Computer Science. Located in New York City. Eligible for Full-time W2 Employment
     subtext1: I have a proven track record of delivering efficient solutions and achieving measurable results, 
       including optimizing performance and contributing to successful project completion. 
     achievements_title: ACHIEVEMENTS DONE
@@ -100,7 +100,7 @@ params:
         - security1: OAuth2
         - security2: JWT
         - security3: IAM
-    imageUrl: "home/lemrabott_pic.png"
+    imageUrl: "home/image.png"
     imageWidth: 220
     imageHeight: 220
     # buttons:
