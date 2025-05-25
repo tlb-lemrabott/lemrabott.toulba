@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Three Approaches to Integrate AWS Cognito Authentication in Your Application | Lemrabott Toulba</title>
+<meta name="keywords" content="AWS, AWS Cognito, Authentication, Authorization, OAuth2, JWT, Web Security">
+<meta name="description" content="A comprehensive guide to integrating AWS Cognito authentication into your application using three proven approaches.">
+<meta name="author" content="">
+<link rel="canonical" href="https://www.lemrabotttoulba.com/blogs/cognito-auth/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" integrity="" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.js" integrity=""
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://www.lemrabotttoulba.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.lemrabotttoulba.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.lemrabotttoulba.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://www.lemrabotttoulba.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://www.lemrabotttoulba.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Three Approaches to Integrate AWS Cognito Authentication in Your Application" />
+<meta property="og:description" content="A comprehensive guide to integrating AWS Cognito authentication into your application using three proven approaches." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.lemrabotttoulba.com/blogs/cognito-auth/" />
+<meta property="og:image" content="https://www.lemrabotttoulba.com/blogs/cognito-auth/image.png" /><meta property="article:section" content="blogs" />
+
+
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://www.lemrabotttoulba.com/blogs/cognito-auth/image.png" />
+<meta name="twitter:title" content="Three Approaches to Integrate AWS Cognito Authentication in Your Application"/>
+<meta name="twitter:description" content="A comprehensive guide to integrating AWS Cognito authentication into your application using three proven approaches."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Blogs",
+      "item": "https://www.lemrabotttoulba.com/blogs/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Three Approaches to Integrate AWS Cognito Authentication in Your Application",
+      "item": "https://www.lemrabotttoulba.com/blogs/cognito-auth/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Three Approaches to Integrate AWS Cognito Authentication in Your Application",
+  "name": "Three Approaches to Integrate AWS Cognito Authentication in Your Application",
+  "description": "A comprehensive guide to integrating AWS Cognito authentication into your application using three proven approaches.",
+  "keywords": [
+    "AWS", "AWS Cognito", "Authentication", "Authorization", "OAuth2", "JWT", "Web Security"
+  ],
+  "articleBody": "Introduction AWS Cognito is a powerful authentication and user management service that provides secure sign-up, sign-in, and access control capabilities. It supports features like multi-factor authentication (MFA), social login, and federated identities.\nDepending on your application’s architecture and security needs, you can integrate Cognito in three primary ways. This article outlines each approach, explaining how it works, its pros and cons, and when to use it.\nPrerequisites An AWS account with permissions to create Cognito User Pools. Basic knowledge of web authentication concepts (JWT, OAuth2). Familiarity with your tech stack (e.g., JavaScript/React, Java/Spring Boot, etc.). Approaches 1. Direct UI Integration with AWS Cognito API This method involves directly integrating AWS Cognito’s User Pool APIs into your front-end application using SDKs like AWS Amplify or the AWS SDK for your language or framework.\n🔧 How It Works: The front-end communicates directly with Cognito’s authentication endpoints. Users input credentials (username/password), which are securely sent to Cognito. On successful authentication, Cognito returns ID, Access, and Refresh tokens. The front-end includes these tokens in API requests to access protected resources. ✅ Pros: Quick and simple to set up, especially for front-end-centric or serverless apps. Reduces backend complexity by offloading authentication to Cognito. AWS Amplify offers extensive tooling and built-in support. ❌ Cons: Tokens must be securely stored and managed in the frontend. Less control over the authentication flow. Complex workflows like multi-step login or custom validation are harder to implement. 🎯 Best Use Cases: SPAs (Single Page Applications) and mobile apps. Serverless applications or MVPs needing rapid authentication setup. 2. Backend-Managed Cognito Authentication In this approach, the backend acts as an intermediary between the frontend and AWS Cognito, managing authentication securely on the server side.\n🔧 How It Works: The front-end sends authentication requests (credentials) to your backend. The backend handles interaction with AWS Cognito APIs. Upon successful login, the backend may issue its own session tokens or forward Cognito tokens to the frontend. ✅ Pros: Improves security by avoiding direct token handling in the frontend. Offers more flexibility to implement custom authentication logic (e.g., account status checks). Easier to integrate with microservices and legacy systems. ❌ Cons: Requires more backend development and maintenance. Slightly higher latency due to intermediary processing. 🎯 Best Use Cases: Applications requiring centralized or custom authentication logic. Microservices-based systems needing authentication orchestration. 3. Using AWS Cognito Hosted UI This is the fastest and simplest integration method. AWS Cognito provides a pre-built Hosted UI that supports sign-in, sign-up, and federated login.\n🔧 Implementation Steps: Enable Hosted UI in the Cognito User Pool settings. Configure allowed callback URLs for redirection after login. Users are redirected to Cognito’s hosted login page. After login, users are redirected back with tokens via OAuth 2.0/OpenID Connect. ✅ Pros: Fully managed UI with support for MFA, social logins (Google, Facebook, etc.), and SAML. Reduces development time drastically. AWS handles security, compliance, and patching. ❌ Cons: Limited customization of the UI and UX. Redirection-based flow may not suit all application types (e.g., embedded devices). 🎯 Best Use Cases: Applications needing rapid authentication setup. Projects prioritizing compliance, minimal development, and standard login flows. Conclusion Each AWS Cognito integration method serves different use cases:\nDirect UI Integration is great for lightweight and serverless applications needing rapid setup. Backend-Managed Authentication offers more security and flexibility for complex systems. Hosted UI is ideal when you want the fastest route to secure, standards-compliant authentication. Choose the integration style that aligns best with your project’s security posture, scalability needs, and developer experience.\nCongratulations 🎉🥳 You’re now equipped with the knowledge to securely integrate AWS Cognito authentication using one of three effective methods. Whether you want maximum control, simplicity, or security, Cognito has you covered.\nSource 🔗AWS Cognito Documentation - Official developer guide for Cognito User Pools. 🔗AWS Amplify Auth - Guide to using Amplify to integrate Cognito into web and mobile apps. 🔗OAuth2 and OpenID Connect - Understanding the standards behind AWS Cognito authentication. ",
+  "wordCount" : "651",
+  "inLanguage": "en",
+  "image":"https://www.lemrabotttoulba.com/blogs/cognito-auth/image.png","datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.lemrabotttoulba.com/blogs/cognito-auth/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Lemrabott Toulba",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.lemrabotttoulba.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header sticky-header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://www.lemrabotttoulba.com" accesskey="h" title="Lemrabott Toulba (Alt + H)">Lemrabott Toulba</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://www.lemrabotttoulba.com/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.lemrabotttoulba.com/experience" title="Experience">
+                    <span>Experience</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.lemrabotttoulba.com/education" title="Education">
+                    <span>Education</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.lemrabotttoulba.com/projects" title="Projects">
+                    <span>Projects</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.lemrabotttoulba.com/blogs" title="Blogs">
+                    <span>Blogs</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.lemrabotttoulba.com/contact" title="Contact">
+                    <span>Contact</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.lemrabotttoulba.com/search" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://www.lemrabotttoulba.com">Home</a>&nbsp;»&nbsp;<a href="https://www.lemrabotttoulba.com/blogs/">Blogs</a></div>
+    <h1 class="post-title">
+      Three Approaches to Integrate AWS Cognito Authentication in Your Application
+    </h1>
+    <div class="post-description">
+      A comprehensive guide to integrating AWS Cognito authentication into your application using three proven approaches.
+    </div>
+    <div class="post-meta">
+
+
+May 2024
+
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="lazy" src="https://www.lemrabotttoulba.com/blogs/cognito-auth/image.png" alt="">
+        
+</figure><div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">‎ Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#introduction" aria-label="Introduction">Introduction</a></li>
+                <li>
+                    <a href="#prerequisites" aria-label="Prerequisites">Prerequisites</a></li>
+                <li>
+                    <a href="#approaches" aria-label="Approaches">Approaches</a><ul>
+                        
+                <li>
+                    <a href="#1-direct-ui-integration-with-aws-cognito-api" aria-label="1. Direct UI Integration with AWS Cognito API">1. Direct UI Integration with AWS Cognito API</a><ul>
+                        
+                <li>
+                    <a href="#-how-it-works" aria-label="🔧 How It Works:">🔧 How It Works:</a></li>
+                <li>
+                    <a href="#-pros" aria-label="✅ Pros:">✅ Pros:</a></li>
+                <li>
+                    <a href="#-cons" aria-label="❌ Cons:">❌ Cons:</a></li>
+                <li>
+                    <a href="#-best-use-cases" aria-label="🎯 Best Use Cases:">🎯 Best Use Cases:</a></li></ul>
+                </li>
+                <li>
+                    <a href="#2-backend-managed-cognito-authentication" aria-label="2. Backend-Managed Cognito Authentication">2. Backend-Managed Cognito Authentication</a><ul>
+                        
+                <li>
+                    <a href="#-how-it-works-1" aria-label="🔧 How It Works:">🔧 How It Works:</a></li>
+                <li>
+                    <a href="#-pros-1" aria-label="✅ Pros:">✅ Pros:</a></li>
+                <li>
+                    <a href="#-cons-1" aria-label="❌ Cons:">❌ Cons:</a></li>
+                <li>
+                    <a href="#-best-use-cases-1" aria-label="🎯 Best Use Cases:">🎯 Best Use Cases:</a></li></ul>
+                </li>
+                <li>
+                    <a href="#3-using-aws-cognito-hosted-ui" aria-label="3. Using AWS Cognito Hosted UI">3. Using AWS Cognito Hosted UI</a><ul>
+                        
+                <li>
+                    <a href="#-implementation-steps" aria-label="🔧 Implementation Steps:">🔧 Implementation Steps:</a></li>
+                <li>
+                    <a href="#-pros-2" aria-label="✅ Pros:">✅ Pros:</a></li>
+                <li>
+                    <a href="#-cons-2" aria-label="❌ Cons:">❌ Cons:</a></li>
+                <li>
+                    <a href="#-best-use-cases-2" aria-label="🎯 Best Use Cases:">🎯 Best Use Cases:</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
+                <li>
+                    <a href="#congratulations-" aria-label="Congratulations 🎉🥳">Congratulations 🎉🥳</a></li>
+                <li>
+                    <a href="#source" aria-label="Source">Source</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h2 id="introduction">Introduction<a hidden class="anchor" aria-hidden="true" href="#introduction">#</a></h2>
+<p><a href="https://aws.amazon.com/cognito/">AWS Cognito</a> is a powerful authentication and user management service that provides secure sign-up, sign-in, and access control capabilities. It supports features like multi-factor authentication (MFA), social login, and federated identities.</p>
+<p>Depending on your application&rsquo;s architecture and security needs, you can integrate Cognito in three primary ways. This article outlines each approach, explaining how it works, its pros and cons, and when to use it.</p>
+<hr>
+<h2 id="prerequisites">Prerequisites<a hidden class="anchor" aria-hidden="true" href="#prerequisites">#</a></h2>
+<ul>
+<li>An AWS account with permissions to create Cognito User Pools.</li>
+<li>Basic knowledge of web authentication concepts (JWT, OAuth2).</li>
+<li>Familiarity with your tech stack (e.g., JavaScript/React, Java/Spring Boot, etc.).</li>
+</ul>
+<hr>
+<h2 id="approaches">Approaches<a hidden class="anchor" aria-hidden="true" href="#approaches">#</a></h2>
+<h3 id="1-direct-ui-integration-with-aws-cognito-api">1. Direct UI Integration with AWS Cognito API<a hidden class="anchor" aria-hidden="true" href="#1-direct-ui-integration-with-aws-cognito-api">#</a></h3>
+<p>This method involves directly integrating AWS Cognito’s User Pool APIs into your front-end application using SDKs like <strong>AWS Amplify</strong> or the <strong>AWS SDK</strong> for your language or framework.</p>
+<h4 id="-how-it-works">🔧 How It Works:<a hidden class="anchor" aria-hidden="true" href="#-how-it-works">#</a></h4>
+<ul>
+<li>The front-end communicates directly with Cognito&rsquo;s authentication endpoints.</li>
+<li>Users input credentials (username/password), which are securely sent to Cognito.</li>
+<li>On successful authentication, Cognito returns <strong>ID</strong>, <strong>Access</strong>, and <strong>Refresh</strong> tokens.</li>
+<li>The front-end includes these tokens in API requests to access protected resources.</li>
+</ul>
+<h4 id="-pros">✅ Pros:<a hidden class="anchor" aria-hidden="true" href="#-pros">#</a></h4>
+<ul>
+<li>Quick and simple to set up, especially for front-end-centric or serverless apps.</li>
+<li>Reduces backend complexity by offloading authentication to Cognito.</li>
+<li>AWS Amplify offers extensive tooling and built-in support.</li>
+</ul>
+<h4 id="-cons">❌ Cons:<a hidden class="anchor" aria-hidden="true" href="#-cons">#</a></h4>
+<ul>
+<li>Tokens must be securely stored and managed in the frontend.</li>
+<li>Less control over the authentication flow.</li>
+<li>Complex workflows like multi-step login or custom validation are harder to implement.</li>
+</ul>
+<h4 id="-best-use-cases">🎯 Best Use Cases:<a hidden class="anchor" aria-hidden="true" href="#-best-use-cases">#</a></h4>
+<ul>
+<li>SPAs (Single Page Applications) and mobile apps.</li>
+<li>Serverless applications or MVPs needing rapid authentication setup.</li>
+</ul>
+<hr>
+<h3 id="2-backend-managed-cognito-authentication">2. Backend-Managed Cognito Authentication<a hidden class="anchor" aria-hidden="true" href="#2-backend-managed-cognito-authentication">#</a></h3>
+<p>In this approach, the backend acts as an intermediary between the frontend and AWS Cognito, managing authentication securely on the server side.</p>
+<h4 id="-how-it-works-1">🔧 How It Works:<a hidden class="anchor" aria-hidden="true" href="#-how-it-works-1">#</a></h4>
+<ul>
+<li>The front-end sends authentication requests (credentials) to your backend.</li>
+<li>The backend handles interaction with AWS Cognito APIs.</li>
+<li>Upon successful login, the backend may issue its own session tokens or forward Cognito tokens to the frontend.</li>
+</ul>
+<h4 id="-pros-1">✅ Pros:<a hidden class="anchor" aria-hidden="true" href="#-pros-1">#</a></h4>
+<ul>
+<li>Improves security by avoiding direct token handling in the frontend.</li>
+<li>Offers more flexibility to implement custom authentication logic (e.g., account status checks).</li>
+<li>Easier to integrate with microservices and legacy systems.</li>
+</ul>
+<h4 id="-cons-1">❌ Cons:<a hidden class="anchor" aria-hidden="true" href="#-cons-1">#</a></h4>
+<ul>
+<li>Requires more backend development and maintenance.</li>
+<li>Slightly higher latency due to intermediary processing.</li>
+</ul>
+<h4 id="-best-use-cases-1">🎯 Best Use Cases:<a hidden class="anchor" aria-hidden="true" href="#-best-use-cases-1">#</a></h4>
+<ul>
+<li>Applications requiring centralized or custom authentication logic.</li>
+<li>Microservices-based systems needing authentication orchestration.</li>
+</ul>
+<hr>
+<h3 id="3-using-aws-cognito-hosted-ui">3. Using AWS Cognito Hosted UI<a hidden class="anchor" aria-hidden="true" href="#3-using-aws-cognito-hosted-ui">#</a></h3>
+<p>This is the fastest and simplest integration method. AWS Cognito provides a pre-built <strong>Hosted UI</strong> that supports sign-in, sign-up, and federated login.</p>
+<h4 id="-implementation-steps">🔧 Implementation Steps:<a hidden class="anchor" aria-hidden="true" href="#-implementation-steps">#</a></h4>
+<ul>
+<li>Enable Hosted UI in the Cognito User Pool settings.</li>
+<li>Configure allowed callback URLs for redirection after login.</li>
+<li>Users are redirected to Cognito’s hosted login page.</li>
+<li>After login, users are redirected back with tokens via OAuth 2.0/OpenID Connect.</li>
+</ul>
+<h4 id="-pros-2">✅ Pros:<a hidden class="anchor" aria-hidden="true" href="#-pros-2">#</a></h4>
+<ul>
+<li>Fully managed UI with support for MFA, social logins (Google, Facebook, etc.), and SAML.</li>
+<li>Reduces development time drastically.</li>
+<li>AWS handles security, compliance, and patching.</li>
+</ul>
+<h4 id="-cons-2">❌ Cons:<a hidden class="anchor" aria-hidden="true" href="#-cons-2">#</a></h4>
+<ul>
+<li>Limited customization of the UI and UX.</li>
+<li>Redirection-based flow may not suit all application types (e.g., embedded devices).</li>
+</ul>
+<h4 id="-best-use-cases-2">🎯 Best Use Cases:<a hidden class="anchor" aria-hidden="true" href="#-best-use-cases-2">#</a></h4>
+<ul>
+<li>Applications needing rapid authentication setup.</li>
+<li>Projects prioritizing compliance, minimal development, and standard login flows.</li>
+</ul>
+<hr>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>Each AWS Cognito integration method serves different use cases:</p>
+<ul>
+<li><strong>Direct UI Integration</strong> is great for lightweight and serverless applications needing rapid setup.</li>
+<li><strong>Backend-Managed Authentication</strong> offers more security and flexibility for complex systems.</li>
+<li><strong>Hosted UI</strong> is ideal when you want the fastest route to secure, standards-compliant authentication.</li>
+</ul>
+<p>Choose the integration style that aligns best with your project&rsquo;s security posture, scalability needs, and developer experience.</p>
+<hr>
+<h2 id="congratulations-">Congratulations 🎉🥳<a hidden class="anchor" aria-hidden="true" href="#congratulations-">#</a></h2>
+<p>You&rsquo;re now equipped with the knowledge to securely integrate AWS Cognito authentication using one of three effective methods. Whether you want maximum control, simplicity, or security, Cognito has you covered.</p>
+<hr>
+<h2 id="source">Source<a hidden class="anchor" aria-hidden="true" href="#source">#</a></h2>
+<ul>
+<li>🔗<a href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html">AWS Cognito Documentation</a> - Official developer guide for Cognito User Pools.</li>
+<li>🔗<a href="https://docs.amplify.aws/lib/auth/getting-started/q/platform/js/">AWS Amplify Auth</a> - Guide to using Amplify to integrate Cognito into web and mobile apps.</li>
+<li>🔗<a href="https://oauth.net/2/">OAuth2 and OpenID Connect</a> - Understanding the standards behind AWS Cognito authentication.</li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://www.lemrabotttoulba.com/tags/aws/">AWS</a></li>
+      <li><a href="https://www.lemrabotttoulba.com/tags/aws-cognito/">AWS Cognito</a></li>
+      <li><a href="https://www.lemrabotttoulba.com/tags/authentication/">Authentication</a></li>
+      <li><a href="https://www.lemrabotttoulba.com/tags/authorization/">Authorization</a></li>
+      <li><a href="https://www.lemrabotttoulba.com/tags/oauth2/">OAuth2</a></li>
+      <li><a href="https://www.lemrabotttoulba.com/tags/jwt/">JWT</a></li>
+      <li><a href="https://www.lemrabotttoulba.com/tags/web-security/">Web Security</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2025 <a href="https://www.lemrabotttoulba.com">Lemrabott Toulba</a></span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JL9LESPRLK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JL9LESPRLK');
+</script></html>

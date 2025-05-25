@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Hadoop on Lemrabott Toulba</title>
-    <link>http://localhost:1313/tags/hadoop/</link>
+    <link>https://www.lemrabotttoulba.com/tags/hadoop/</link>
     <description>Recent content in Hadoop on Lemrabott Toulba</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://localhost:1313/tags/hadoop/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://www.lemrabotttoulba.com/tags/hadoop/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Nouakchott University</title>
-      <link>http://localhost:1313/education/una-university-master/</link>
+      <title>Nouakchott Modern University</title>
+      <link>https://www.lemrabotttoulba.com/education/una-university-master/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/education/una-university-master/</guid>
+      <guid>https://www.lemrabotttoulba.com/education/una-university-master/</guid>
       <description>Master of Science in Computer Science</description>
     </item>
     

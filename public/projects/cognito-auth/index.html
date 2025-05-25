@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Secure User Authentication with Backend-Managed Cognito | Lemrabott Toulba</title>
+<meta name="keywords" content="Java, Spring Boot, AWS Cognito, ReactJS, OAuth2, JWT">
+<meta name="description" content="A complete user authentication workflow using Amazon Cognito, following the Backend-Managed Authentication model of Cognito">
+<meta name="author" content="">
+<link rel="canonical" href="https://www.lemrabotttoulba.com/projects/cognito-auth/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" integrity="" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.js" integrity=""
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://www.lemrabotttoulba.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.lemrabotttoulba.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.lemrabotttoulba.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://www.lemrabotttoulba.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://www.lemrabotttoulba.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Secure User Authentication with Backend-Managed Cognito" />
+<meta property="og:description" content="A complete user authentication workflow using Amazon Cognito, following the Backend-Managed Authentication model of Cognito" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.lemrabotttoulba.com/projects/cognito-auth/" />
+<meta property="og:image" content="https://www.lemrabotttoulba.com/projects/cognito-app/image.png" /><meta property="article:section" content="projects" />
+
+
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://www.lemrabotttoulba.com/projects/cognito-app/image.png" />
+<meta name="twitter:title" content="Secure User Authentication with Backend-Managed Cognito"/>
+<meta name="twitter:description" content="A complete user authentication workflow using Amazon Cognito, following the Backend-Managed Authentication model of Cognito"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Projects",
+      "item": "https://www.lemrabotttoulba.com/projects/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Secure User Authentication with Backend-Managed Cognito",
+      "item": "https://www.lemrabotttoulba.com/projects/cognito-auth/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Secure User Authentication with Backend-Managed Cognito",
+  "name": "Secure User Authentication with Backend-Managed Cognito",
+  "description": "A complete user authentication workflow using Amazon Cognito, following the Backend-Managed Authentication model of Cognito",
+  "keywords": [
+    "Java", "Spring Boot", "AWS Cognito", "ReactJS", "OAuth2", "JWT"
+  ],
+  "articleBody": "Description This project demonstrates a complete user authentication workflow using Amazon Cognito, providing a user-friendly interface for login, error handling, password change enforcement, and home page access post-login.\n🛡️ Authentication Approach Used: This implementation follows the Backend-Managed Authentication model. The front-end sends login requests to a backend server, which securely communicates with AWS Cognito to handle authentication, token management, and session control.\n🧩 Key Features: Login Interface: Users are prompted to enter their username and password to log in. The login form is designed for simplicity and clarity.\nError Handling: “User Not Found”, If a user enters a username that is not registered in the Cognito User Pool, an appropriate error message is shown.\nError Handling: “Incorrect Password”, When an incorrect password is entered for a valid username, the interface displays an error message informing the user.\nForce Password Change: If Cognito requires the user to change their password (e.g., after an admin reset or first login), the user is redirected to a password change form after entering valid credentials.\nSuccessful Login \u0026 Home Page Access: Upon successful login (and password change, if required), the user is redirected to the home page, where authenticated content is accessible.\nSecure Backend Integration: The front-end sends login requests to the backend, which interacts securely with AWS Cognito for token handling, session management, and authentication validation.\n⚙️ Technologies Used: ReactJS: For hadling routing to Cognito interface and Home page. AWS Cognito: Handles user authentication, password policies, and token generation. Spring Boot: Backend server for secure communication with Cognito (Backend-Managed Authentication model). OAuth2 and JWT: For session control and secure access to protected routes. Responsive UI/UX: Ensures optimal usability with clear feedback and guidance during login. 🎲 GitHub Repository: The demo, source code and documentation for this project can be found in the following GitHub repository:\n🔗 Secure User Authentication with Backend-Managed Cognito\n📖 Further Reading: Explore the article that compares multiple AWS Cognito authentication strategies and when to use each:\n🔗 Three Approaches to Integrate AWS Cognito Authentication in Your Application\nThis blog post covers:\nDirect UI Integration with AWS Cognito API using front-end SDKs like AWS Amplify. Backend-Managed Authentication, where your backend handles user verification and token management. Cognito Hosted UI a quick, fully managed solution using AWS’s built-in login interface. Each method is explained with its pros, cons, and best use cases, helping you choose the right fit for your app’s architecture and security needs.\nConclusion: This project delivers a real-world example of secure login flow integration with AWS services. Through clean UI, robust error handling, and backend integration, it demonstrates best practices in backend-managed based authentication ensuring a smooth, informative, and secure user experience across all login scenarios.\n",
+  "wordCount" : "447",
+  "inLanguage": "en",
+  "image":"https://www.lemrabotttoulba.com/projects/cognito-app/image.png","datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.lemrabotttoulba.com/projects/cognito-auth/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Lemrabott Toulba",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.lemrabotttoulba.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header sticky-header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://www.lemrabotttoulba.com" accesskey="h" title="Lemrabott Toulba (Alt + H)">Lemrabott Toulba</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://www.lemrabotttoulba.com/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.lemrabotttoulba.com/experience" title="Experience">
+                    <span>Experience</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.lemrabotttoulba.com/education" title="Education">
+                    <span>Education</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.lemrabotttoulba.com/projects" title="Projects">
+                    <span>Projects</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.lemrabotttoulba.com/blogs" title="Blogs">
+                    <span>Blogs</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.lemrabotttoulba.com/contact" title="Contact">
+                    <span>Contact</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.lemrabotttoulba.com/search" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://www.lemrabotttoulba.com">Home</a>&nbsp;»&nbsp;<a href="https://www.lemrabotttoulba.com/projects/">Projects</a></div>
+    <h1 class="post-title">
+      Secure User Authentication with Backend-Managed Cognito
+    </h1>
+    <div class="post-description">
+      A complete user authentication workflow using Amazon Cognito, following the Backend-Managed Authentication model of Cognito
+    </div>
+    <div class="post-meta">
+
+
+Apr 2025
+
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="lazy" src="https://www.lemrabotttoulba.com/projects/cognito-app/image.png" alt="">
+        
+</figure>
+  <div class="post-content"><h2 id="description">Description<a hidden class="anchor" aria-hidden="true" href="#description">#</a></h2>
+<p>This project demonstrates a complete user authentication workflow using Amazon Cognito, providing a user-friendly interface for login, error handling, password change enforcement, and home page access post-login.</p>
+<blockquote>
+<p>🛡️ Authentication Approach Used: This implementation follows the Backend-Managed Authentication model. The front-end sends login requests to a backend server, which securely communicates with AWS Cognito to handle authentication, token management, and session control.</p>
+</blockquote>
+<h2 id="-key-features">🧩 Key Features:<a hidden class="anchor" aria-hidden="true" href="#-key-features">#</a></h2>
+<ul>
+<li>
+<p><strong>Login Interface</strong>: Users are prompted to enter their username and password to log in. The login form is designed for simplicity and clarity.</p>
+</li>
+<li>
+<p><strong>Error Handling:</strong> &ldquo;User Not Found&rdquo;, If a user enters a username that is not registered in the Cognito User Pool, an appropriate error message is shown.</p>
+</li>
+<li>
+<p><strong>Error Handling:</strong>  &ldquo;Incorrect Password&rdquo;, When an incorrect password is entered for a valid username, the interface displays an error message informing the user.</p>
+</li>
+<li>
+<p><strong>Force Password Change</strong>: If Cognito requires the user to change their password (e.g., after an admin reset or first login), the user is redirected to a password change form after entering valid credentials.</p>
+</li>
+<li>
+<p><strong>Successful Login &amp; Home Page Access:</strong> Upon successful login (and password change, if required), the user is redirected to the home page, where authenticated content is accessible.</p>
+</li>
+<li>
+<p><strong>Secure Backend Integration</strong>: The front-end sends login requests to the backend, which interacts securely with AWS Cognito for token handling, session management, and authentication validation.</p>
+</li>
+</ul>
+<h2 id="-technologies-used">⚙️ Technologies Used:<a hidden class="anchor" aria-hidden="true" href="#-technologies-used">#</a></h2>
+<ul>
+<li><strong>ReactJS</strong>: For hadling routing to Cognito interface and Home page.</li>
+<li><strong>AWS Cognito</strong>: Handles user authentication, password policies, and token generation.</li>
+<li><strong>Spring Boot</strong>: Backend server for secure communication with Cognito (Backend-Managed Authentication model).</li>
+<li><strong>OAuth2 and JWT</strong>: For session control and secure access to protected routes.</li>
+<li><strong>Responsive UI/UX</strong>: Ensures optimal usability with clear feedback and guidance during login.</li>
+</ul>
+<h2 id="-github-repository">🎲 GitHub Repository:<a hidden class="anchor" aria-hidden="true" href="#-github-repository">#</a></h2>
+<p>The demo, source code and documentation for this project can be found in the following GitHub repository:<br>
+🔗 <a href="https://github.com/tlb-lemrabott/aws-cognito-app-v1/tree/main"><strong>Secure User Authentication with Backend-Managed Cognito</strong></a></p>
+<h2 id="-further-reading">📖 Further Reading:<a hidden class="anchor" aria-hidden="true" href="#-further-reading">#</a></h2>
+<p>Explore the article that compares multiple AWS Cognito authentication strategies and when to use each:<br>
+🔗 <a href="https://lemrabotttoulba.com/blogs/3873874/"><strong>Three Approaches to Integrate AWS Cognito Authentication in Your Application</strong></a></p>
+<p>This blog post covers:</p>
+<ul>
+<li>Direct UI Integration with AWS Cognito API using front-end SDKs like AWS Amplify.</li>
+<li>Backend-Managed Authentication, where your backend handles user verification and token management.</li>
+<li>Cognito Hosted UI a quick, fully managed solution using AWS’s built-in login interface.</li>
+</ul>
+<p>Each method is explained with its pros, cons, and best use cases, helping you choose the right fit for your app’s architecture and security needs.</p>
+<h2 id="conclusion">Conclusion:<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>This project delivers a real-world example of secure login flow integration with AWS services. Through clean UI, robust error handling, and backend integration, it demonstrates best practices in backend-managed based authentication ensuring a smooth, informative, and secure user experience across all login scenarios.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://www.lemrabotttoulba.com/tags/java/">Java</a></li>
+      <li><a href="https://www.lemrabotttoulba.com/tags/spring-boot/">Spring boot</a></li>
+      <li><a href="https://www.lemrabotttoulba.com/tags/aws-cognito/">AWS Cognito</a></li>
+      <li><a href="https://www.lemrabotttoulba.com/tags/reactjs/">Reactjs</a></li>
+      <li><a href="https://www.lemrabotttoulba.com/tags/oauth2/">OAuth2</a></li>
+      <li><a href="https://www.lemrabotttoulba.com/tags/jwt/">JWT</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2025 <a href="https://www.lemrabotttoulba.com">Lemrabott Toulba</a></span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JL9LESPRLK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JL9LESPRLK');
+</script></html>

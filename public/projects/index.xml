@@ -2,34 +2,43 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Projects on Lemrabott Toulba</title>
-    <link>http://localhost:1313/projects/</link>
+    <link>https://www.lemrabotttoulba.com/projects/</link>
     <description>Recent content in Projects on Lemrabott Toulba</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://localhost:1313/projects/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://www.lemrabotttoulba.com/projects/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>MEAN-Stack application - Language Learning Platform</title>
-      <link>http://localhost:1313/projects/mean-stack-app/</link>
+      <title>Secure User Authentication with Backend-Managed Cognito</title>
+      <link>https://www.lemrabotttoulba.com/projects/cognito-auth/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/projects/mean-stack-app/</guid>
+      <guid>https://www.lemrabotttoulba.com/projects/cognito-auth/</guid>
+      <description>A complete user authentication workflow using Amazon Cognito, following the Backend-Managed Authentication model of Cognito</description>
+    </item>
+    
+    <item>
+      <title>MEAN-Stack application - Language Learning Platform</title>
+      <link>https://www.lemrabotttoulba.com/projects/mean-stack-app/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.lemrabotttoulba.com/projects/mean-stack-app/</guid>
       <description>Full stack web application designed to help users lerning new languages</description>
     </item>
     
     <item>
       <title>Housing Management System</title>
-      <link>http://localhost:1313/projects/housing-management-api/</link>
+      <link>https://www.lemrabotttoulba.com/projects/housing-management-api/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/projects/housing-management-api/</guid>
+      <guid>https://www.lemrabotttoulba.com/projects/housing-management-api/</guid>
       <description>A custom Backend RESTful API for the Housing Management System</description>
     </item>
     
     <item>
       <title>Library Management System</title>
-      <link>http://localhost:1313/projects/java-swing-project/</link>
+      <link>https://www.lemrabotttoulba.com/projects/java-swing-project/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/projects/java-swing-project/</guid>
+      <guid>https://www.lemrabotttoulba.com/projects/java-swing-project/</guid>
       <description>A custom Software for Library Management System</description>
     </item>
     

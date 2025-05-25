@@ -2,718 +2,844 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Tags on Lemrabott Toulba</title>
-    <link>http://localhost:1313/tags/</link>
+    <link>https://www.lemrabotttoulba.com/tags/</link>
     <description>Recent content in Tags on Lemrabott Toulba</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://www.lemrabotttoulba.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Agile Methods</title>
-      <link>http://localhost:1313/tags/agile-methods/</link>
+      <title>Agile methods</title>
+      <link>https://www.lemrabotttoulba.com/tags/agile-methods/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/agile-methods/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/agile-methods/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Algebra</title>
-      <link>http://localhost:1313/tags/algebra/</link>
+      <link>https://www.lemrabotttoulba.com/tags/algebra/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/algebra/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/algebra/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Algorithms</title>
-      <link>http://localhost:1313/tags/algorithms/</link>
+      <link>https://www.lemrabotttoulba.com/tags/algorithms/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/algorithms/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/algorithms/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Algorithms and Complexity</title>
-      <link>http://localhost:1313/tags/algorithms-and-complexity/</link>
+      <link>https://www.lemrabotttoulba.com/tags/algorithms-and-complexity/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/algorithms-and-complexity/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/algorithms-and-complexity/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Android SDK</title>
+      <link>https://www.lemrabotttoulba.com/tags/android-sdk/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.lemrabotttoulba.com/tags/android-sdk/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Angular</title>
-      <link>http://localhost:1313/tags/angular/</link>
+      <link>https://www.lemrabotttoulba.com/tags/angular/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/angular/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/angular/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Astah UML, MS Project Management</title>
-      <link>http://localhost:1313/tags/astah-uml-ms-project-management/</link>
+      <title>Astah UML</title>
+      <link>https://www.lemrabotttoulba.com/tags/astah-uml/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/astah-uml-ms-project-management/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/astah-uml/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Authentication</title>
+      <link>https://www.lemrabotttoulba.com/tags/authentication/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.lemrabotttoulba.com/tags/authentication/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Authorization</title>
+      <link>https://www.lemrabotttoulba.com/tags/authorization/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.lemrabotttoulba.com/tags/authorization/</guid>
       <description></description>
     </item>
     
     <item>
       <title>AWS</title>
-      <link>http://localhost:1313/tags/aws/</link>
+      <link>https://www.lemrabotttoulba.com/tags/aws/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/aws/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/aws/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>AWS Amplify</title>
+      <link>https://www.lemrabotttoulba.com/tags/aws-amplify/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.lemrabotttoulba.com/tags/aws-amplify/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>AWS Cognito</title>
+      <link>https://www.lemrabotttoulba.com/tags/aws-cognito/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.lemrabotttoulba.com/tags/aws-cognito/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>AWS EC2</title>
+      <link>https://www.lemrabotttoulba.com/tags/aws-ec2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.lemrabotttoulba.com/tags/aws-ec2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>AWS IAM</title>
+      <link>https://www.lemrabotttoulba.com/tags/aws-iam/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.lemrabotttoulba.com/tags/aws-iam/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>AWS Lambda</title>
+      <link>https://www.lemrabotttoulba.com/tags/aws-lambda/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.lemrabotttoulba.com/tags/aws-lambda/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>AWS RDS</title>
+      <link>https://www.lemrabotttoulba.com/tags/aws-rds/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.lemrabotttoulba.com/tags/aws-rds/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>AWS S3</title>
+      <link>https://www.lemrabotttoulba.com/tags/aws-s3/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.lemrabotttoulba.com/tags/aws-s3/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Bitbucket</title>
-      <link>http://localhost:1313/tags/bitbucket/</link>
+      <link>https://www.lemrabotttoulba.com/tags/bitbucket/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/bitbucket/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/bitbucket/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Bootstrap</title>
-      <link>http://localhost:1313/tags/bootstrap/</link>
+      <link>https://www.lemrabotttoulba.com/tags/bootstrap/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/bootstrap/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/bootstrap/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ByCrypt</title>
-      <link>http://localhost:1313/tags/bycrypt/</link>
+      <link>https://www.lemrabotttoulba.com/tags/bycrypt/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/bycrypt/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/bycrypt/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>C Language</title>
-      <link>http://localhost:1313/tags/c-language/</link>
+      <title>C language</title>
+      <link>https://www.lemrabotttoulba.com/tags/c-language/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/c-language/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/c-language/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Computer Architecture</title>
-      <link>http://localhost:1313/tags/computer-architecture/</link>
+      <link>https://www.lemrabotttoulba.com/tags/computer-architecture/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/computer-architecture/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/computer-architecture/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Cordova</title>
-      <link>http://localhost:1313/tags/cordova/</link>
+      <link>https://www.lemrabotttoulba.com/tags/cordova/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/cordova/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/cordova/</guid>
       <description></description>
     </item>
     
     <item>
       <title>CSS</title>
-      <link>http://localhost:1313/tags/css/</link>
+      <link>https://www.lemrabotttoulba.com/tags/css/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/css/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/css/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Data Structure</title>
-      <link>http://localhost:1313/tags/data-structure/</link>
+      <link>https://www.lemrabotttoulba.com/tags/data-structure/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/data-structure/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/data-structure/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Database Optimization</title>
-      <link>http://localhost:1313/tags/database-optimization/</link>
+      <link>https://www.lemrabotttoulba.com/tags/database-optimization/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/database-optimization/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/database-optimization/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Design Patterns</title>
-      <link>http://localhost:1313/tags/design-patterns/</link>
+      <title>Design patterns</title>
+      <link>https://www.lemrabotttoulba.com/tags/design-patterns/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/design-patterns/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/design-patterns/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Docker</title>
-      <link>http://localhost:1313/tags/docker/</link>
+      <link>https://www.lemrabotttoulba.com/tags/docker/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/docker/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/docker/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Express</title>
-      <link>http://localhost:1313/tags/express/</link>
+      <link>https://www.lemrabotttoulba.com/tags/express/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/express/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/express/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Express.JS</title>
-      <link>http://localhost:1313/tags/express.js/</link>
+      <title>Express.js</title>
+      <link>https://www.lemrabotttoulba.com/tags/express.js/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/express.js/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/express.js/</guid>
       <description></description>
     </item>
     
     <item>
       <title>FTP Server</title>
-      <link>http://localhost:1313/tags/ftp-server/</link>
+      <link>https://www.lemrabotttoulba.com/tags/ftp-server/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/ftp-server/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/ftp-server/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Geometric</title>
-      <link>http://localhost:1313/tags/geometric/</link>
+      <link>https://www.lemrabotttoulba.com/tags/geometric/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/geometric/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/geometric/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Git</title>
-      <link>http://localhost:1313/tags/git/</link>
+      <link>https://www.lemrabotttoulba.com/tags/git/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/git/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/git/</guid>
       <description></description>
     </item>
     
     <item>
       <title>GithubActions</title>
-      <link>http://localhost:1313/tags/githubactions/</link>
+      <link>https://www.lemrabotttoulba.com/tags/githubactions/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/githubactions/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/githubactions/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Google Analytics</title>
-      <link>http://localhost:1313/tags/google-analytics/</link>
+      <title>Google analytics</title>
+      <link>https://www.lemrabotttoulba.com/tags/google-analytics/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/google-analytics/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/google-analytics/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Google Firebase</title>
-      <link>http://localhost:1313/tags/google-firebase/</link>
+      <link>https://www.lemrabotttoulba.com/tags/google-firebase/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/google-firebase/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/google-firebase/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Graphs</title>
-      <link>http://localhost:1313/tags/graphs/</link>
+      <link>https://www.lemrabotttoulba.com/tags/graphs/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/graphs/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/graphs/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Hadoop</title>
-      <link>http://localhost:1313/tags/hadoop/</link>
+      <link>https://www.lemrabotttoulba.com/tags/hadoop/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/hadoop/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/hadoop/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Hibernate</title>
-      <link>http://localhost:1313/tags/hibernate/</link>
+      <link>https://www.lemrabotttoulba.com/tags/hibernate/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/hibernate/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/hibernate/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Hogo</title>
-      <link>http://localhost:1313/tags/hogo/</link>
+      <link>https://www.lemrabotttoulba.com/tags/hogo/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/hogo/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/hogo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>HTML</title>
-      <link>http://localhost:1313/tags/html/</link>
+      <link>https://www.lemrabotttoulba.com/tags/html/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/html/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/html/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Ionic</title>
-      <link>http://localhost:1313/tags/ionic/</link>
+      <link>https://www.lemrabotttoulba.com/tags/ionic/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/ionic/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/ionic/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Java</title>
-      <link>http://localhost:1313/tags/java/</link>
+      <link>https://www.lemrabotttoulba.com/tags/java/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/java/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/java/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Java 2EE</title>
-      <link>http://localhost:1313/tags/java-2ee/</link>
+      <link>https://www.lemrabotttoulba.com/tags/java-2ee/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/java-2ee/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/java-2ee/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Java 7</title>
-      <link>http://localhost:1313/tags/java-7/</link>
+      <link>https://www.lemrabotttoulba.com/tags/java-7/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/java-7/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/java-7/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Java 8</title>
-      <link>http://localhost:1313/tags/java-8/</link>
+      <link>https://www.lemrabotttoulba.com/tags/java-8/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/java-8/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/java-8/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Java Functional Programming</title>
-      <link>http://localhost:1313/tags/java-functional-programming/</link>
+      <link>https://www.lemrabotttoulba.com/tags/java-functional-programming/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/java-functional-programming/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/java-functional-programming/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Java Stream API</title>
-      <link>http://localhost:1313/tags/java-stream-api/</link>
+      <link>https://www.lemrabotttoulba.com/tags/java-stream-api/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/java-stream-api/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/java-stream-api/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Java Swing</title>
-      <link>http://localhost:1313/tags/java-swing/</link>
+      <link>https://www.lemrabotttoulba.com/tags/java-swing/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/java-swing/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/java-swing/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Java Unit Tests</title>
-      <link>http://localhost:1313/tags/java-unit-tests/</link>
+      <link>https://www.lemrabotttoulba.com/tags/java-unit-tests/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/java-unit-tests/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/java-unit-tests/</guid>
       <description></description>
     </item>
     
     <item>
       <title>JavaScript</title>
-      <link>http://localhost:1313/tags/javascript/</link>
+      <link>https://www.lemrabotttoulba.com/tags/javascript/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/javascript/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/javascript/</guid>
       <description></description>
     </item>
     
     <item>
       <title>JSON</title>
-      <link>http://localhost:1313/tags/json/</link>
+      <link>https://www.lemrabotttoulba.com/tags/json/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/json/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/json/</guid>
       <description></description>
     </item>
     
     <item>
       <title>JWT</title>
-      <link>http://localhost:1313/tags/jwt/</link>
+      <link>https://www.lemrabotttoulba.com/tags/jwt/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/jwt/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/jwt/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Linux Commands</title>
-      <link>http://localhost:1313/tags/linux-commands/</link>
+      <title>Linux commands</title>
+      <link>https://www.lemrabotttoulba.com/tags/linux-commands/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/linux-commands/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/linux-commands/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Microservices</title>
-      <link>http://localhost:1313/tags/microservices/</link>
+      <link>https://www.lemrabotttoulba.com/tags/microservices/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/microservices/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/microservices/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Miro Visual Platform</title>
-      <link>http://localhost:1313/tags/miro-visual-platform/</link>
+      <title>Miro visual platform</title>
+      <link>https://www.lemrabotttoulba.com/tags/miro-visual-platform/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/miro-visual-platform/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/miro-visual-platform/</guid>
       <description></description>
     </item>
     
     <item>
       <title>MongoDB</title>
-      <link>http://localhost:1313/tags/mongodb/</link>
+      <link>https://www.lemrabotttoulba.com/tags/mongodb/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/mongodb/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/mongodb/</guid>
       <description></description>
     </item>
     
     <item>
       <title>MongoDB Database</title>
-      <link>http://localhost:1313/tags/mongodb-database/</link>
+      <link>https://www.lemrabotttoulba.com/tags/mongodb-database/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/mongodb-database/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/mongodb-database/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MS Project Management</title>
+      <link>https://www.lemrabotttoulba.com/tags/ms-project-management/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.lemrabotttoulba.com/tags/ms-project-management/</guid>
       <description></description>
     </item>
     
     <item>
       <title>MySQL</title>
-      <link>http://localhost:1313/tags/mysql/</link>
+      <link>https://www.lemrabotttoulba.com/tags/mysql/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/mysql/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/mysql/</guid>
       <description></description>
     </item>
     
     <item>
       <title>NMAP - Network Scanner</title>
-      <link>http://localhost:1313/tags/nmap---network-scanner/</link>
+      <link>https://www.lemrabotttoulba.com/tags/nmap-network-scanner/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/nmap---network-scanner/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/nmap-network-scanner/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Node.js</title>
-      <link>http://localhost:1313/tags/node.js/</link>
+      <link>https://www.lemrabotttoulba.com/tags/node.js/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/node.js/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/node.js/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>NodeJs</title>
-      <link>http://localhost:1313/tags/nodejs/</link>
+      <title>Nodejs</title>
+      <link>https://www.lemrabotttoulba.com/tags/nodejs/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/nodejs/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/nodejs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>OAuth2</title>
+      <link>https://www.lemrabotttoulba.com/tags/oauth2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.lemrabotttoulba.com/tags/oauth2/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Object Oriented Programming</title>
-      <link>http://localhost:1313/tags/object-oriented-programming/</link>
+      <link>https://www.lemrabotttoulba.com/tags/object-oriented-programming/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/object-oriented-programming/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/object-oriented-programming/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Object Serialisations</title>
-      <link>http://localhost:1313/tags/object-serialisations/</link>
+      <link>https://www.lemrabotttoulba.com/tags/object-serialisations/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/object-serialisations/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/object-serialisations/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ORM</title>
-      <link>http://localhost:1313/tags/orm/</link>
+      <link>https://www.lemrabotttoulba.com/tags/orm/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/orm/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/orm/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Physics</title>
-      <link>http://localhost:1313/tags/physics/</link>
+      <link>https://www.lemrabotttoulba.com/tags/physics/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/physics/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/physics/</guid>
       <description></description>
     </item>
     
     <item>
       <title>PostgreSQL</title>
-      <link>http://localhost:1313/tags/postgresql/</link>
+      <link>https://www.lemrabotttoulba.com/tags/postgresql/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/postgresql/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Postman</title>
-      <link>http://localhost:1313/tags/postman/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/postman/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/postgresql/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Probability</title>
-      <link>http://localhost:1313/tags/probability/</link>
+      <link>https://www.lemrabotttoulba.com/tags/probability/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/probability/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/probability/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Problem Solving</title>
-      <link>http://localhost:1313/tags/problem-solving/</link>
+      <link>https://www.lemrabotttoulba.com/tags/problem-solving/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/problem-solving/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/problem-solving/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Python</title>
-      <link>http://localhost:1313/tags/python/</link>
+      <link>https://www.lemrabotttoulba.com/tags/python/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/python/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>RabbitMQ</title>
+      <link>https://www.lemrabotttoulba.com/tags/rabbitmq/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.lemrabotttoulba.com/tags/rabbitmq/</guid>
       <description></description>
     </item>
     
     <item>
       <title>React.js</title>
-      <link>http://localhost:1313/tags/react.js/</link>
+      <link>https://www.lemrabotttoulba.com/tags/react.js/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/react.js/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/react.js/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>RESTful API</title>
-      <link>http://localhost:1313/tags/restful-api/</link>
+      <title>Reactjs</title>
+      <link>https://www.lemrabotttoulba.com/tags/reactjs/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/restful-api/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/reactjs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>RESTFul API</title>
+      <link>https://www.lemrabotttoulba.com/tags/restful-api/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.lemrabotttoulba.com/tags/restful-api/</guid>
       <description></description>
     </item>
     
     <item>
       <title>S3</title>
-      <link>http://localhost:1313/tags/s3/</link>
+      <link>https://www.lemrabotttoulba.com/tags/s3/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/s3/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/s3/</guid>
       <description></description>
     </item>
     
     <item>
       <title>SOAP</title>
-      <link>http://localhost:1313/tags/soap/</link>
+      <link>https://www.lemrabotttoulba.com/tags/soap/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/soap/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/soap/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Spring Boot</title>
-      <link>http://localhost:1313/tags/spring-boot/</link>
+      <title>Spring boot</title>
+      <link>https://www.lemrabotttoulba.com/tags/spring-boot/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/spring-boot/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/spring-boot/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Spring Framwork</title>
-      <link>http://localhost:1313/tags/spring-framwork/</link>
+      <link>https://www.lemrabotttoulba.com/tags/spring-framwork/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/spring-framwork/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/spring-framwork/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>SQL Language</title>
-      <link>http://localhost:1313/tags/sql-language/</link>
+      <title>SQL language</title>
+      <link>https://www.lemrabotttoulba.com/tags/sql-language/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/sql-language/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/sql-language/</guid>
       <description></description>
     </item>
     
     <item>
       <title>SQLite</title>
-      <link>http://localhost:1313/tags/sqlite/</link>
+      <link>https://www.lemrabotttoulba.com/tags/sqlite/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/sqlite/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/sqlite/</guid>
       <description></description>
     </item>
     
     <item>
       <title>StaticSiteGenerator</title>
-      <link>http://localhost:1313/tags/staticsitegenerator/</link>
+      <link>https://www.lemrabotttoulba.com/tags/staticsitegenerator/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/staticsitegenerator/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/staticsitegenerator/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Statistics</title>
-      <link>http://localhost:1313/tags/statistics/</link>
+      <link>https://www.lemrabotttoulba.com/tags/statistics/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/statistics/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/statistics/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Trello</title>
-      <link>http://localhost:1313/tags/trello/</link>
+      <link>https://www.lemrabotttoulba.com/tags/trello/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/trello/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/trello/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Turing Machine</title>
-      <link>http://localhost:1313/tags/turing-machine/</link>
+      <title>Turing machine</title>
+      <link>https://www.lemrabotttoulba.com/tags/turing-machine/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/turing-machine/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/turing-machine/</guid>
       <description></description>
     </item>
     
     <item>
       <title>TypeScript</title>
-      <link>http://localhost:1313/tags/typescript/</link>
+      <link>https://www.lemrabotttoulba.com/tags/typescript/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/typescript/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/typescript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Web Security</title>
+      <link>https://www.lemrabotttoulba.com/tags/web-security/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.lemrabotttoulba.com/tags/web-security/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Web Services</title>
-      <link>http://localhost:1313/tags/web-services/</link>
+      <link>https://www.lemrabotttoulba.com/tags/web-services/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/web-services/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/web-services/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>WebHooks</title>
+      <link>https://www.lemrabotttoulba.com/tags/webhooks/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.lemrabotttoulba.com/tags/webhooks/</guid>
       <description></description>
     </item>
     
     <item>
       <title>WSDL</title>
-      <link>http://localhost:1313/tags/wsdl/</link>
+      <link>https://www.lemrabotttoulba.com/tags/wsdl/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/wsdl/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>XML</title>
-      <link>http://localhost:1313/tags/xml/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/tags/xml/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/wsdl/</guid>
       <description></description>
     </item>
     
     <item>
       <title>XML&#34;</title>
-      <link>http://localhost:1313/tags/xml/</link>
+      <link>https://www.lemrabotttoulba.com/tags/xml/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/xml/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/xml/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Yarn</title>
-      <link>http://localhost:1313/tags/yarn/</link>
+      <link>https://www.lemrabotttoulba.com/tags/yarn/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/tags/yarn/</guid>
+      <guid>https://www.lemrabotttoulba.com/tags/yarn/</guid>
       <description></description>
     </item>
     

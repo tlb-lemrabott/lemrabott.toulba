@@ -2,200 +2,232 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/education/miu-university/</loc>
+    <loc>https://www.lemrabotttoulba.com/education/miu-university/</loc>
   </url><url>
-    <loc>http://localhost:1313/education/una-university-master/</loc>
+    <loc>https://www.lemrabotttoulba.com/education/una-university-master/</loc>
   </url><url>
-    <loc>http://localhost:1313/education/una-university-bachelor/</loc>
+    <loc>https://www.lemrabotttoulba.com/education/una-university-bachelor/</loc>
   </url><url>
-    <loc>http://localhost:1313/projects/mean-stack-app/</loc>
+    <loc>https://www.lemrabotttoulba.com/projects/cognito-auth/</loc>
   </url><url>
-    <loc>http://localhost:1313/blogs/deploy-hugo-to-s3/</loc>
+    <loc>https://www.lemrabotttoulba.com/projects/mean-stack-app/</loc>
   </url><url>
-    <loc>http://localhost:1313/projects/housing-management-api/</loc>
+    <loc>https://www.lemrabotttoulba.com/blogs/cognito-auth/</loc>
   </url><url>
-    <loc>http://localhost:1313/projects/java-swing-project/</loc>
+    <loc>https://www.lemrabotttoulba.com/blogs/deploy-hugo-to-s3/</loc>
   </url><url>
-    <loc>http://localhost:1313/experience/bnm/</loc>
+    <loc>https://www.lemrabotttoulba.com/projects/housing-management-api/</loc>
   </url><url>
-    <loc>http://localhost:1313/experience/bpm/</loc>
+    <loc>https://www.lemrabotttoulba.com/projects/java-swing-project/</loc>
   </url><url>
-    <loc>http://localhost:1313/experience/mauribit/</loc>
+    <loc>https://www.lemrabotttoulba.com/experience/bnm/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/agile-methods/</loc>
+    <loc>https://www.lemrabotttoulba.com/experience/bpm/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/algebra/</loc>
+    <loc>https://www.lemrabotttoulba.com/experience/mauribit/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/algorithms/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/agile-methods/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/algorithms-and-complexity/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/algebra/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/angular/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/algorithms/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/astah-uml-ms-project-management/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/algorithms-and-complexity/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/aws/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/android-sdk/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/bitbucket/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/angular/</loc>
   </url><url>
-    <loc>http://localhost:1313/blogs/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/astah-uml/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/bootstrap/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/authentication/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/bycrypt/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/authorization/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/c-language/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/aws/</loc>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/aws-amplify/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/computer-architecture/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/aws-cognito/</loc>
   </url><url>
-    <loc>http://localhost:1313/contact/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/aws-ec2/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/cordova/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/aws-iam/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/css/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/aws-lambda/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/data-structure/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/aws-rds/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/database-optimization/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/aws-s3/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/design-patterns/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/bitbucket/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/docker/</loc>
+    <loc>https://www.lemrabotttoulba.com/blogs/</loc>
   </url><url>
-    <loc>http://localhost:1313/education/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/bootstrap/</loc>
   </url><url>
-    <loc>http://localhost:1313/experience/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/bycrypt/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/express/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/c-language/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/express.js/</loc>
+    <loc>https://www.lemrabotttoulba.com/categories/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/ftp-server/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/computer-architecture/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/geometric/</loc>
+    <loc>https://www.lemrabotttoulba.com/contact/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/git/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/cordova/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/githubactions/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/css/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/google-analytics/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/data-structure/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/google-firebase/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/database-optimization/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/graphs/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/design-patterns/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/hadoop/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/docker/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/hibernate/</loc>
+    <loc>https://www.lemrabotttoulba.com/education/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/hogo/</loc>
+    <loc>https://www.lemrabotttoulba.com/experience/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/html/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/express/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/ionic/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/express.js/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/java/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/ftp-server/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/java-2ee/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/geometric/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/java-7/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/git/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/java-8/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/githubactions/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/java-functional-programming/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/google-analytics/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/java-stream-api/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/google-firebase/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/java-swing/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/graphs/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/java-unit-tests/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/hadoop/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/javascript/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/hibernate/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/json/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/hogo/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/jwt/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/html/</loc>
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/ionic/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/linux-commands/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/java/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/microservices/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/java-2ee/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/miro-visual-platform/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/java-7/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/mongodb/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/java-8/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/mongodb-database/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/java-functional-programming/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/mysql/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/java-stream-api/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/nmap---network-scanner/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/java-swing/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/node.js/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/java-unit-tests/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/nodejs/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/javascript/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/object-oriented-programming/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/json/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/object-serialisations/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/jwt/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/orm/</loc>
+    <loc>https://www.lemrabotttoulba.com/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/physics/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/linux-commands/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/postgresql/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/microservices/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/postman/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/miro-visual-platform/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/probability/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/mongodb/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/problem-solving/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/mongodb-database/</loc>
   </url><url>
-    <loc>http://localhost:1313/projects/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/ms-project-management/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/python/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/mysql/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/react.js/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/nmap-network-scanner/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/restful-api/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/node.js/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/s3/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/nodejs/</loc>
   </url><url>
-    <loc>http://localhost:1313/search/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/oauth2/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/soap/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/object-oriented-programming/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/spring-boot/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/object-serialisations/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/spring-framwork/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/orm/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/sql-language/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/physics/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/sqlite/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/postgresql/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/staticsitegenerator/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/probability/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/statistics/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/problem-solving/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://www.lemrabotttoulba.com/projects/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/trello/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/python/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/turing-machine/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/rabbitmq/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/typescript/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/react.js/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/web-services/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/reactjs/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/wsdl/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/restful-api/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/xml/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/s3/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/xml/</loc>
+    <loc>https://www.lemrabotttoulba.com/search/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/yarn/</loc>
+    <loc>https://www.lemrabotttoulba.com/tags/soap/</loc>
+  </url><url>
+    <loc>https://www.lemrabotttoulba.com/tags/spring-boot/</loc>
+  </url><url>
+    <loc>https://www.lemrabotttoulba.com/tags/spring-framwork/</loc>
+  </url><url>
+    <loc>https://www.lemrabotttoulba.com/tags/sql-language/</loc>
+  </url><url>
+    <loc>https://www.lemrabotttoulba.com/tags/sqlite/</loc>
+  </url><url>
+    <loc>https://www.lemrabotttoulba.com/tags/staticsitegenerator/</loc>
+  </url><url>
+    <loc>https://www.lemrabotttoulba.com/tags/statistics/</loc>
+  </url><url>
+    <loc>https://www.lemrabotttoulba.com/tags/</loc>
+  </url><url>
+    <loc>https://www.lemrabotttoulba.com/tags/trello/</loc>
+  </url><url>
+    <loc>https://www.lemrabotttoulba.com/tags/turing-machine/</loc>
+  </url><url>
+    <loc>https://www.lemrabotttoulba.com/tags/typescript/</loc>
+  </url><url>
+    <loc>https://www.lemrabotttoulba.com/tags/web-security/</loc>
+  </url><url>
+    <loc>https://www.lemrabotttoulba.com/tags/web-services/</loc>
+  </url><url>
+    <loc>https://www.lemrabotttoulba.com/tags/webhooks/</loc>
+  </url><url>
+    <loc>https://www.lemrabotttoulba.com/tags/wsdl/</loc>
+  </url><url>
+    <loc>https://www.lemrabotttoulba.com/tags/xml/</loc>
+  </url><url>
+    <loc>https://www.lemrabotttoulba.com/tags/yarn/</loc>
   </url>
 </urlset>
