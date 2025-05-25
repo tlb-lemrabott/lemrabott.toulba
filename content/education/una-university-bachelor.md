@@ -1,5 +1,5 @@
 ---
-title: "Nouakchott University"
+title: "Nouakchott Modern University"
 description: "Bachelor's degree in Math and Computer Science"
 dateString: Oct 2015 - Jun 2018
 draft: false
@@ -10,7 +10,7 @@ cover:
 ---
 
 # University Website
-### 🔗 [Nouakchott University](https://www.univ-nkc.mr/)
+### 🔗 [Nouakchott Modern University](https://www.univ-nkc.mr/)
 
 # Key Courses: 
 Below is a list of the main courses I studied on campus during my bachelor degree at Nouakchott University:

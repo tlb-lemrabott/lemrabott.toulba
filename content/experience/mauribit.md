@@ -3,16 +3,18 @@ title: "MAURIBIT"
 description: "Web Developer - Full time "
 dateString: Jul 2018 - Mar 2019 
 draft: false
-tags: ["HTML", "CSS", "JavaScript", "Git", "Bitbucket", "Google analytics", "Trello", "Yarn"]
+tags: ["Reactjs", "HTML", "CSS", "JavaScript", "AWS Amplify", "AWS IAM", "AWS Lambda", "AWS S3", "Git", "Bitbucket", "Google analytics", "Trello", "Yarn"]
 showToc: false
 weight: 303
 ---
 
-## Description
-- Collaborated with a team of developers to design and implement a responsive web application.
-- Implemented front-end functionalities using HTML, CSS, and JavaScript, ensuring a seamless user experience.
-- Participated in code maintainability, debugging, and bug fixing to improve application stability.
-- Documented technical specifications and created user manuals for internal use.
-- Utilized Git, Bitbucket and Trello. Resulted in a more efficient and streamlined workflow.
+### Main Tasks
+
+- Built a responsive web application using Reactjs, HTML, CSS, and JavaScript, focusing on accessibility and UX. 
+- Used AWS Amplify, IAM, and Lambda to deploy React.js UI and enable Lambda read/write access to AWS S3.
+- Implemented semantic HTML standards to improve accessibility for users with assistive technologies.
+- Collaborated with team members for scalable frontend architecture and debugging. 
+- Maintained documentation and user manuals for improved usability and knowledge transfer. 
+- Used Git, Bitbucket, and Trello to manage tasks and source control effectively.
 
 #### 🔗 [**MAURIBIT**](https://www.mauribit.com/)
