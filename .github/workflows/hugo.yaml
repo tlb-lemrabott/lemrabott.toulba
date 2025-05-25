@@ -1,4 +1,4 @@
-name: Deploy Hugo site to Pages
+name: Deploy Hugo site to S3
 
 on:
   push:
@@ -36,9 +36,6 @@ jobs:
         with:
           submodules: recursive
           fetch-depth: 0
-      - name: Setup Pages
-        id: pages
-        uses: actions/configure-pages@v4
       - name: Install Node.js dependencies
         run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
       - name: Build with Hugo
@@ -49,10 +46,6 @@ jobs:
           hugo \
             --gc \
             --minify
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./public
 
       - uses: aws-actions/configure-aws-credentials@v1
         with:
