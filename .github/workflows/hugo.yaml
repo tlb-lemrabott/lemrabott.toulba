@@ -20,7 +20,7 @@ defaults:
     shell: bash
 
 jobs:
-  build:
+  buildAndDeploy:
     runs-on: ubuntu-latest
     env:
       HUGO_VERSION: 0.115.1
