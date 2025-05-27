@@ -149,3 +149,8 @@ markup:
   goldmark:
     renderer:
       unsafe: true
+  highlight:
+    codeFences: true
+    guessSyntax: true
+    lineNos: false
+    noClasses: false
