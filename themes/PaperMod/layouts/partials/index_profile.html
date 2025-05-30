@@ -38,6 +38,65 @@
         <div>
             <p>{{ .text | markdownify }}</p>
             <br />
+
+
+            <i class="devicon-java-plain colored" title="Java"></i>
+            <i class="devicon-spring-original colored" title="SpringBoot"></i>
+            <i class="devicon-fastapi-plain colored"></i>
+            <i class="devicon-angular-plain"></i>
+            <i class="devicon-azuresqldatabase-plain colored"></i>
+            <i class="devicon-mysql-original colored"></i>
+            <i class="devicon-amazonwebservices-plain-wordmark colored"></i>
+            <i class="devicon-postgresql-plain colored"></i>
+            <i class="devicon-react-original colored" title="React"></i>
+
+            <br />
+
+            <a href="https://leetcode.com/u/vRCcb0Nnvp/" target="_blank" class="leetcode-section-link">
+                <h2 class="leetcode-section-title">
+                    <i class="cib-leetcode"></i> Live LeetCode Stats
+                </h2>
+            </a>
+
+            <div class="leetcode-summary-box">
+                <div class="summary-top">
+                    <div class="summary-main">
+                        <span class="label">Total Solved</span>
+                        <span class="stat blue"><span id="totalSolved">0</span> Problems</span>
+                    </div>
+                    <div class="beat-rate">🏅 Rank: <span id="ranking">-</span></div>
+                </div>
+
+                <div class="difficulty-breakdown">
+                    <div class="diff-box teal"><span>Easy</span><b><span id="easySolved">0</span></b></div>
+                    <div class="diff-box yellow"><span>Med.</span><b><span id="mediumSolved">0</span></b></div>
+                    <div class="diff-box red"><span>Hard</span><b><span id="hardSolved">0</span></b></div>
+                </div>
+            </div>
+
+            <div class="leetcode-summary-box smaller">
+                <div class="summary-pair">
+                    <div>
+                        <span class="label">Submissions</span>
+                        <span class="stat purple"><span id="totalSubmissions">0</span></span>
+                    </div>
+                    <div>
+                        <span class="label">Acceptance</span>
+                        <span class="stat green"><span id="acceptanceRate">0</span>%</span>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <br />
+
+            <h3 style="margin-top: 30px;">Submission Breakdown</h3>
+            <canvas id="submissionChart" width="200" height="100"></canvas>
+
+            <h3 style="margin-top: 30px;">Skills</h3>
+
             <div class="cards-container">
                 <!-- Card for Backend Development -->
                 <div class="card">
@@ -120,11 +179,11 @@
 
                 <!-- ... (existing code) ... -->
             </div>
-            {{/*  <br />
+            {{/* <br />
             <b>{{ .achievements_title | markdownify }} </b>
             <div style="text-align: left;">
                 <p>{{ .achievements | markdownify }}</p>
-            </div>  */}}
+            </div> */}}
         </div>
         <br />
         {{- partial "social_icons.html" site.Params.socialIcons -}}
@@ -151,3 +210,12 @@
     </div>
     {{- end}}
 </div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+<link href="https://cdn.jsdelivr.net/npm/@coreui/icons@3.0.1/css/all.min.css" rel="stylesheet">
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- LeetCode Stats Script -->
+{{ $ts := resources.Get "js/leetcodeService.ts" | js.Build | minify | fingerprint }}
+<script src="{{ $ts.RelPermalink }}" integrity="{{ $ts.Data.Integrity }}"></script>
