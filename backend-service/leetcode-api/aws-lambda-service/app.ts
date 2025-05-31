@@ -5,21 +5,21 @@ import { fetchLeetCodeData } from "./service";
 
 const app = express();
 
-app.use(cors());
+//app.use(cors());
 
-const limiter = rateLimit({
-  windowMs: 60 * 60 * 1000,
-  max: 10,
-  keyGenerator: (req) => req.ip || "unknown",
-  handler: (req, res) => {
-    res.status(429).json({
-      error: "Too many requests from this IP, try again in 1 hour",
-    });
-  },
-  skipFailedRequests: true,
-});
+// const limiter = rateLimit({
+//   windowMs: 60 * 60 * 1000,
+//   max: 10,
+//   keyGenerator: (req) => req.ip || "unknown",
+//   handler: (req, res) => {
+//     res.status(429).json({
+//       error: "Too many requests from this IP, try again in 1 hour",
+//     });
+//   },
+//   skipFailedRequests: true,
+// });
 
-app.get("/api/v1/leetcode/:username", limiter, async (req, res) => {
+app.get("/api/v1/leetcode/:username", async (req, res) => {
   const { username } = req.params;
 
   try {
