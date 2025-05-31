@@ -4,8 +4,11 @@
     "module": "commonjs",
     "esModuleInterop": true,
     "outDir": "dist",
-    "rootDir": ".",
-    "strict": true
+    "rootDir": ".",                          // Root of your TypeScript source files
+    "strict": true,
+    "skipLibCheck": true,                    // Optional but helps avoid some type noise
+    "forceConsistentCasingInFileNames": true // Helps avoid casing issues across OSes
   },
-  "include": ["*.ts"]
+  "include": ["**/*.ts"],                    
+  "exclude": ["node_modules", "dist"]
 }
