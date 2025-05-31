@@ -45,15 +45,9 @@ jobs:
       - name: Update Lambda function code
         run: |
           aws lambda update-function-code \
-          --function-name $FUNCTION_NAME \
-          --zip-file fileb://backend-server/leetcode-api/aws-lambda-service/lambda.zip
-
-      - name: Check zip file exists
-        run: ls -lh backend-server/leetcode-api/aws-lambda-service/lambda.zip
-
-      - name: Update Lambda function code
-        run: |
-          aws lambda update-function-code \
             --function-name $FUNCTION_NAME \
             --zip-file fileb://backend-server/leetcode-api/aws-lambda-service/lambda.zip
             --region $REGION
+
+      - name: Check zip file exists
+        run: ls -lh backend-server/leetcode-api/aws-lambda-service/lambda.zip
