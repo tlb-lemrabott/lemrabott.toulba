@@ -7,5 +7,8 @@
     "express-rate-limit": "^7.5.0",
     "leetcode-query": "^2.0.0",
     "lucide": "^0.511.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.2"
   }
 }
