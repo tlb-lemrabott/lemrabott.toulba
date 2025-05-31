@@ -1,0 +1,28 @@
+{
+  "name": "leetcode-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node lambda.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@vendia/serverless-express": "^4.12.6",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "leetcode-query": "^2.0.0"
+  },
+  "devDependencies": {
+    "@aws-sdk/client-lambda": "^3.821.0",
+    "@types/aws-lambda": "^8.10.149",
+    "@types/cors": "^2.8.18",
+    "@types/express": "^5.0.2",
+    "@types/node": "^22.15.27",
+    "archiver": "^7.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}
