@@ -12,7 +12,7 @@ env:
   REGION: us-east-1
 
 jobs:
-  deploy:
+  deployLeetcodeAPI:
     runs-on: ubuntu-latest
 
     steps:
