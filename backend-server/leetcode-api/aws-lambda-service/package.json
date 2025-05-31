@@ -13,6 +13,7 @@
     "@vendia/serverless-express": "^4.12.6",
     "cors": "^2.8.5",
     "express": "^5.1.0",
+    "express-rate-limit": "^7.5.0",
     "leetcode-query": "^2.0.0"
   },
   "devDependencies": {
