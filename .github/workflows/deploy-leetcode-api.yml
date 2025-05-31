@@ -25,6 +25,13 @@ jobs:
         run: npm install
         working-directory: backend-server/leetcode-api/aws-lambda-service
 
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.REGION }}
+
       - name: Compile TypeScript
         run: npx tsc
         working-directory: backend-server/leetcode-api/aws-lambda-service
@@ -43,13 +50,6 @@ jobs:
 
       - name: Check zip file exists
         run: ls -lh backend-server/leetcode-api/aws-lambda-service/lambda.zip
-
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v3
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.REGION }}
 
       - name: Update Lambda function code
         run: |
