@@ -33,7 +33,6 @@ jobs:
         run: |
           cd backend-server/leetcode-api/aws-lambda-service/dist
           zip -r lambda.zip .
-          mv lambda.zip ../../lambda.zip
 
       - name: Update Lambda function code
         run: |
