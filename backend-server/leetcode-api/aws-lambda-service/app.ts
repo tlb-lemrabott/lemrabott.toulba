@@ -19,7 +19,7 @@ const limiter = rateLimit({
   skipFailedRequests: true,
 });
 
-app.get("/api/leetcode/:username", limiter, async (req, res) => {
+app.get("/api/v1/leetcode/:username", limiter, async (req, res) => {
   const { username } = req.params;
 
   try {
