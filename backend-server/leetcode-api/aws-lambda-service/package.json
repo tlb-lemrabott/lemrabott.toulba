@@ -1,7 +1,7 @@
 {
   "name": "leetcode-api",
   "version": "1.0.0",
-  "main": "app.js",
+  "main": "lambda.js",
   "scripts": {
     "build": "tsc",
     "dev": "ts-node lambda.ts"
