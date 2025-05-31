@@ -38,8 +38,11 @@ jobs:
 
       - name: Zip compiled Lambda
         run: |
-          cd backend-server/leetcode-api/aws-lambda-service/dist
-          zip -r lambda.zip .
+          cd backend-server/leetcode-api/aws-lambda-service
+          cp package*.json dist/        # copy package.json and package-lock.json to dist
+          cd dist
+          npm install --omit=dev        # install production dependencies inside dist
+          zip -r lambda.zip .           # zip everything: compiled JS + node_modules
           mv lambda.zip ../lambda.zip
 
       - name: Update Lambda function code
