@@ -45,11 +45,12 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.REGION }}
 
-      - name: Get Role ARN
+        env:
+          ROLE_ARN: ${{ secrets.AWS_LAMBDA_ROLE_ARN }}
+          
+      - name: Set Role ARN manually
         id: get-role
-        run: |
-            ROLE_ARN=$(aws iam get-role --role-name $ROLE_NAME --query 'Role.Arn' --output text)
-            echo "role_arn=$ROLE_ARN" >> $GITHUB_OUTPUT
+        run: echo "role_arn=${{ env.ROLE_ARN }}" >> $GITHUB_OUTPUT
 
       - name: Create or update Lambda function
         run: |
