@@ -46,7 +46,7 @@ jobs:
         run: |
           aws lambda update-function-code \
             --function-name $FUNCTION_NAME \
-            --zip-file fileb://backend-server/leetcode-api/aws-lambda-service/lambda.zip
+            --zip-file fileb://backend-server/leetcode-api/aws-lambda-service/lambda.zip \
             --region $REGION
 
       - name: Check zip file exists
