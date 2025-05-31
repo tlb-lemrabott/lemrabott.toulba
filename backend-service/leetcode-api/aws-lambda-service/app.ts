@@ -19,6 +19,10 @@ const app = express();
 //   skipFailedRequests: true,
 // });
 
+app.get("/", (req, res) => {
+  res.send("Hello from Lambda!");
+});
+
 app.get("/api/v1/leetcode/:username", async (req, res) => {
   const { username } = req.params;
 
