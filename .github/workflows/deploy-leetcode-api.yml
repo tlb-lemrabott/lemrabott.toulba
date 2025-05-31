@@ -32,14 +32,17 @@ jobs:
       - name: Zip compiled Lambda
         run: |
           cd backend-server/leetcode-api/aws-lambda-service/dist
-          zip -r ../../../lambda.zip .
-          cd -
+          zip -r lambda.zip .
+          mv lambda.zip ../../lambda.zip
 
       - name: Update Lambda function code
         run: |
           aws lambda update-function-code \
           --function-name $FUNCTION_NAME \
-          --zip-file fileb://lambda.zip
+          --zip-file fileb://backend-server/leetcode-api/aws-lambda-service/lambda.zip
+
+      - name: Check zip file exists
+        run: ls -lh backend-server/leetcode-api/aws-lambda-service/lambda.zip
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v3
