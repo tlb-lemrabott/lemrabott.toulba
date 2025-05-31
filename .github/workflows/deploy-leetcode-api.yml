@@ -23,7 +23,7 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-        working-directory: backend-server/leetcode-api/aws-lambda-service
+        working-directory: backend-service/leetcode-api/aws-lambda-service
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v3
@@ -34,11 +34,11 @@ jobs:
 
       - name: Compile TypeScript
         run: npx tsc
-        working-directory: backend-server/leetcode-api/aws-lambda-service
+        working-directory: backend-service/leetcode-api/aws-lambda-service
 
       - name: Zip compiled Lambda
         run: |
-          cd backend-server/leetcode-api/aws-lambda-service
+          cd backend-service/leetcode-api/aws-lambda-service
           cp package*.json dist/        # copy package.json and package-lock.json to dist
           cd dist
           npm install --omit=dev        # install production dependencies inside dist
@@ -49,8 +49,8 @@ jobs:
         run: |
           aws lambda update-function-code \
             --function-name $FUNCTION_NAME \
-            --zip-file fileb://backend-server/leetcode-api/aws-lambda-service/lambda.zip \
+            --zip-file fileb://backend-service/leetcode-api/aws-lambda-service/lambda.zip \
             --region $REGION
 
       - name: Check zip file exists
-        run: ls -lh backend-server/leetcode-api/aws-lambda-service/lambda.zip
+        run: ls -lh backend-service/leetcode-api/aws-lambda-service/lambda.zip
