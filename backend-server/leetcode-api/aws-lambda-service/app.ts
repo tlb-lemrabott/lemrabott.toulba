@@ -10,7 +10,7 @@ app.use(cors());
 const limiter = rateLimit({
   windowMs: 60 * 60 * 1000,
   max: 10,
-  keyGenerator: (req) => req.ip,
+  keyGenerator: (req) => req.ip || "unknown",
   handler: (req, res) => {
     res.status(429).json({
       error: "Too many requests from this IP, try again in 1 hour",
