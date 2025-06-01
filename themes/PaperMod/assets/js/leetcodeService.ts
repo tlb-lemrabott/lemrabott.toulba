@@ -19,7 +19,9 @@ interface LeetCodeData {
 }
 
 const CACHE_KEY = "leetcode_cache";
-const CACHE_TTL = 60 * 60 * 1000; // 1 hour in milliseconds
+const CACHE_TTL = 60 * 60 * 1000;
+const API_URL = "https://82ci0zfx68.execute-api.us-east-1.amazonaws.com/api/v1/leetcode/";
+const USERNAME = "vRCcb0Nnvp";
 
 const animate = (id: string, value: number): void => {
   const el = document.getElementById(id);
@@ -85,15 +87,15 @@ const fetchLeetCodeStats = async () => {
   }
 
   try {
-    const response = await fetch("http://localhost:3001/api/leetcode/vRCcb0Nnvp");
+    console.log("url is : ", `${API_URL}${USERNAME}`);
+    const response = await fetch(`${API_URL}${USERNAME}`);
     if (!response.ok) {
       throw new Error(`Failed to fetch: ${response.status}`);
     }
 
     const json = await response.json();
     const data: LeetCodeData = json.leetcode_data;
-
-    // Cache it
+    
     localStorage.setItem(CACHE_KEY, JSON.stringify({
       timestamp: now,
       data
@@ -102,8 +104,6 @@ const fetchLeetCodeStats = async () => {
     renderFromData(data);
   } catch (error) {
     console.error("Error fetching LeetCode stats:", error);
-
-    // Fallback to cache if available
     if (cached) {
       const parsed = JSON.parse(cached);
       renderFromData(parsed.data);
@@ -125,7 +125,7 @@ const renderFromData = (data: LeetCodeData) => {
 
 setInterval(async () => {
   try {
-    const response = await fetch("http://localhost:3001/api/leetcode/vRCcb0Nnvp");
+    const response = await fetch(`${API_URL}${USERNAME}`);
     if (!response.ok) return;
 
     const json = await response.json();
