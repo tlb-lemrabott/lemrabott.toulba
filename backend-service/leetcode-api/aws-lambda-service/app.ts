@@ -7,15 +7,8 @@ const app = express();
 
 //app.use(cors());
 
-const stage = process.env.API_PROD_STAGE || "prod";
-
 app.use((req, res, next) => {
-  if (req.url.startsWith(`/${stage}/`)) {
-    req.url = req.url.replace(`/${stage}`, "");
-  } else if (req.url === `/${stage}`) {
-    req.url = "/";
-  }
-  console.log("Modified URL:", req.url);
+  console.log('Original URL:', req.url);
   next();
 });
 
