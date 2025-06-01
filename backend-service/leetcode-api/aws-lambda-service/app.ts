@@ -7,6 +7,18 @@ const app = express();
 
 //app.use(cors());
 
+//midleware handle api gateway staging
+const prodStage = process.env.API_PROD_STAGE ?? "prod";
+const devStage = process.env.API_DEV_STAGE ?? "dev";
+app.use((req, res, next) => {
+  if (req.url.startsWith(`/${prodStage}`)) {
+    req.url = req.url.slice(prodStage.length + 1) || "/";
+  } else if (req.url.startsWith(`/${devStage}`)) {
+    req.url = req.url.slice(devStage.length + 1) || "/";
+  }
+  next();
+});
+
 // const limiter = rateLimit({
 //   windowMs: 60 * 60 * 1000,
 //   max: 10,
