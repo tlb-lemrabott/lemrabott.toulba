@@ -120,13 +120,13 @@ params:
     - name: "phone"
       url: "+19293369859"
     - name: "email"
-      url: "mailto:lemrabott.toulba@yahoo.com"
+      url: "mailto:lemrabott.toulba@gmail.com"
     - name: "linkedin"
       url: "https://www.linkedin.com/in/lemrabott-toulba"
     - name: "github"
       url: "https://github.com/tlb-lemrabott/"
     - name: "resume"
-      url: "mailto:lemrabott.toulba@yahoo.com"
+      url: "mailto:lemrabott.toulba@gmail.com"
 
   # text search
   fuseOpts:
