@@ -87,7 +87,7 @@ const fetchLeetCodeStats = async () => {
   }
 
   try {
-    console.log("url is : ", `${API_URL}${USERNAME}`);
+    //console.log("url is : ", `${API_URL}${USERNAME}`);
     const response = await fetch(`${API_URL}${USERNAME}`);
     if (!response.ok) {
       throw new Error(`Failed to fetch: ${response.status}`);
