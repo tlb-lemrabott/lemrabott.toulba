@@ -142,14 +142,91 @@ const setValue = (id: string, value: number): void => {
   el.textContent = value.toLocaleString();
 };
 
-// Simplified chart rendering - just log the data for now
+// Enhanced chart rendering with proper error handling
 const renderSubmissionChart = (submissions: SubmissionStats[]) => {
   try {
-    console.log('Submission data:', submissions);
-    // Temporarily disable chart rendering to prevent crashes
-    // TODO: Re-enable chart when stable
+    const canvas = document.getElementById("submissionChart") as HTMLCanvasElement;
+    if (!canvas) {
+      console.log('Chart canvas not found');
+      return;
+    }
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) {
+      console.log('Could not get canvas context');
+      return;
+    }
+
+    // Destroy existing chart if it exists
+    if ((canvas as any)._chart) {
+      try {
+        (canvas as any)._chart.destroy();
+      } catch (e) {
+        console.log('Error destroying existing chart:', e);
+      }
+    }
+
+    // Filter out 'All' difficulty if present
+    const filtered = submissions.filter(s => s.difficulty !== "All");
+    
+    if (filtered.length === 0) {
+      console.log('No submission data to display');
+      return;
+    }
+
+    const labels = filtered.map(s => s.difficulty);
+    const data = filtered.map(s => s.submissions);
+
+    // Create chart with error handling
+    const chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: labels,
+        datasets: [{
+          label: "Submissions",
+          data: data,
+          backgroundColor: ["#4CAF50", "#2196F3", "#F44336"], // Easy, Medium, Hard
+          borderColor: ["#388E3C", "#1976D2", "#D32F2F"],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          title: {
+            display: true,
+            text: "Submissions per Difficulty",
+            color: '#666',
+            font: { size: 14 }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            grid: { color: '#f0f0f0' }
+          },
+          x: {
+            grid: { display: false }
+          }
+        }
+      }
+    });
+
+    // Store chart reference for cleanup
+    (canvas as any)._chart = chart;
+    console.log('Chart rendered successfully');
   } catch (error) {
     console.error('Error rendering chart:', error);
+    // Show fallback text
+    const canvas = document.getElementById("submissionChart") as HTMLCanvasElement;
+    if (canvas) {
+      canvas.style.display = 'none';
+      const fallback = document.createElement('div');
+      fallback.innerHTML = '<p style="text-align: center; color: #666;">Chart unavailable</p>';
+      canvas.parentNode?.appendChild(fallback);
+    }
   }
 };
 
@@ -167,8 +244,8 @@ const renderFromData = (data: LeetCodeData) => {
     setValue("ranking", data.ranking);
     setValue("acceptanceRate", Math.round(data.acceptanceRate));
     
-    // Skip chart rendering for now
-    // renderSubmissionChart(data.totalSubmissions);
+    // Render chart with error handling
+    renderSubmissionChart(data.totalSubmissions);
   } catch (error) {
     console.error('Error rendering data:', error);
   }
