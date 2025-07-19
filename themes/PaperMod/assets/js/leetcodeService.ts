@@ -1,6 +1,4 @@
 import { CountUp } from "countup.js";
-import { Chart, registerables } from 'chart.js';
-Chart.register(...registerables);
 
 // Import cookie consent manager
 import { cookieConsent } from './cookieConsent';
@@ -142,7 +140,7 @@ const setValue = (id: string, value: number): void => {
   el.textContent = value.toLocaleString();
 };
 
-// Enhanced chart rendering with proper error handling
+// Safe HTML-based chart rendering (no Chart.js dependency)
 const renderSubmissionChart = (submissions: SubmissionStats[]) => {
   try {
     const canvas = document.getElementById("submissionChart") as HTMLCanvasElement;
@@ -151,19 +149,13 @@ const renderSubmissionChart = (submissions: SubmissionStats[]) => {
       return;
     }
 
-    const ctx = canvas.getContext("2d");
-    if (!ctx) {
-      console.log('Could not get canvas context');
-      return;
-    }
-
-    // Destroy existing chart if it exists
-    if ((canvas as any)._chart) {
-      try {
-        (canvas as any)._chart.destroy();
-      } catch (e) {
-        console.log('Error destroying existing chart:', e);
-      }
+    // Hide the canvas and create HTML-based chart
+    canvas.style.display = 'none';
+    
+    // Remove any existing fallback
+    const existingFallback = canvas.parentNode?.querySelector('.html-chart');
+    if (existingFallback) {
+      existingFallback.remove();
     }
 
     // Filter out 'All' difficulty if present
@@ -174,57 +166,73 @@ const renderSubmissionChart = (submissions: SubmissionStats[]) => {
       return;
     }
 
-    const labels = filtered.map(s => s.difficulty);
-    const data = filtered.map(s => s.submissions);
+    // Find max value for scaling
+    const maxValue = Math.max(...filtered.map(s => s.submissions));
+    
+    // Create HTML chart container
+    const chartContainer = document.createElement('div');
+    chartContainer.className = 'html-chart';
+    chartContainer.style.cssText = `
+      margin: 20px 0;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      border: 1px solid #e9ecef;
+    `;
 
-    // Create chart with error handling
-    const chart = new Chart(ctx, {
-      type: "bar",
-      data: {
-        labels: labels,
-        datasets: [{
-          label: "Submissions",
-          data: data,
-          backgroundColor: ["#4CAF50", "#2196F3", "#F44336"], // Easy, Medium, Hard
-          borderColor: ["#388E3C", "#1976D2", "#D32F2F"],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: { display: false },
-          title: {
-            display: true,
-            text: "Submissions per Difficulty",
-            color: '#666',
-            font: { size: 14 }
-          }
-        },
-        scales: {
-          y: {
-            beginAtZero: true,
-            grid: { color: '#f0f0f0' }
-          },
-          x: {
-            grid: { display: false }
-          }
-        }
-      }
+    // Add title
+    const title = document.createElement('h4');
+    title.textContent = 'Submissions per Difficulty';
+    title.style.cssText = 'margin: 0 0 15px 0; color: #333; font-size: 16px; text-align: center;';
+    chartContainer.appendChild(title);
+
+    // Create bars
+    filtered.forEach((submission, index) => {
+      const barContainer = document.createElement('div');
+      barContainer.style.cssText = 'margin: 10px 0; display: flex; align-items: center; gap: 10px;';
+      
+      const label = document.createElement('span');
+      label.textContent = submission.difficulty;
+      label.style.cssText = 'min-width: 60px; font-weight: 500; color: #555;';
+      
+      const barWrapper = document.createElement('div');
+      barWrapper.style.cssText = 'flex: 1; background: #e9ecef; border-radius: 4px; height: 20px; overflow: hidden;';
+      
+      const bar = document.createElement('div');
+      const percentage = (submission.submissions / maxValue) * 100;
+      const colors = ['#4CAF50', '#2196F3', '#F44336']; // Easy, Medium, Hard
+      bar.style.cssText = `
+        height: 100%;
+        width: ${percentage}%;
+        background: ${colors[index % colors.length]};
+        transition: width 0.5s ease;
+        border-radius: 4px;
+      `;
+      
+      const value = document.createElement('span');
+      value.textContent = submission.submissions.toString();
+      value.style.cssText = 'min-width: 30px; text-align: right; font-weight: 500; color: #333;';
+      
+      barWrapper.appendChild(bar);
+      barContainer.appendChild(label);
+      barContainer.appendChild(barWrapper);
+      barContainer.appendChild(value);
+      chartContainer.appendChild(barContainer);
     });
 
-    // Store chart reference for cleanup
-    (canvas as any)._chart = chart;
-    console.log('Chart rendered successfully');
+    // Add to DOM
+    canvas.parentNode?.appendChild(chartContainer);
+    console.log('HTML chart rendered successfully');
+    
   } catch (error) {
-    console.error('Error rendering chart:', error);
-    // Show fallback text
+    console.error('Error rendering HTML chart:', error);
+    // Show simple fallback
     const canvas = document.getElementById("submissionChart") as HTMLCanvasElement;
     if (canvas) {
       canvas.style.display = 'none';
       const fallback = document.createElement('div');
-      fallback.innerHTML = '<p style="text-align: center; color: #666;">Chart unavailable</p>';
+      fallback.innerHTML = '<p style="text-align: center; color: #666; padding: 20px;">Chart data: ' + 
+        submissions.map(s => `${s.difficulty}: ${s.submissions}`).join(', ') + '</p>';
       canvas.parentNode?.appendChild(fallback);
     }
   }
