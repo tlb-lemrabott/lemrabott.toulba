@@ -1,0 +1,71 @@
+{{- define "main" }}
+
+{{- $pages := union .RegularPages .Sections }}
+{{- $paginator := .Paginate $pages }}
+
+<div class="education-container">
+  <div class="education-timeline">
+    {{- range $index, $page := $paginator.Pages }}
+    <article class="education-card">
+      <div class="education-header">
+        <h2 class="education-title"><a href="{{ $page.RelPermalink }}" class="education-title-link">{{ $page.Title }}</a></h2>
+        {{- if $page.Params.dateString }}
+        <span class="education-date">{{ $page.Params.dateString }}</span>
+        {{- end }}
+      </div>
+      
+      {{- if $page.Description }}
+      <div class="education-description">
+        {{ $page.Description }}
+      </div>
+      {{- end }}
+      
+      {{- if $page.Params.tags }}
+      <div class="education-tags">
+        {{- range $page.Params.tags }}
+        <span class="education-tag">{{ . }}</span>
+        {{- end }}
+      </div>
+      {{- end }}
+      
+      {{- /* Show a preview of courses (first 3) */ -}}
+      {{- if $page.Content }}
+      {{- $content := $page.Content }}
+      {{- $courses := findRE `^- (.+)$` $content }}
+      {{- if $courses }}
+      <div class="education-courses-preview">
+        <h3 class="courses-preview-title">Key Courses</h3>
+        <ul class="courses-preview-list">
+          {{- range first 3 $courses }}
+          {{- $course := replaceRE `^- (.+)$` `$1` . }}
+          <li class="course-preview-item">{{ $course }}</li>
+          {{- end }}
+          {{- if gt (len $courses) 3 }}
+          <li class="course-preview-more">+{{ sub (len $courses) 3 }} more courses</li>
+          {{- end }}
+        </ul>
+      </div>
+      {{- end }}
+      {{- end }}
+    </article>
+    {{- end }}
+  </div>
+</div>
+
+{{- if gt $paginator.TotalPages 1 }}
+<footer class="page-footer">
+  <nav class="pagination">
+    {{- if $paginator.HasPrev }}
+    <a class="prev" href="{{ $paginator.Prev.URL | absURL }}">« {{ i18n "prev_page" }}</a>
+    {{- end }}
+    {{- if $paginator.HasNext }}
+    <a class="next" href="{{ $paginator.Next.URL | absURL }}">{{ i18n "next_page" }} »</a>
+    {{- end }}
+  </nav>
+</footer>
+{{- end }}
+
+<!-- Education Page JavaScript -->
+<script src="{{ "js/education.js" | absURL }}"></script>
+
+{{- end }}{{- /* end main */ -}} 
