@@ -220,6 +220,10 @@
 {{ $cookieConsent := resources.Get "js/cookieConsent.ts" | js.Build | minify | fingerprint }}
 <script src="{{ $cookieConsent.RelPermalink }}" integrity="{{ $cookieConsent.Data.Integrity }}"></script>
 
+<!-- Image Optimizer Script -->
+{{ $imageOptimizer := resources.Get "js/imageOptimizer.ts" | js.Build | minify | fingerprint }}
+<script src="{{ $imageOptimizer.RelPermalink }}" integrity="{{ $imageOptimizer.Data.Integrity }}"></script>
+
 <!-- LeetCode Stats Script -->
 {{ $ts := resources.Get "js/leetcodeService.ts" | js.Build | minify | fingerprint }}
 <script src="{{ $ts.RelPermalink }}" integrity="{{ $ts.Data.Integrity }}"></script>
