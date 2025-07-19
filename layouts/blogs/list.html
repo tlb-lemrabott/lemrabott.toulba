@@ -1,0 +1,76 @@
+{{- define "main" }}
+
+{{- $pages := union .RegularPages .Sections }}
+{{- $paginator := .Paginate $pages }}
+
+<div class="blogs-container">
+  <div class="blogs-timeline">
+    {{- range $index, $page := $paginator.Pages }}
+    <article class="blog-card">
+      <div class="blog-header">
+        <h2 class="blog-title"><a href="{{ $page.RelPermalink }}" class="blog-title-link">{{ $page.Title }}</a></h2>
+        {{- if $page.Params.dateString }}
+        <span class="blog-date">{{ $page.Params.dateString }}</span>
+        {{- end }}
+      </div>
+      
+      {{- if $page.Params.cover.image }}
+      <div class="blog-image">
+        <img src="{{ $page.Params.cover.image | absURL }}" alt="{{ $page.Title }}" loading="lazy">
+      </div>
+      {{- end }}
+      
+      {{- if $page.Description }}
+      <div class="blog-description">
+        {{ $page.Description }}
+      </div>
+      {{- end }}
+      
+      {{- if $page.Params.tags }}
+      <div class="blog-tags">
+        {{- range $page.Params.tags }}
+        <span class="blog-tag">{{ . }}</span>
+        {{- end }}
+      </div>
+      {{- end }}
+      
+      {{- /* Show a preview of content (first paragraph) */ -}}
+      {{- if $page.Content }}
+      {{- $content := $page.Content }}
+      {{- $paragraphs := findRE `<p>(.+?)</p>` $content }}
+      {{- if $paragraphs }}
+      <div class="blog-content-preview">
+        <h3 class="content-preview-title">Preview</h3>
+        <div class="content-preview-text">
+          {{- range first 1 $paragraphs }}
+          {{ . | safeHTML }}
+          {{- end }}
+        </div>
+        <div class="read-more">
+          <a href="{{ $page.RelPermalink }}" class="read-more-link">Read Full Article →</a>
+        </div>
+      </div>
+      {{- end }}
+      {{- end }}
+    </article>
+    {{- end }}
+  </div>
+</div>
+
+{{- if gt $paginator.TotalPages 1 }}
+<footer class="page-footer">
+  <nav class="pagination">
+    {{- if $paginator.HasPrev }}
+    <a class="prev" href="{{ $paginator.Prev.URL | absURL }}">« {{ i18n "prev_page" }}</a>
+    {{- end }}
+    {{- if $paginator.HasNext }}
+    <a class="next" href="{{ $paginator.Next.URL | absURL }}">{{ i18n "next_page" }} »</a>
+    {{- end }}
+  </nav>
+</footer>
+{{- end }}
+
+<!-- Blogs Page JavaScript -->
+<script src="{{ "js/blogs.js" | absURL }}"></script>
+
+{{- end }}{{- /* end main */ -}} 
