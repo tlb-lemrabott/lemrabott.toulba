@@ -4,7 +4,14 @@
   "main": "lambda.js",
   "scripts": {
     "build": "tsc",
-    "dev": "ts-node lambda.ts"
+    "dev": "ts-node lambda.ts",
+    "deploy": "chmod +x deploy.sh && ./deploy.sh",
+    "test": "npm run build && node dist/lambda.js",
+    "test:cors": "node test-cors.js",
+    "diagnose": "node diagnose-cors.js",
+    "fix-cors": "./fix-cors.sh",
+    "clean": "rm -rf dist deployment leetcode-api.zip",
+    "prewarm": "node -e \"require('./dist/warmup').warmup({}, {}).then(console.log).catch(console.error)\""
   },
   "author": "",
   "license": "ISC",
@@ -25,6 +32,7 @@
     "@types/express": "^5.0.2",
     "@types/node": "^22.15.27",
     "archiver": "^7.0.1",
+    "node-fetch": "^2.7.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   }
