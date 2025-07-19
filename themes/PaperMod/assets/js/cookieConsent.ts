@@ -55,7 +55,7 @@ class CookieConsentManager {
       <div class="cookie-consent-content">
         <div class="cookie-consent-text">
           <h4>🍪 Cookie Notice</h4>
-          <p>This website uses cookies to enhance your experience. We use localStorage to cache your LeetCode statistics and improve performance.</p>
+          <p>This website uses cookies to enhance your experience.</p>
           <p>By continuing to use this site, you consent to our use of cookies.</p>
         </div>
         <div class="cookie-consent-actions">
