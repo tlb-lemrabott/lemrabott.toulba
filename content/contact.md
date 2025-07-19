@@ -1,6 +1,6 @@
 ---
 title: "Contact"
-layout: "contact"
+layout: "single"
 url: "/contact"
 summary: "contact"
 # description: "Search for any keyword..."
