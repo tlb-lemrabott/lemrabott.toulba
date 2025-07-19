@@ -2,6 +2,9 @@ import { CountUp } from "countup.js";
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 
+// Import cookie consent manager
+import { cookieConsent } from './cookieConsent';
+
 interface SubmissionStats {
   difficulty: string;
   count: number;
@@ -77,8 +80,14 @@ const hideLoading = () => {
   });
 };
 
-// Enhanced cache management
+// Enhanced cache management with cookie consent
 const getCachedData = (): LeetCodeData | null => {
+  // Check if user has consented to cookies
+  if (!cookieConsent.canUseCookies()) {
+    console.log('Cookie consent not given, skipping cache');
+    return null;
+  }
+
   try {
     const cached = localStorage.getItem(CACHE_KEY);
     if (!cached) return null;
@@ -106,6 +115,12 @@ const getCachedData = (): LeetCodeData | null => {
 };
 
 const setCachedData = (data: LeetCodeData): void => {
+  // Check if user has consented to cookies
+  if (!cookieConsent.canUseCookies()) {
+    console.log('Cookie consent not given, skipping cache write');
+    return;
+  }
+
   try {
     const cacheEntry: CacheEntry = {
       timestamp: Date.now(),

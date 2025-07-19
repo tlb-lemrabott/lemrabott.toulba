@@ -216,6 +216,10 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- Cookie Consent Script -->
+{{ $cookieConsent := resources.Get "js/cookieConsent.ts" | js.Build | minify | fingerprint }}
+<script src="{{ $cookieConsent.RelPermalink }}" integrity="{{ $cookieConsent.Data.Integrity }}"></script>
+
 <!-- LeetCode Stats Script -->
 {{ $ts := resources.Get "js/leetcodeService.ts" | js.Build | minify | fingerprint }}
 <script src="{{ $ts.RelPermalink }}" integrity="{{ $ts.Data.Integrity }}"></script>
