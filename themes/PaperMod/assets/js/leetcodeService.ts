@@ -152,10 +152,10 @@ const renderSubmissionChart = (submissions: SubmissionStats[]) => {
     // Hide the canvas and create HTML-based chart
     canvas.style.display = 'none';
     
-    // Remove any existing fallback
-    const existingFallback = canvas.parentNode?.querySelector('.html-chart');
-    if (existingFallback) {
-      existingFallback.remove();
+    // Remove any existing chart
+    const existingChart = canvas.parentNode?.querySelector('.html-chart');
+    if (existingChart) {
+      existingChart.remove();
     }
 
     // Filter out 'All' difficulty if present
@@ -173,18 +173,12 @@ const renderSubmissionChart = (submissions: SubmissionStats[]) => {
     const chartContainer = document.createElement('div');
     chartContainer.className = 'html-chart';
     chartContainer.style.cssText = `
-      margin: 20px 0;
-      padding: 20px;
-      background: #f8f9fa;
+      margin: 10px 0;
+      padding: 15px;
+      background: var(--entry);
       border-radius: 8px;
-      border: 1px solid #e9ecef;
+      border: 1px solid var(--border);
     `;
-
-    // Add title
-    const title = document.createElement('h4');
-    title.textContent = 'Submissions per Difficulty';
-    title.style.cssText = 'margin: 0 0 15px 0; color: #333; font-size: 16px; text-align: center;';
-    chartContainer.appendChild(title);
 
     // Create bars
     filtered.forEach((submission, index) => {
@@ -193,10 +187,10 @@ const renderSubmissionChart = (submissions: SubmissionStats[]) => {
       
       const label = document.createElement('span');
       label.textContent = submission.difficulty;
-      label.style.cssText = 'min-width: 60px; font-weight: 500; color: #555;';
+      label.style.cssText = 'min-width: 60px; font-weight: 500; color: var(--secondary);';
       
       const barWrapper = document.createElement('div');
-      barWrapper.style.cssText = 'flex: 1; background: #e9ecef; border-radius: 4px; height: 20px; overflow: hidden;';
+      barWrapper.style.cssText = 'flex: 1; background: var(--tertiary); border-radius: 4px; height: 20px; overflow: hidden;';
       
       const bar = document.createElement('div');
       const percentage = (submission.submissions / maxValue) * 100;
@@ -211,7 +205,7 @@ const renderSubmissionChart = (submissions: SubmissionStats[]) => {
       
       const value = document.createElement('span');
       value.textContent = submission.submissions.toString();
-      value.style.cssText = 'min-width: 30px; text-align: right; font-weight: 500; color: #333;';
+      value.style.cssText = 'min-width: 30px; text-align: right; font-weight: 500; color: var(--primary);';
       
       barWrapper.appendChild(bar);
       barContainer.appendChild(label);
@@ -220,8 +214,10 @@ const renderSubmissionChart = (submissions: SubmissionStats[]) => {
       chartContainer.appendChild(barContainer);
     });
 
-    // Add to DOM
-    canvas.parentNode?.appendChild(chartContainer);
+    // Add to DOM - replace the canvas directly
+    if (canvas.parentNode) {
+      canvas.parentNode.replaceChild(chartContainer, canvas);
+    }
     console.log('HTML chart rendered successfully');
     
   } catch (error) {
@@ -229,11 +225,10 @@ const renderSubmissionChart = (submissions: SubmissionStats[]) => {
     // Show simple fallback
     const canvas = document.getElementById("submissionChart") as HTMLCanvasElement;
     if (canvas) {
-      canvas.style.display = 'none';
       const fallback = document.createElement('div');
-      fallback.innerHTML = '<p style="text-align: center; color: #666; padding: 20px;">Chart data: ' + 
+      fallback.innerHTML = '<p style="text-align: center; color: var(--secondary); padding: 20px;">Chart data: ' + 
         submissions.map(s => `${s.difficulty}: ${s.submissions}`).join(', ') + '</p>';
-      canvas.parentNode?.appendChild(fallback);
+      canvas.parentNode?.replaceChild(fallback, canvas);
     }
   }
 };
