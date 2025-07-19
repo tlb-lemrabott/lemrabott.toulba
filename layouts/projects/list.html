@@ -1,0 +1,77 @@
+{{- define "main" }}
+
+{{- $pages := union .RegularPages .Sections }}
+{{- $paginator := .Paginate $pages }}
+
+<div class="projects-container">
+  <div class="projects-timeline">
+    {{- range $index, $page := $paginator.Pages }}
+    <article class="project-card">
+      <div class="project-header">
+        <h2 class="project-title"><a href="{{ $page.RelPermalink }}" class="project-title-link">{{ $page.Title }}</a></h2>
+        {{- if $page.Params.dateString }}
+        <span class="project-date">{{ $page.Params.dateString }}</span>
+        {{- end }}
+      </div>
+      
+      {{- if $page.Params.cover.image }}
+      <div class="project-image">
+        <img src="{{ $page.Params.cover.image | absURL }}" alt="{{ $page.Title }}" loading="lazy">
+      </div>
+      {{- end }}
+      
+      {{- if $page.Description }}
+      <div class="project-description">
+        {{ $page.Description }}
+      </div>
+      {{- end }}
+      
+      {{- if $page.Params.tags }}
+      <div class="project-tags">
+        {{- range $page.Params.tags }}
+        <span class="project-tag">{{ . }}</span>
+        {{- end }}
+      </div>
+      {{- end }}
+      
+      {{- /* Show a preview of key features (first 3) */ -}}
+      {{- if $page.Content }}
+      {{- $content := $page.Content }}
+      {{- $features := findRE `^- (.+)$` $content }}
+      {{- if $features }}
+      <div class="project-features-preview">
+        <h3 class="features-preview-title">Key Features</h3>
+        <ul class="features-preview-list">
+          {{- range first 3 $features }}
+          {{- $feature := replaceRE `^- (.+)$` `$1` . }}
+          <li class="feature-preview-item">{{ $feature }}</li>
+          {{- end }}
+          {{- if gt (len $features) 3 }}
+          <li class="feature-preview-more">+{{ sub (len $features) 3 }} more features</li>
+          {{- end }}
+        </ul>
+      </div>
+      {{- end }}
+      {{- end }}
+    </article>
+    {{- end }}
+  </div>
+</div>
+
+{{- if gt $paginator.TotalPages 1 }}
+<footer class="page-footer">
+  <nav class="pagination">
+    {{- if $paginator.HasPrev }}
+    <a class="prev" href="{{ $paginator.Prev.URL | absURL }}">« {{ i18n "prev_page" }}</a>
+    {{- end }}
+    {{- if $paginator.HasNext }}
+    <a class="next" href="{{ $paginator.Next.URL | absURL }}">{{ i18n "next_page" }} »</a>
+    {{- end }}
+  </nav>
+</footer>
+{{- end }}
+
+<!-- Projects Page JavaScript -->
+<script src="{{ "js/projects.js" | absURL }}"></script>
+
+{{- end }}{{- /* end main */ -}} 
