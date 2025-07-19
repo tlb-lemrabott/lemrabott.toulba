@@ -188,7 +188,7 @@ const renderSubmissionChart = (submissions: SubmissionStats[], totalSolved: numb
       
       const label = document.createElement('span');
       label.textContent = item.difficulty;
-      label.style.cssText = 'min-width: 60px; font-weight: 500; color: var(--secondary);';
+      label.style.cssText = 'min-width: 60px; font-weight: 500; color: var(--secondary); text-align: left;';
       
       const barWrapper = document.createElement('div');
       barWrapper.style.cssText = 'flex: 1; background: var(--tertiary); border-radius: 4px; height: 20px; overflow: hidden;';
