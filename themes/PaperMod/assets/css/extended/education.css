@@ -1,0 +1,328 @@
+/* Enhanced Education Page Styling */
+
+/* Override main container width for Education page */
+.education-container {
+  max-width: 1000px !important;
+  width: 100%;
+}
+
+/* Target the main container when it contains education content */
+.main:has(.education-container) {
+  max-width: 1000px !important;
+}
+
+/* Alternative for browsers that don't support :has() */
+body .main .education-container {
+  max-width: 1000px !important;
+  width: 100%;
+}
+
+/* Education Cards Container */
+.education-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  width: 100%;
+}
+
+/* Timeline Container */
+.education-timeline {
+  position: relative;
+  padding-left: 0;
+}
+
+/* Education Card */
+.education-card {
+  position: relative;
+  background: var(--entry);
+  border-radius: 20px;
+  padding: 2.5rem;
+  margin-bottom: 2.5rem;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  min-height: 200px;
+}
+
+.education-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  border-color: rgba(102, 126, 234, 0.3);
+}
+
+/* Card Header */
+.education-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+
+.education-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.education-title-link {
+  text-decoration: none;
+  color: inherit;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.education-title-link:hover {
+  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transform: translateY(-1px);
+}
+
+.education-title-link::after {
+  content: ' →';
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  color: #667eea;
+  -webkit-text-fill-color: #667eea;
+}
+
+.education-title-link:hover::after {
+  opacity: 1;
+}
+
+.education-date {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+/* Degree Description */
+.education-description {
+  font-size: 1.2rem;
+  color: var(--secondary);
+  font-weight: 500;
+  margin-bottom: 2rem;
+  padding: 1rem 1.25rem;
+  background: rgba(102, 126, 234, 0.05);
+  border-radius: 12px;
+  border-left: 5px solid #667eea;
+}
+
+/* Tech Stack Tags */
+.education-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.education-tag {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 15px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 3px 8px rgba(102, 126, 234, 0.25);
+}
+
+.education-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+/* Courses Preview Section */
+.education-courses-preview {
+  margin-bottom: 1.5rem;
+}
+
+.courses-preview-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.courses-preview-title::before {
+  content: '📚';
+  font-size: 1.2rem;
+}
+
+.courses-preview-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.course-preview-item {
+  position: relative;
+  padding: 0.75rem 0 0.75rem 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--content);
+  line-height: 1.6;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+}
+
+.course-preview-item::before {
+  content: '🎓';
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  font-size: 1rem;
+}
+
+.course-preview-item:hover {
+  background: rgba(102, 126, 234, 0.05);
+  padding-left: 2rem;
+}
+
+.course-preview-more {
+  padding: 0.5rem 0 0.5rem 1.5rem;
+  color: var(--secondary);
+  font-style: italic;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.course-preview-more::before {
+  content: '📖';
+  position: absolute;
+  left: 0;
+  top: 0.25rem;
+  font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .education-container {
+    padding: 1rem;
+    max-width: 100% !important;
+  }
+  
+  /* Ensure main container doesn't constrain on mobile */
+  .main:has(.education-container) {
+    max-width: 100% !important;
+  }
+  
+  .education-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  
+  .education-title {
+    font-size: 1.25rem;
+  }
+  
+  .education-date {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+  }
+  
+  .education-card {
+    padding: 1.5rem;
+  }
+  
+  .education-tags {
+    gap: 0.4rem;
+  }
+  
+  .education-tag {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.6rem;
+  }
+}
+
+/* Dark Mode Enhancements */
+@media (prefers-color-scheme: dark) {
+  .education-card {
+    background: var(--entry);
+    border-color: var(--border);
+  }
+  
+  .education-card:hover {
+  border-color: rgba(102, 126, 234, 0.5);
+}
+
+.education-description {
+  background: rgba(102, 126, 234, 0.1);
+}
+
+.course-preview-item:hover {
+  background: rgba(102, 126, 234, 0.1);
+}
+}
+
+/* Animation for cards appearing */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.education-card {
+  animation: slideInUp 0.6s ease-out;
+}
+
+.education-card:nth-child(1) { animation-delay: 0.1s; }
+.education-card:nth-child(2) { animation-delay: 0.2s; }
+.education-card:nth-child(3) { animation-delay: 0.3s; }
+
+/* Enhanced focus states for accessibility */
+.education-title-link:focus,
+.education-tag:focus {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}
+
+/* Loading state */
+.education-card.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Success state for interactions */
+.education-card.success {
+  border-color: #667eea;
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.2);
+}
+
+/* Print styles */
+@media print {
+  .education-card {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+  
+  .education-card:hover {
+    transform: none;
+  }
+} 
