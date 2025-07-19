@@ -141,7 +141,7 @@ const setValue = (id: string, value: number): void => {
 };
 
 // Safe HTML-based chart rendering (no Chart.js dependency)
-const renderSubmissionChart = (submissions: SubmissionStats[]) => {
+const renderSubmissionChart = (submissions: SubmissionStats[], totalSolved: number) => {
   try {
     const canvas = document.getElementById("submissionChart") as HTMLCanvasElement;
     if (!canvas) {
@@ -158,16 +158,17 @@ const renderSubmissionChart = (submissions: SubmissionStats[]) => {
       existingChart.remove();
     }
 
-    // Filter out 'All' difficulty if present
-    const filtered = submissions.filter(s => s.difficulty !== "All");
+    // Use solved problems data instead of submissions
+    const solvedData = [
+      { difficulty: 'Easy', solved: submissions.find(s => s.difficulty === 'Easy')?.count || 0 },
+      { difficulty: 'Medium', solved: submissions.find(s => s.difficulty === 'Medium')?.count || 0 },
+      { difficulty: 'Hard', solved: submissions.find(s => s.difficulty === 'Hard')?.count || 0 }
+    ];
     
-    if (filtered.length === 0) {
-      console.log('No submission data to display');
+    if (totalSolved === 0) {
+      console.log('No solved problems data to display');
       return;
     }
-
-    // Find max value for scaling
-    const maxValue = Math.max(...filtered.map(s => s.submissions));
     
     // Create HTML chart container
     const chartContainer = document.createElement('div');
@@ -181,19 +182,19 @@ const renderSubmissionChart = (submissions: SubmissionStats[]) => {
     `;
 
     // Create bars
-    filtered.forEach((submission, index) => {
+    solvedData.forEach((item, index) => {
       const barContainer = document.createElement('div');
       barContainer.style.cssText = 'margin: 10px 0; display: flex; align-items: center; gap: 10px;';
       
       const label = document.createElement('span');
-      label.textContent = submission.difficulty;
+      label.textContent = item.difficulty;
       label.style.cssText = 'min-width: 60px; font-weight: 500; color: var(--secondary);';
       
       const barWrapper = document.createElement('div');
       barWrapper.style.cssText = 'flex: 1; background: var(--tertiary); border-radius: 4px; height: 20px; overflow: hidden;';
       
       const bar = document.createElement('div');
-      const percentage = (submission.submissions / maxValue) * 100;
+      const percentage = (item.solved / totalSolved) * 100;
       const colors = ['#4CAF50', '#2196F3', '#F44336']; // Easy, Medium, Hard
       bar.style.cssText = `
         height: 100%;
@@ -204,8 +205,8 @@ const renderSubmissionChart = (submissions: SubmissionStats[]) => {
       `;
       
       const value = document.createElement('span');
-      value.textContent = submission.submissions.toString();
-      value.style.cssText = 'min-width: 30px; text-align: right; font-weight: 500; color: var(--primary);';
+      value.textContent = `${item.solved} (${percentage.toFixed(1)}%)`;
+      value.style.cssText = 'min-width: 80px; text-align: right; font-weight: 500; color: var(--primary); font-size: 14px;';
       
       barWrapper.appendChild(bar);
       barContainer.appendChild(label);
@@ -226,8 +227,13 @@ const renderSubmissionChart = (submissions: SubmissionStats[]) => {
     const canvas = document.getElementById("submissionChart") as HTMLCanvasElement;
     if (canvas) {
       const fallback = document.createElement('div');
+      const solvedData = [
+        { difficulty: 'Easy', solved: submissions.find(s => s.difficulty === 'Easy')?.count || 0 },
+        { difficulty: 'Medium', solved: submissions.find(s => s.difficulty === 'Medium')?.count || 0 },
+        { difficulty: 'Hard', solved: submissions.find(s => s.difficulty === 'Hard')?.count || 0 }
+      ];
       fallback.innerHTML = '<p style="text-align: center; color: var(--secondary); padding: 20px;">Chart data: ' + 
-        submissions.map(s => `${s.difficulty}: ${s.submissions}`).join(', ') + '</p>';
+        solvedData.map(s => `${s.difficulty}: ${s.solved} (${((s.solved / totalSolved) * 100).toFixed(1)}%)`).join(', ') + '</p>';
       canvas.parentNode?.replaceChild(fallback, canvas);
     }
   }
@@ -248,7 +254,7 @@ const renderFromData = (data: LeetCodeData) => {
     setValue("acceptanceRate", Math.round(data.acceptanceRate));
     
     // Render chart with error handling
-    renderSubmissionChart(data.totalSubmissions);
+    renderSubmissionChart(data.totalSubmissions, data.totalSolved);
   } catch (error) {
     console.error('Error rendering data:', error);
   }
