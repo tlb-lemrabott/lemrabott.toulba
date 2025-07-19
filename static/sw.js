@@ -1,45 +1,32 @@
-const CACHE_NAME = 'leetcode-stats-v1';
-const API_CACHE_NAME = 'leetcode-api-v1';
-const STATIC_CACHE_NAME = 'static-assets-v1';
+// Progressive Image Preloading Service Worker
+// Version: 1.0.0
 
-const STATIC_ASSETS = [
-  '/',
-  '/assets/css/',
-  '/assets/js/',
-  '/themes/PaperMod/assets/'
-];
+const CACHE_NAME = 'image-cache-v1';
+const IMAGE_CACHE_NAME = 'progressive-images-v1';
+const CACHE_SIZE_LIMIT = 50 * 1024 * 1024; // 50MB
+const CACHE_EXPIRATION = 7 * 24 * 60 * 60 * 1000; // 7 days
 
-const API_ENDPOINTS = [
-  'https://82ci0zfx68.execute-api.us-east-1.amazonaws.com/api/v1/leetcode/'
-];
-
-// Install event - cache static assets
+// Service Worker Lifecycle Events
 self.addEventListener('install', (event) => {
-  console.log('Service Worker installing...');
+  console.log('[SW] Installing service worker...');
   event.waitUntil(
-    caches.open(STATIC_CACHE_NAME)
+    caches.open(CACHE_NAME)
       .then((cache) => {
-        console.log('Caching static assets');
-        return cache.addAll(STATIC_ASSETS);
-      })
-      .catch((error) => {
-        console.error('Failed to cache static assets:', error);
+        console.log('[SW] Cache opened');
+        return cache;
       })
   );
   self.skipWaiting();
 });
 
-// Activate event - clean up old caches
 self.addEventListener('activate', (event) => {
-  console.log('Service Worker activating...');
+  console.log('[SW] Activating service worker...');
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
-          if (cacheName !== STATIC_CACHE_NAME && 
-              cacheName !== API_CACHE_NAME && 
-              cacheName !== CACHE_NAME) {
-            console.log('Deleting old cache:', cacheName);
+          if (cacheName !== CACHE_NAME && cacheName !== IMAGE_CACHE_NAME) {
+            console.log('[SW] Deleting old cache:', cacheName);
             return caches.delete(cacheName);
           }
         })
@@ -49,123 +36,158 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
-// Fetch event - handle API requests with caching
-self.addEventListener('fetch', (event) => {
-  const { request } = event;
-  const url = new URL(request.url);
-
-  // Handle LeetCode API requests
-  if (API_ENDPOINTS.some(endpoint => url.href.includes(endpoint))) {
-    event.respondWith(handleApiRequest(request));
-    return;
-  }
-
-  // Handle static assets
-  if (request.method === 'GET' && STATIC_ASSETS.some(asset => url.pathname.startsWith(asset))) {
-    event.respondWith(handleStaticRequest(request));
-    return;
-  }
-});
-
-// Handle API requests with cache-first strategy
-async function handleApiRequest(request) {
-  const cache = await caches.open(API_CACHE_NAME);
-  
-  try {
-    // Try network first
-    const networkResponse = await fetch(request);
-    
-    if (networkResponse.ok) {
-      // Cache the successful response
-      const responseClone = networkResponse.clone();
-      cache.put(request, responseClone);
-      console.log('API response cached successfully');
-      return networkResponse;
-    } else {
-      throw new Error('Network response not ok');
-    }
-  } catch (error) {
-    console.log('Network failed, trying cache:', error);
-    
-    // Try cache as fallback
-    const cachedResponse = await cache.match(request);
-    if (cachedResponse) {
-      console.log('Serving from cache');
-      return cachedResponse;
-    }
-    
-    // Return error response if both network and cache fail
-    return new Response(JSON.stringify({
-      error: 'Service unavailable',
-      message: 'Both network and cache failed'
-    }), {
-      status: 503,
-      headers: { 'Content-Type': 'application/json' }
-    });
-  }
-}
-
-// Handle static requests with cache-first strategy
-async function handleStaticRequest(request) {
-  const cache = await caches.open(STATIC_CACHE_NAME);
-  
-  // Try cache first
-  const cachedResponse = await cache.match(request);
-  if (cachedResponse) {
-    return cachedResponse;
-  }
-  
-  // Fallback to network
-  try {
-    const networkResponse = await fetch(request);
-    if (networkResponse.ok) {
-      const responseClone = networkResponse.clone();
-      cache.put(request, responseClone);
-    }
-    return networkResponse;
-  } catch (error) {
-    console.error('Failed to fetch static asset:', error);
-    return new Response('Not found', { status: 404 });
-  }
-}
-
-// Background sync for API updates
-self.addEventListener('sync', (event) => {
-  if (event.tag === 'background-sync-leetcode') {
-    console.log('Background sync triggered');
-    event.waitUntil(backgroundSyncLeetCode());
-  }
-});
-
-async function backgroundSyncLeetCode() {
-  try {
-    const response = await fetch('https://82ci0zfx68.execute-api.us-east-1.amazonaws.com/api/v1/leetcode/vRCcb0Nnvp');
-    if (response.ok) {
-      const cache = await caches.open(API_CACHE_NAME);
-      await cache.put(
-        'https://82ci0zfx68.execute-api.us-east-1.amazonaws.com/api/v1/leetcode/vRCcb0Nnvp',
-        response.clone()
-      );
-      console.log('Background sync completed successfully');
-    }
-  } catch (error) {
-    console.error('Background sync failed:', error);
-  }
-}
-
-// Message handling for cache management
+// Main image preloading logic
 self.addEventListener('message', (event) => {
-  if (event.data && event.data.type === 'SKIP_WAITING') {
-    self.skipWaiting();
+  if (event.data && event.data.type === 'PRELOAD_IMAGES') {
+    console.log('[SW] Received preload request:', event.data.images.length, 'images');
+    event.waitUntil(preloadImages(event.data.images, event.data.priority));
   }
   
   if (event.data && event.data.type === 'CLEAR_CACHE') {
-    event.waitUntil(
-      caches.keys().then((cacheNames) => {
-        return Promise.all(
-          cacheNames.map((cacheName) => caches.delete(cacheName))
-        );
-      })
+    console.log('[SW] Clearing image cache...');
+    event.waitUntil(clearImageCache());
+  }
+});
+
+// Image preloading function
+async function preloadImages(images, priority = 'low') {
+  const imageCache = await caches.open(IMAGE_CACHE_NAME);
+  const results = {
+    success: 0,
+    failed: 0,
+    skipped: 0,
+    total: images.length
+  };
+
+  console.log(`[SW] Starting to preload ${images.length} images with priority: ${priority}`);
+
+  for (const imageUrl of images) {
+    try {
+      // Check if already cached
+      const existingResponse = await imageCache.match(imageUrl);
+      if (existingResponse) {
+        console.log(`[SW] Image already cached: ${imageUrl}`);
+        results.skipped++;
+        continue;
+      }
+
+      // Check cache size before adding new images
+      const cacheSize = await getCacheSize(imageCache);
+      if (cacheSize > CACHE_SIZE_LIMIT) {
+        console.log('[SW] Cache size limit reached, skipping remaining images');
+        break;
+      }
+
+      // Fetch and cache image
+      const response = await fetch(imageUrl, {
+        method: 'GET',
+        mode: 'cors',
+        cache: 'force-cache'
+      });
+
+      if (response.ok) {
+        await imageCache.put(imageUrl, response.clone());
+        console.log(`[SW] Successfully cached: ${imageUrl}`);
+        results.success++;
+        
+        // Send progress update to main thread
+        self.clients.matchAll().then((clients) => {
+          clients.forEach((client) => {
+            client.postMessage({
+              type: 'PRELOAD_PROGRESS',
+              data: {
+                url: imageUrl,
+                status: 'success',
+                progress: {
+                  current: results.success + results.failed,
+                  total: images.length,
+                  percentage: Math.round(((results.success + results.failed) / images.length) * 100)
+                }
+              }
+            });
+          });
+        });
+      } else {
+        console.warn(`[SW] Failed to fetch image: ${imageUrl}`, response.status);
+        results.failed++;
+      }
+    } catch (error) {
+      console.error(`[SW] Error preloading image: ${imageUrl}`, error);
+      results.failed++;
+    }
+
+    // Add small delay to prevent overwhelming the network
+    await new Promise(resolve => setTimeout(resolve, 100));
+  }
+
+  console.log(`[SW] Preloading completed:`, results);
+  
+  // Send completion message to main thread
+  self.clients.matchAll().then((clients) => {
+    clients.forEach((client) => {
+      client.postMessage({
+        type: 'PRELOAD_COMPLETE',
+        data: results
+      });
+    });
+  });
+
+  return results;
+}
+
+// Get cache size in bytes
+async function getCacheSize(cache) {
+  const keys = await cache.keys();
+  let totalSize = 0;
+  
+  for (const request of keys) {
+    const response = await cache.match(request);
+    if (response) {
+      const blob = await response.blob();
+      totalSize += blob.size;
+    }
+  }
+  
+  return totalSize;
+}
+
+// Clear image cache
+async function clearImageCache() {
+  const imageCache = await caches.open(IMAGE_CACHE_NAME);
+  const keys = await imageCache.keys();
+  
+  for (const request of keys) {
+    await imageCache.delete(request);
+  }
+  
+  console.log('[SW] Image cache cleared');
+  return { cleared: keys.length };
+}
+
+// Handle fetch events for cached images
+self.addEventListener('fetch', (event) => {
+  if (event.request.destination === 'image') {
+    event.respondWith(
+      caches.match(event.request)
+        .then((response) => {
+          if (response) {
+            console.log(`[SW] Serving cached image: ${event.request.url}`);
+            return response;
+          }
+          
+          // If not in cache, fetch and cache for next time
+          return fetch(event.request)
+            .then((fetchResponse) => {
+              if (fetchResponse.ok) {
+                const responseClone = fetchResponse.clone();
+                caches.open(IMAGE_CACHE_NAME)
+                  .then((cache) => {
+                    cache.put(event.request, responseClone);
+                  });
+              }
+              return fetchResponse;
+            });
+        })
     );
   }
 }); 
