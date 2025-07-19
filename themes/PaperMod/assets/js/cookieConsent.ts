@@ -1,3 +1,6 @@
+// Import logger
+import { debug, info } from './logger';
+
 interface CookieConsent {
   accepted: boolean;
   timestamp: number;
@@ -189,14 +192,14 @@ class CookieConsentManager {
   private accept(): void {
     this.saveConsent(true);
     this.hideToast();
-    console.log('Cookie consent accepted');
+    info('Cookie consent accepted');
   }
 
   private deny(): void {
     this.saveConsent(false);
     this.hideToast();
     this.clearCookies();
-    console.log('Cookie consent denied');
+    info('Cookie consent denied');
   }
 
   private clearCookies(): void {

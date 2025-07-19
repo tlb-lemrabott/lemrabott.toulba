@@ -220,6 +220,10 @@
 {{ $cookieConsent := resources.Get "js/cookieConsent.ts" | js.Build | minify | fingerprint }}
 <script src="{{ $cookieConsent.RelPermalink }}" integrity="{{ $cookieConsent.Data.Integrity }}"></script>
 
+<!-- Logger Script -->
+{{ $logger := resources.Get "js/logger.ts" | js.Build | minify | fingerprint }}
+<script src="{{ $logger.RelPermalink }}" integrity="{{ $logger.Data.Integrity }}"></script>
+
 <!-- Image Optimizer Script -->
 {{ $imageOptimizer := resources.Get "js/imageOptimizer.ts" | js.Build | minify | fingerprint }}
 <script src="{{ $imageOptimizer.RelPermalink }}" integrity="{{ $imageOptimizer.Data.Integrity }}"></script>

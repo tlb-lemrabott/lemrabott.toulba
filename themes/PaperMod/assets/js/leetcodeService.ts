@@ -3,6 +3,9 @@ import { CountUp } from "countup.js";
 // Import cookie consent manager
 import { cookieConsent } from './cookieConsent';
 
+// Import logger
+import { debug, info, warn, error } from './logger';
+
 interface SubmissionStats {
   difficulty: string;
   count: number;
@@ -54,7 +57,7 @@ const showLoading = () => {
   // Set timeout for loading state
   loadingTimeout = setTimeout(() => {
     if (isLoading) {
-      console.log("Loading timeout reached");
+      debug("Loading timeout reached");
     }
   }, 10000);
 };
@@ -82,7 +85,7 @@ const hideLoading = () => {
 const getCachedData = (): LeetCodeData | null => {
   // Check if user has consented to cookies
   if (!cookieConsent.canUseCookies()) {
-    console.log('Cookie consent not given, skipping cache');
+    debug('Cookie consent not given, skipping cache');
     return null;
   }
 
@@ -105,8 +108,8 @@ const getCachedData = (): LeetCodeData | null => {
     }
 
     return parsed.data;
-  } catch (error) {
-    console.error('Error reading cache:', error);
+  } catch (err) {
+    error('Error reading cache:', err);
     localStorage.removeItem(CACHE_KEY);
     return null;
   }
@@ -115,7 +118,7 @@ const getCachedData = (): LeetCodeData | null => {
 const setCachedData = (data: LeetCodeData): void => {
   // Check if user has consented to cookies
   if (!cookieConsent.canUseCookies()) {
-    console.log('Cookie consent not given, skipping cache write');
+    debug('Cookie consent not given, skipping cache write');
     return;
   }
 
@@ -126,8 +129,8 @@ const setCachedData = (data: LeetCodeData): void => {
       version: CACHE_VERSION
     };
     localStorage.setItem(CACHE_KEY, JSON.stringify(cacheEntry));
-  } catch (error) {
-    console.error('Error writing cache:', error);
+  } catch (err) {
+    error('Error writing cache:', err);
   }
 };
 
@@ -145,7 +148,7 @@ const renderSubmissionChart = (submissions: SubmissionStats[], totalSolved: numb
   try {
     const canvas = document.getElementById("submissionChart") as HTMLCanvasElement;
     if (!canvas) {
-      console.log('Chart canvas not found');
+      debug('Chart canvas not found');
       return;
     }
 
@@ -166,7 +169,7 @@ const renderSubmissionChart = (submissions: SubmissionStats[], totalSolved: numb
     ];
     
     if (totalSolved === 0) {
-      console.log('No solved problems data to display');
+      debug('No solved problems data to display');
       return;
     }
     
@@ -219,10 +222,10 @@ const renderSubmissionChart = (submissions: SubmissionStats[], totalSolved: numb
     if (canvas.parentNode) {
       canvas.parentNode.replaceChild(chartContainer, canvas);
     }
-    console.log('HTML chart rendered successfully');
+    debug('HTML chart rendered successfully');
     
-  } catch (error) {
-    console.error('Error rendering HTML chart:', error);
+      } catch (err) {
+      error('Error rendering HTML chart:', err);
     // Show simple fallback
     const canvas = document.getElementById("submissionChart") as HTMLCanvasElement;
     if (canvas) {
@@ -242,7 +245,7 @@ const renderSubmissionChart = (submissions: SubmissionStats[], totalSolved: numb
 // Simplified data rendering
 const renderFromData = (data: LeetCodeData) => {
   try {
-    console.log('Rendering data:', data);
+    debug('Rendering data:', data);
     
     // Set values directly without animations
     setValue("totalSolved", data.totalSolved);
@@ -255,8 +258,8 @@ const renderFromData = (data: LeetCodeData) => {
     
     // Render chart with error handling
     renderSubmissionChart(data.totalSubmissions, data.totalSolved);
-  } catch (error) {
-    console.error('Error rendering data:', error);
+  } catch (err) {
+    error('Error rendering data:', err);
   }
 };
 
@@ -287,7 +290,7 @@ const fetchLeetCodeStats = async (): Promise<void> => {
   // Check cache first
   const cached = getCachedData();
   if (cached) {
-    console.log("Using cached LeetCode data");
+    info("Using cached LeetCode data");
     renderFromData(cached);
     return;
   }
@@ -296,7 +299,7 @@ const fetchLeetCodeStats = async (): Promise<void> => {
   showLoading();
 
   try {
-    console.log("Fetching fresh LeetCode data...");
+    info("Fetching fresh LeetCode data...");
     
     const response = await fetchWithTimeout(`${API_URL}${USERNAME}`, 15000);
     
@@ -318,14 +321,14 @@ const fetchLeetCodeStats = async (): Promise<void> => {
     // Render the data
     renderFromData(data);
     
-    console.log("LeetCode data loaded successfully");
-  } catch (error) {
-    console.error("Error fetching LeetCode stats:", error);
+    info("LeetCode data loaded successfully");
+  } catch (err) {
+    error("Error fetching LeetCode stats:", err);
     
     // Try to use cached data as fallback
     const fallbackData = getCachedData();
     if (fallbackData) {
-      console.log("Using fallback cached data");
+      warn("Using fallback cached data");
       renderFromData(fallbackData);
     } else {
       // Show error state
