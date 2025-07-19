@@ -1,0 +1,39 @@
+/* Targeted Home Page Text Styling */
+
+/* Software Engineer title */
+.profile_inner h1 {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+/* Java | Spring Boot | RESTful APIs | SQL | Microservices subtitle */
+.profile_inner h4 {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 600;
+}
+
+/* Introduction text - keeping emojis in original color */
+.profile_inner p {
+  font-weight: 500;
+  color: var(--content);
+}
+
+/* Live LeetCode Stats text */
+.leetcode-section-title {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.leetcode-section-title:hover {
+  text-decoration: none;
+} 
