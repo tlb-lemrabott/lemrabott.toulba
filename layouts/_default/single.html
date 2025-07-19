@@ -1,0 +1,124 @@
+{{- define "main" }}
+
+{{- if eq .RelPermalink "/contact/" }}
+  <!-- Custom Contact Page Layout -->
+  <div class="contact-container">
+    <div class="contact-content">
+      <header class="contact-header">
+        <h1 class="contact-title">{{ .Title }}</h1>
+        {{- if .Description }}
+        <div class="contact-description">
+          {{ .Description | markdownify }}
+        </div>
+        {{- end }}
+      </header>
+
+      {{- if .Content }}
+      <div class="contact-intro">
+        {{- if not (.Param "disableAnchoredHeadings") }}
+        {{- partial "anchored_headings.html" .Content -}}
+        {{- else }}{{ .Content }}{{ end }}
+      </div>
+      {{- end }}
+
+      <div class="contact-form-section">
+        
+        <form id="emailForm" class="contact-form">
+          <div class="form-group">
+            <div class="input-container">
+              <input id="fromEmail" class="form-input" type="email" placeholder="Your Email" required/>
+              <span class="required-star">*</span>
+              <div class="error-message" id="emailError"></div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <div class="input-container">
+              <input id="subject" class="form-input" type="text" placeholder="Subject" required/>
+              <span class="required-star">*</span>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <div class="input-container">
+              <textarea id="content" class="form-textarea" placeholder="Your message" rows="6" required></textarea>
+              <span class="required-star">*</span>
+            </div>
+          </div>
+          
+          <div class="form-actions">
+            <button type="submit" id="submitButton" class="submit-button" disabled>
+              <span class="button-text">Send Message</span>
+              <span class="button-icon">📧</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div class="contact-info">
+        <div class="info-items">
+          <div class="info-item">
+            <span class="info-icon">📧</span>
+            <div class="info-content">
+              <h4>Email</h4>
+              <p>lemrabott.toulba@gmail.com</p>
+            </div>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">📍</span>
+            <div class="info-content">
+              <h4>Location</h4>
+              <p>New York City, USA</p>
+            </div>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">💼</span>
+            <div class="info-content">
+              <h4>Availability</h4>
+              <p>Open to new opportunities</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Page JavaScript -->
+  <script src="{{ "js/contact.js" | absURL }}"></script>
+
+{{- else }}
+  <!-- Default Single Layout for other pages -->
+  <header class="page-header">
+    {{- partial "breadcrumbs.html" . }}
+    <h1>
+      {{ .Title }}
+      {{- if and (or (eq .Kind `term`) (eq .Kind `section`)) (.Param "ShowRssButtonInSectionTermList") }}
+      {{- with .OutputFormats.Get "rss" }}
+      <a href="{{ .RelPermalink }}" title="RSS" aria-label="RSS">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round" height="23">
+          <path d="M4 11a9 9 0 0 1 9 9" />
+          <path d="M4 4a16 16 0 0 1 16 16" />
+          <circle cx="5" cy="19" r="1" />
+        </svg>
+      </a>
+      {{- end }}
+      {{- end }}
+    </h1>
+    {{- if .Description }}
+    <div class="post-description">
+      {{ .Description | markdownify }}
+    </div>
+    {{- end }}
+  </header>
+
+  {{- if .Content }}
+  <div class="post-content">
+    {{- if not (.Param "disableAnchoredHeadings") }}
+    {{- partial "anchored_headings.html" .Content -}}
+    {{- else }}{{ .Content }}{{ end }}
+  </div>
+  {{- end }}
+{{- end }}
+
+{{- end }}{{- /* end main */ -}} 
