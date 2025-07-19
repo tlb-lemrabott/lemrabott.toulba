@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORS Debug - Detailed Analysis</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; max-width: 1000px; }
+        .test { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .success { background: #d4edda; color: #155724; border-color: #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border-color: #f5c6cb; }
+        .info { background: #d1ecf1; color: #0c5460; border-color: #bee5eb; }
+        button { padding: 10px 20px; margin: 5px; background: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .result { margin: 10px 0; padding: 10px; border-radius: 3px; background: #f8f9fa; }
+        pre { background: #f8f9fa; padding: 10px; border-radius: 3px; overflow-x: auto; }
+        .header-info { font-family: monospace; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <h1>🔍 CORS Debug - Detailed Analysis</h1>
+    
+    <div class="test info">
+        <h3>Test 1: Simple Fetch (No Custom Headers)</h3>
+        <p>This test uses minimal headers to see if basic CORS works:</p>
+        <button onclick="testSimpleFetch()">Test Simple Fetch</button>
+        <div id="simple-result" class="result"></div>
+    </div>
+
+    <div class="test info">
+        <h3>Test 2: Fetch with Content-Type Header</h3>
+        <p>This test adds Content-Type header to trigger preflight:</p>
+        <button onclick="testWithContentType()">Test with Content-Type</button>
+        <div id="content-type-result" class="result"></div>
+    </div>
+
+    <div class="test info">
+        <h3>Test 3: Fetch with All Headers (Like Your App)</h3>
+        <p>This test uses the exact same headers as your leetcodeService:</p>
+        <button onclick="testWithAllHeaders()">Test with All Headers</button>
+        <div id="all-headers-result" class="result"></div>
+    </div>
+
+    <div class="test info">
+        <h3>Test 4: XMLHttpRequest (Alternative Method)</h3>
+        <p>This test uses XMLHttpRequest instead of fetch:</p>
+        <button onclick="testXHR()">Test XMLHttpRequest</button>
+        <div id="xhr-result" class="result"></div>
+    </div>
+
+    <div class="test info">
+        <h3>Test 5: Preflight Request Analysis</h3>
+        <p>This test analyzes the preflight request:</p>
+        <button onclick="testPreflight()">Test Preflight</button>
+        <div id="preflight-result" class="result"></div>
+    </div>
+
+    <div class="test info">
+        <h3>Browser Information</h3>
+        <div id="browser-info" class="result"></div>
+    </div>
+
+    <div class="test info">
+        <h3>Network Analysis</h3>
+        <p>Open Developer Tools (F12) → Network tab, then run the tests above to see the actual requests.</p>
+        <div id="network-tips" class="result">
+            <strong>What to look for:</strong>
+            <ul>
+                <li>OPTIONS request (preflight) - should return 204</li>
+                <li>GET request - should return 200</li>
+                <li>Response headers - should include CORS headers</li>
+                <li>Request headers - check what browser is sending</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'https://82ci0zfx68.execute-api.us-east-1.amazonaws.com/api/v1/leetcode/vRCcb0Nnvp';
+
+        function logResult(elementId, message, isError = false) {
+            const element = document.getElementById(elementId);
+            const timestamp = new Date().toLocaleTimeString();
+            const className = isError ? 'error' : 'success';
+            element.innerHTML = `<div class="${className}">[${timestamp}] ${message}</div>`;
+        }
+
+        async function testSimpleFetch() {
+            logResult('simple-result', 'Testing simple fetch...', false);
+            
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'GET',
+                    mode: 'cors',
+                    credentials: 'omit'
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    logResult('simple-result', `✅ Success! Status: ${response.status}, Problems: ${data.leetcode_data.totalSolved}`, false);
+                    
+                    // Log response headers
+                    const headers = {};
+                    response.headers.forEach((value, key) => {
+                        headers[key] = value;
+                    });
+                    logResult('simple-result', `Response Headers: ${JSON.stringify(headers, null, 2)}`, false);
+                } else {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+            } catch (error) {
+                logResult('simple-result', `❌ Error: ${error.message}`, true);
+            }
+        }
+
+        async function testWithContentType() {
+            logResult('content-type-result', 'Testing fetch with Content-Type header...', false);
+            
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    mode: 'cors',
+                    credentials: 'omit'
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    logResult('content-type-result', `✅ Success! Status: ${response.status}, Problems: ${data.leetcode_data.totalSolved}`, false);
+                } else {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+            } catch (error) {
+                logResult('content-type-result', `❌ Error: ${error.message}`, true);
+            }
+        }
+
+        async function testWithAllHeaders() {
+            logResult('all-headers-result', 'Testing fetch with all headers (like your app)...', false);
+            
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    mode: 'cors',
+                    credentials: 'omit'
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    logResult('all-headers-result', `✅ Success! Status: ${response.status}, Problems: ${data.leetcode_data.totalSolved}`, false);
+                } else {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+            } catch (error) {
+                logResult('all-headers-result', `❌ Error: ${error.message}`, true);
+            }
+        }
+
+        function testXHR() {
+            logResult('xhr-result', 'Testing XMLHttpRequest...', false);
+            
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', API_URL, true);
+            xhr.setRequestHeader('Accept', 'application/json');
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    try {
+                        const data = JSON.parse(xhr.responseText);
+                        logResult('xhr-result', `✅ Success! Status: ${xhr.status}, Problems: ${data.leetcode_data.totalSolved}`, false);
+                    } catch (e) {
+                        logResult('xhr-result', `❌ JSON Parse Error: ${e.message}`, true);
+                    }
+                } else {
+                    logResult('xhr-result', `❌ Error: HTTP ${xhr.status}`, true);
+                }
+            };
+            
+            xhr.onerror = function() {
+                logResult('xhr-result', `❌ Network Error`, true);
+            };
+            
+            xhr.send();
+        }
+
+        async function testPreflight() {
+            logResult('preflight-result', 'Testing preflight request...', false);
+            
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'OPTIONS',
+                    headers: {
+                        'Access-Control-Request-Method': 'GET',
+                        'Access-Control-Request-Headers': 'content-type'
+                    },
+                    mode: 'cors'
+                });
+                
+                logResult('preflight-result', `✅ Preflight Status: ${response.status}`, false);
+                
+                // Log preflight response headers
+                const headers = {};
+                response.headers.forEach((value, key) => {
+                    headers[key] = value;
+                });
+                logResult('preflight-result', `Preflight Headers: ${JSON.stringify(headers, null, 2)}`, false);
+                
+            } catch (error) {
+                logResult('preflight-result', `❌ Preflight Error: ${error.message}`, true);
+            }
+        }
+
+        function showBrowserInfo() {
+            const info = document.getElementById('browser-info');
+            info.innerHTML = `
+                <strong>User Agent:</strong> ${navigator.userAgent}<br>
+                <strong>Platform:</strong> ${navigator.platform}<br>
+                <strong>Language:</strong> ${navigator.language}<br>
+                <strong>Cookies Enabled:</strong> ${navigator.cookieEnabled}<br>
+                <strong>Online:</strong> ${navigator.onLine}<br>
+                <strong>Current URL:</strong> ${window.location.href}<br>
+                <strong>Origin:</strong> ${window.location.origin}<br>
+                <strong>Fetch Support:</strong> ${typeof fetch !== 'undefined' ? 'Yes' : 'No'}<br>
+                <strong>XMLHttpRequest Support:</strong> ${typeof XMLHttpRequest !== 'undefined' ? 'Yes' : 'No'}<br>
+                <strong>Service Worker Support:</strong> ${'serviceWorker' in navigator ? 'Yes' : 'No'}
+            `;
+        }
+
+        // Initialize
+        window.addEventListener('load', () => {
+            showBrowserInfo();
+        });
+    </script>
+</body>
+</html> 

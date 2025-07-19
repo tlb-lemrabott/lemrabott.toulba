@@ -219,3 +219,21 @@
 <!-- LeetCode Stats Script -->
 {{ $ts := resources.Get "js/leetcodeService.ts" | js.Build | minify | fingerprint }}
 <script src="{{ $ts.RelPermalink }}" integrity="{{ $ts.Data.Integrity }}"></script>
+
+<!-- Service Worker Registration (Temporarily Disabled for CORS Debug) -->
+<script>
+// Temporarily disable service worker to isolate CORS issue
+/*
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then((registration) => {
+        console.log('Service Worker registered successfully:', registration.scope);
+      })
+      .catch((error) => {
+        console.error('Service Worker registration failed:', error);
+      });
+  });
+}
+*/
+</script>

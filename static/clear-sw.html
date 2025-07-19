@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clear Service Worker & Cache</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; max-width: 800px; }
+        .step { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .success { background: #d4edda; color: #155724; border-color: #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border-color: #f5c6cb; }
+        .info { background: #d1ecf1; color: #0c5460; border-color: #bee5eb; }
+        .warning { background: #fff3cd; color: #856404; border-color: #ffeaa7; }
+        button { padding: 10px 20px; margin: 5px; background: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        button.danger { background: #dc3545; }
+        button.danger:hover { background: #c82333; }
+        .result { margin: 10px 0; padding: 10px; border-radius: 3px; }
+        .log { background: #f8f9fa; padding: 10px; border-radius: 3px; font-family: monospace; font-size: 12px; max-height: 200px; overflow-y: auto; }
+    </style>
+</head>
+<body>
+    <h1>🧹 Service Worker & Cache Cleanup</h1>
+    
+    <div class="step warning">
+        <h3>⚠️ Important: Your Hugo Server is Not Running</h3>
+        <p>This page is being served from cache by your service worker. The actual Hugo server at localhost:1313 is not running.</p>
+    </div>
+
+    <div class="step info">
+        <h3>Step 1: Unregister Service Worker</h3>
+        <p>This will stop the service worker from serving cached content:</p>
+        <button onclick="unregisterSW()" class="danger">Unregister Service Worker</button>
+        <div id="sw-result" class="result"></div>
+    </div>
+
+    <div class="step info">
+        <h3>Step 2: Clear All Caches</h3>
+        <p>This will clear all cached content:</p>
+        <button onclick="clearAllCaches()" class="danger">Clear All Caches</button>
+        <div id="cache-result" class="result"></div>
+    </div>
+
+    <div class="step info">
+        <h3>Step 3: Clear Browser Storage</h3>
+        <p>This will clear localStorage, sessionStorage, and cookies:</p>
+        <button onclick="clearStorage()" class="danger">Clear Browser Storage</button>
+        <div id="storage-result" class="result"></div>
+    </div>
+
+    <div class="step info">
+        <h3>Step 4: Test Connection</h3>
+        <p>After clearing everything, test if the server is really down:</p>
+        <button onclick="testConnection()">Test localhost:1313</button>
+        <div id="connection-result" class="result"></div>
+    </div>
+
+    <div class="step info">
+        <h3>Step 5: Restart Hugo Server</h3>
+        <p>Once everything is cleared, restart your Hugo server:</p>
+        <code style="background: #f8f9fa; padding: 10px; display: block; border-radius: 3px;">
+hugo server --bind 0.0.0.0 --port 1313
+        </code>
+    </div>
+
+    <div class="step info">
+        <h3>Manual Browser Steps</h3>
+        <p>If the buttons above don't work, do this manually:</p>
+        <ol>
+            <li>Open Developer Tools (F12)</li>
+            <li>Go to <strong>Application</strong> tab (Chrome) or <strong>Storage</strong> tab (Firefox)</li>
+            <li>Click <strong>Service Workers</strong> → <strong>Unregister</strong></li>
+            <li>Click <strong>Storage</strong> → <strong>Clear storage</strong></li>
+            <li>Go to <strong>Network</strong> tab → Check "Disable cache"</li>
+            <li>Hard refresh: Cmd+Shift+R (Mac) or Ctrl+Shift+R (Windows)</li>
+        </ol>
+    </div>
+
+    <div id="debug-info" class="step info">
+        <h3>Debug Information</h3>
+        <div id="debug-content"></div>
+    </div>
+
+    <div id="logs" class="step info">
+        <h3>Action Logs</h3>
+        <div id="log-content" class="log"></div>
+    </div>
+
+    <script>
+        function log(message) {
+            const logDiv = document.getElementById('log-content');
+            const timestamp = new Date().toLocaleTimeString();
+            logDiv.innerHTML += `[${timestamp}] ${message}\n`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+
+        async function unregisterSW() {
+            const resultDiv = document.getElementById('sw-result');
+            resultDiv.innerHTML = '<div class="result info">Unregistering service worker...</div>';
+            log('Attempting to unregister service worker...');
+            
+            try {
+                if ('serviceWorker' in navigator) {
+                    const registrations = await navigator.serviceWorker.getRegistrations();
+                    log(`Found ${registrations.length} service worker registrations`);
+                    
+                    for (let registration of registrations) {
+                        await registration.unregister();
+                        log(`Unregistered service worker: ${registration.scope}`);
+                    }
+                    
+                    resultDiv.innerHTML = '<div class="result success">✅ Service worker unregistered successfully!</div>';
+                    log('Service worker unregistration completed');
+                } else {
+                    resultDiv.innerHTML = '<div class="result error">❌ Service Worker API not supported</div>';
+                    log('Service Worker API not supported');
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="result error">❌ Error: ${error.message}</div>`;
+                log(`Error unregistering service worker: ${error.message}`);
+            }
+        }
+
+        async function clearAllCaches() {
+            const resultDiv = document.getElementById('cache-result');
+            resultDiv.innerHTML = '<div class="result info">Clearing all caches...</div>';
+            log('Attempting to clear all caches...');
+            
+            try {
+                if ('caches' in window) {
+                    const cacheNames = await caches.keys();
+                    log(`Found ${cacheNames.length} caches to clear`);
+                    
+                    for (let cacheName of cacheNames) {
+                        await caches.delete(cacheName);
+                        log(`Deleted cache: ${cacheName}`);
+                    }
+                    
+                    resultDiv.innerHTML = '<div class="result success">✅ All caches cleared successfully!</div>';
+                    log('Cache clearing completed');
+                } else {
+                    resultDiv.innerHTML = '<div class="result error">❌ Cache API not supported</div>';
+                    log('Cache API not supported');
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="result error">❌ Error: ${error.message}</div>`;
+                log(`Error clearing caches: ${error.message}`);
+            }
+        }
+
+        function clearStorage() {
+            const resultDiv = document.getElementById('storage-result');
+            resultDiv.innerHTML = '<div class="result info">Clearing browser storage...</div>';
+            log('Attempting to clear browser storage...');
+            
+            try {
+                // Clear localStorage
+                localStorage.clear();
+                log('Cleared localStorage');
+                
+                // Clear sessionStorage
+                sessionStorage.clear();
+                log('Cleared sessionStorage');
+                
+                // Clear cookies for this domain
+                document.cookie.split(";").forEach(function(c) { 
+                    document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); 
+                });
+                log('Cleared cookies');
+                
+                resultDiv.innerHTML = '<div class="result success">✅ Browser storage cleared successfully!</div>';
+                log('Browser storage clearing completed');
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="result error">❌ Error: ${error.message}</div>`;
+                log(`Error clearing storage: ${error.message}`);
+            }
+        }
+
+        async function testConnection() {
+            const resultDiv = document.getElementById('connection-result');
+            resultDiv.innerHTML = '<div class="result info">Testing connection to localhost:1313...</div>';
+            log('Testing connection to localhost:1313...');
+            
+            try {
+                const response = await fetch('http://localhost:1313', { 
+                    method: 'HEAD',
+                    mode: 'no-cors'
+                });
+                
+                // If we get here, the server is responding
+                resultDiv.innerHTML = '<div class="result error">❌ Server is still responding! Hugo server might still be running.</div>';
+                log('Server is still responding - Hugo server might still be running');
+            } catch (error) {
+                resultDiv.innerHTML = '<div class="result success">✅ Server is not responding - Hugo server is properly stopped.</div>';
+                log('Server is not responding - Hugo server is properly stopped');
+            }
+        }
+
+        function showDebugInfo() {
+            const debugContent = document.getElementById('debug-content');
+            debugContent.innerHTML = `
+                <p><strong>Current URL:</strong> ${window.location.href}</p>
+                <p><strong>Service Worker Support:</strong> ${'serviceWorker' in navigator ? 'Yes' : 'No'}</p>
+                <p><strong>Cache API Support:</strong> ${'caches' in window ? 'Yes' : 'No'}</p>
+                <p><strong>localStorage Support:</strong> ${typeof localStorage !== 'undefined' ? 'Yes' : 'No'}</p>
+                <p><strong>sessionStorage Support:</strong> ${typeof sessionStorage !== 'undefined' ? 'Yes' : 'No'}</p>
+            `;
+        }
+
+        // Auto-run on load
+        window.addEventListener('load', () => {
+            showDebugInfo();
+            log('Page loaded - ready to clear service worker and cache');
+        });
+    </script>
+</body>
+</html> 

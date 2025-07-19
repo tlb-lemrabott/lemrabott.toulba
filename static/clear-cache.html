@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clear Cache & Test CORS</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; max-width: 800px; }
+        .step { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .success { background: #d4edda; color: #155724; border-color: #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border-color: #f5c6cb; }
+        .info { background: #d1ecf1; color: #0c5460; border-color: #bee5eb; }
+        button { padding: 10px 20px; margin: 5px; background: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .result { margin: 10px 0; padding: 10px; border-radius: 3px; }
+    </style>
+</head>
+<body>
+    <h1>🔧 CORS Issue Resolution Guide</h1>
+    
+    <div class="step info">
+        <h3>Step 1: Clear Browser Cache</h3>
+        <p>Your browser might be caching the old CORS error. Try these steps:</p>
+        <ul>
+            <li><strong>Chrome/Edge:</strong> Press Ctrl+Shift+R (Windows) or Cmd+Shift+R (Mac)</li>
+            <li><strong>Firefox:</strong> Press Ctrl+F5 (Windows) or Cmd+Shift+R (Mac)</li>
+            <li><strong>Or:</strong> Open Developer Tools (F12) → Right-click refresh button → "Empty Cache and Hard Reload"</li>
+        </ul>
+        <button onclick="clearCache()">Clear Cache (if supported)</button>
+    </div>
+
+    <div class="step info">
+        <h3>Step 2: Test CORS Directly</h3>
+        <p>Click the button below to test if CORS is working:</p>
+        <button onclick="testCORS()">Test CORS Request</button>
+        <div id="cors-result" class="result"></div>
+    </div>
+
+    <div class="step info">
+        <h3>Step 3: Test Your Main Site</h3>
+        <p>After clearing cache, go back to your main site:</p>
+        <a href="http://localhost:1313" target="_blank">
+            <button>Open Main Site</button>
+        </a>
+    </div>
+
+    <div class="step info">
+        <h3>Step 4: Manual Test in Console</h3>
+        <p>If still having issues, open Developer Tools (F12) and run this in the console:</p>
+        <code style="background: #f8f9fa; padding: 10px; display: block; border-radius: 3px;">
+fetch('https://82ci0zfx68.execute-api.us-east-1.amazonaws.com/api/v1/leetcode/vRCcb0Nnvp', {
+  method: 'GET',
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  },
+  mode: 'cors',
+  credentials: 'omit'
+})
+.then(response => response.json())
+.then(data => console.log('Success:', data))
+.catch(error => console.error('Error:', error));
+        </code>
+    </div>
+
+    <div id="debug-info" class="step info">
+        <h3>Debug Information</h3>
+        <div id="debug-content"></div>
+    </div>
+
+    <script>
+        function clearCache() {
+            if ('caches' in window) {
+                caches.keys().then(names => {
+                    names.forEach(name => {
+                        caches.delete(name);
+                    });
+                });
+                document.getElementById('cors-result').innerHTML = '<div class="result success">Cache cleared! Now test CORS.</div>';
+            } else {
+                document.getElementById('cors-result').innerHTML = '<div class="result error">Cache API not supported. Please clear manually.</div>';
+            }
+        }
+
+        async function testCORS() {
+            const resultDiv = document.getElementById('cors-result');
+            resultDiv.innerHTML = '<div class="result info">Testing CORS...</div>';
+            
+            try {
+                const response = await fetch('https://82ci0zfx68.execute-api.us-east-1.amazonaws.com/api/v1/leetcode/vRCcb0Nnvp', {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    mode: 'cors',
+                    credentials: 'omit'
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    resultDiv.innerHTML = `
+                        <div class="result success">
+                            ✅ CORS is working!<br>
+                            Status: ${response.status}<br>
+                            Problems solved: ${data.leetcode_data.totalSolved}<br>
+                            Origin header: ${response.headers.get('access-control-allow-origin')}
+                        </div>
+                    `;
+                } else {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="result error">
+                        ❌ CORS failed: ${error.message}<br>
+                        This might be a browser cache issue. Try clearing cache and testing again.
+                    </div>
+                `;
+            }
+        }
+
+        // Show debug info
+        function showDebugInfo() {
+            const debugContent = document.getElementById('debug-content');
+            debugContent.innerHTML = `
+                <p><strong>User Agent:</strong> ${navigator.userAgent}</p>
+                <p><strong>Current URL:</strong> ${window.location.href}</p>
+                <p><strong>Service Worker Support:</strong> ${'serviceWorker' in navigator ? 'Yes' : 'No'}</p>
+                <p><strong>Fetch Support:</strong> ${typeof fetch !== 'undefined' ? 'Yes' : 'No'}</p>
+                <p><strong>Cache API Support:</strong> ${'caches' in window ? 'Yes' : 'No'}</p>
+            `;
+        }
+
+        // Auto-test on load
+        window.addEventListener('load', () => {
+            showDebugInfo();
+            setTimeout(() => {
+                testCORS();
+            }, 1000);
+        });
+    </script>
+</body>
+</html> 
