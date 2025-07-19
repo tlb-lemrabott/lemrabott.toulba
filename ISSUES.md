@@ -1,7 +1,7 @@
 # 🚀 Pending Improvements
 
 ## Issue #1: Optimize Image Loading Performance
-**Status**: 🔄 In Progress  
+**Status**: ✅ Completed  
 **Priority**: High  
 **Labels**: enhancement, performance, frontend
 
@@ -32,7 +32,7 @@ Images on the website are not optimized for performance, causing slow loading ti
 ---
 
 ## Issue #2: Fix Submission Breakdown Chart View
-**Status**: 🔄 In Progress  
+**Status**: ✅ Completed  
 **Priority**: Medium  
 **Labels**: bug, frontend, chart
 
@@ -62,7 +62,7 @@ The Submission Breakdown chart is currently disabled to prevent browser crashes,
 ---
 
 ## Issue #3: Add Cookie Consent Toast/Popup
-**Status**: 🔄 In Progress  
+**Status**: ✅ Completed  
 **Priority**: Medium  
 **Labels**: enhancement, legal, frontend
 
