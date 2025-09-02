@@ -1,5 +1,5 @@
 ---
-title: "Independent Software Engineer"
+title: "Personal Projects"
 description: "Independent Software Engineer - Full time "
 dateString: Oct 2022 - Present
 draft: false
