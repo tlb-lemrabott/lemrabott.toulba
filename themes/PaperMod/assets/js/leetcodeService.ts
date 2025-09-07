@@ -285,8 +285,8 @@ const fetchWithTimeout = async (url: string, timeout: number = 10000): Promise<R
   }
 };
 
-// Main fetch function with enhanced error handling
-const fetchLeetCodeStats = async (): Promise<void> => {
+// Main fetch function with enhanced error handling and retry logic
+const fetchLeetCodeStats = async (retryCount: number = 0): Promise<void> => {
   // Check cache first
   const cached = getCachedData();
   if (cached) {
@@ -299,12 +299,28 @@ const fetchLeetCodeStats = async (): Promise<void> => {
   showLoading();
 
   try {
-    info("Fetching fresh LeetCode data...");
+    info(`Fetching fresh LeetCode data... (attempt ${retryCount + 1})`);
     
     const response = await fetchWithTimeout(`${API_URL}${USERNAME}`, 15000);
     
     if (!response.ok) {
-      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      // Handle specific status codes
+      if (response.status === 503) {
+        // Service temporarily unavailable (likely cold start)
+        const retryAfter = response.headers.get('retry-after');
+        const delay = retryAfter ? parseInt(retryAfter) * 1000 : 5000;
+        
+        if (retryCount < 2) { // Max 3 attempts
+          warn(`Service temporarily unavailable, retrying in ${delay/1000}s...`);
+          hideLoading();
+          setTimeout(() => fetchLeetCodeStats(retryCount + 1), delay);
+          return;
+        } else {
+          throw new Error(`HTTP ${response.status}: Service temporarily unavailable after ${retryCount + 1} attempts`);
+        }
+      } else {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
     }
 
     const json = await response.json();

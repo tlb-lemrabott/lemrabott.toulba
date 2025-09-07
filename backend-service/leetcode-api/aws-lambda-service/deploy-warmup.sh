@@ -1,19 +1,19 @@
 #!/bin/bash
 
-# LeetCode API Lambda Deployment Script
-# This script builds and deploys the optimized Lambda function
+# LeetCode API Warmup Lambda Deployment Script
+# This script deploys the warmup function to keep the main Lambda warm
 
 set -e
 
-echo "🚀 Starting LeetCode API deployment..."
+echo "🔥 Starting LeetCode API warmup deployment..."
 
 # Configuration
-FUNCTION_NAME="leetcode-api"
+FUNCTION_NAME="leetcode-api-warmup"
 REGION="us-east-1"
 RUNTIME="nodejs18.x"
-HANDLER="lambda.handler"
-TIMEOUT=60
-MEMORY_SIZE=1024
+HANDLER="warmup.warmup"
+TIMEOUT=30
+MEMORY_SIZE=256
 
 # Colors for output
 RED='\033[0;31m'
@@ -40,21 +40,6 @@ if ! command -v aws &> /dev/null; then
     exit 1
 fi
 
-# Check if Node.js is installed
-if ! command -v node &> /dev/null; then
-    print_error "Node.js is not installed. Please install it first."
-    exit 1
-fi
-
-# Check if npm is installed
-if ! command -v npm &> /dev/null; then
-    print_error "npm is not installed. Please install it first."
-    exit 1
-fi
-
-print_status "Installing dependencies..."
-npm install --production
-
 print_status "Building TypeScript..."
 npm run build
 
@@ -63,33 +48,34 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-print_status "Creating deployment package..."
+print_status "Creating warmup deployment package..."
 # Create a clean deployment directory
-rm -rf deployment
-mkdir -p deployment
+rm -rf warmup-deployment
+mkdir -p warmup-deployment
 
-# Copy built files
-cp -r dist/* deployment/
-cp package.json deployment/
+# Copy only the warmup function and its dependencies
+cp dist/warmup.js warmup-deployment/
+cp dist/service.js warmup-deployment/
+cp package.json warmup-deployment/
 
 # Install production dependencies in deployment directory
-cd deployment
+cd warmup-deployment
 npm install --production --no-optional
 
 # Create ZIP file
 print_status "Creating ZIP package..."
-zip -r ../leetcode-api.zip . -q
+zip -r ../warmup-lambda.zip . -q
 
 cd ..
 
-print_status "Checking if Lambda function exists..."
+print_status "Checking if warmup Lambda function exists..."
 if aws lambda get-function --function-name $FUNCTION_NAME --region $REGION &> /dev/null; then
-    print_status "Updating existing Lambda function..."
+    print_status "Updating existing warmup Lambda function..."
     
     # Update function code
     aws lambda update-function-code \
         --function-name $FUNCTION_NAME \
-        --zip-file fileb://leetcode-api.zip \
+        --zip-file fileb://warmup-lambda.zip \
         --region $REGION
     
     # Update function configuration
@@ -99,9 +85,9 @@ if aws lambda get-function --function-name $FUNCTION_NAME --region $REGION &> /d
         --memory-size $MEMORY_SIZE \
         --region $REGION
     
-    print_status "Lambda function updated successfully!"
+    print_status "Warmup Lambda function updated successfully!"
 else
-    print_status "Creating new Lambda function..."
+    print_status "Creating new warmup Lambda function..."
     
     # Create function
     aws lambda create-function \
@@ -110,36 +96,36 @@ else
         --handler $HANDLER \
         --timeout $TIMEOUT \
         --memory-size $MEMORY_SIZE \
-        --zip-file fileb://leetcode-api.zip \
+        --zip-file fileb://warmup-lambda.zip \
         --region $REGION \
         --role arn:aws:iam::YOUR_ACCOUNT_ID:role/lambda-execution-role
     
-    print_status "Lambda function created successfully!"
+    print_status "Warmup Lambda function created successfully!"
 fi
 
 # Clean up
 print_status "Cleaning up..."
-rm -rf deployment
-rm leetcode-api.zip
+rm -rf warmup-deployment
+rm warmup-lambda.zip
 
-print_status "✅ Deployment completed successfully!"
+print_status "✅ Warmup deployment completed successfully!"
 
-# Test the function
-print_status "Testing the deployed function..."
+# Test the warmup function
+print_status "Testing the warmup function..."
 aws lambda invoke \
     --function-name $FUNCTION_NAME \
-    --payload '{"httpMethod": "GET", "path": "/api/v1/health"}' \
+    --payload '{}' \
     --region $REGION \
-    response.json
+    warmup-response.json
 
 if [ $? -eq 0 ]; then
-    print_status "✅ Function test successful!"
+    print_status "✅ Warmup function test successful!"
     echo "Response:"
-    cat response.json
-    rm response.json
+    cat warmup-response.json
+    rm warmup-response.json
 else
-    print_warning "⚠️  Function test failed. Check the logs for details."
+    print_warning "⚠️  Warmup function test failed. Check the logs for details."
 fi
 
-print_status "🎉 Deployment process completed!"
-print_status "API Gateway URL: https://YOUR_API_GATEWAY_ID.execute-api.$REGION.amazonaws.com/prod/api/v1/leetcode/vRCcb0Nnvp" 
+print_status "🎉 Warmup deployment process completed!"
+print_status "Next step: Set up CloudWatch Events rule to trigger warmup every 5 minutes"

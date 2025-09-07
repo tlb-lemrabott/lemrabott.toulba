@@ -64,14 +64,25 @@ class LeetCodeCache {
 // Singleton cache instance
 const cache = new LeetCodeCache();
 
-// LeetCode client with connection reuse
+// LeetCode client with connection reuse and cold start handling
 let leetcodeClient: LeetCode | null = null;
+let clientInitialized = false;
 
 const getLeetCodeClient = (): LeetCode => {
   if (!leetcodeClient) {
+    console.log("Initializing LeetCode client...");
     leetcodeClient = new LeetCode();
+    clientInitialized = true;
+    console.log("LeetCode client initialized successfully");
   }
   return leetcodeClient;
+};
+
+// Initialize client early to avoid cold start delays
+const initializeClient = (): void => {
+  if (!clientInitialized) {
+    getLeetCodeClient();
+  }
 };
 
 // Enhanced error handling with retry logic
@@ -102,6 +113,8 @@ export async function fetchLeetCodeData(username: string): Promise<LeetCodeData>
 
   try {
     const data = await fetchWithRetry(async () => {
+      // Ensure client is initialized
+      initializeClient();
       const leetcode = getLeetCodeClient();
       const user = await leetcode.user(username);
 
@@ -147,10 +160,14 @@ export async function fetchLeetCodeData(username: string): Promise<LeetCodeData>
 // Pre-warm cache function for main user
 export async function prewarmCache(): Promise<void> {
   try {
+    console.log("Starting cache pre-warming...");
+    // Initialize client first
+    initializeClient();
     await fetchLeetCodeData("vRCcb0Nnvp");
     console.log("Cache pre-warmed successfully");
   } catch (error) {
     console.error("Failed to pre-warm cache:", error);
+    // Don't throw - this is a best-effort operation
   }
 }
 
