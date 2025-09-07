@@ -12,8 +12,8 @@ FUNCTION_NAME="leetcode-api"
 REGION="us-east-1"
 RUNTIME="nodejs18.x"
 HANDLER="lambda.handler"
-TIMEOUT=30
-MEMORY_SIZE=512
+TIMEOUT=60
+MEMORY_SIZE=1024
 
 # Colors for output
 RED='\033[0;31m'
