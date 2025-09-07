@@ -104,11 +104,19 @@ app.get("/api/v1/leetcode/:username", strictLimiter, async (req, res) => {
     const err = error as Error;
     console.error("Error fetching user:", err.message);
     
-    // More specific error responses
+    // More specific error responses with better cold start handling
     if (err.message.includes("Invalid or missing user data")) {
       res.status(404).json({ 
         error: "User not found or profile is private",
         response_code: 404
+      });
+    } else if (err.message.includes("Max retries exceeded") || err.message.includes("timeout")) {
+      // Likely a cold start or network issue
+      console.log("Detected potential cold start issue, attempting retry...");
+      res.status(503).json({ 
+        error: "Service temporarily unavailable, please try again",
+        response_code: 503,
+        retry_after: 5
       });
     } else {
       res.status(500).json({ 
