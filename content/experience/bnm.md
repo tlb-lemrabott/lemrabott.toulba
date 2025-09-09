@@ -10,12 +10,9 @@ weight: 301
 
 ### Main Tasks
 
-- Designed and implemented a distributed integration service connecting external insurance systems with the Bank’s internal payment platform using Node.js, RESTful APIs, Webhooks, and PostgreSQL.
-- Improved scalability and decoupling by implementing an asynchronous messaging architecture using RabbitMQ.
-- Leveraged Docker for containerization and Eureka for service discovery across the microservices architecture.
-- Created and deployed custom JavaScript functions within the payment platform to automate administrative dashboard tasks such as generating reports, executing scheduled jobs, and exporting data.
-- Built a separate financial transaction simulation tool for the accounting team using Java, Spring Boot, Angular, and MySQL.
-- Deployed the tool to AWS using EC2 for compute and RDS for relational data storage.
+- Implemented a scalable service with Node.js, REST APIs, and PgAdmin4 to connect the bank’s internal payment platform with an external insurance provider. 
+- Increased scalability 40% and reduced latency by implementing asynchronous messaging with RabbitMQ.
+- Used Java, Spring Boot, Angular, and AWS Cloud to build and deploy a full-stack web application that served as a tool for the accounting team to experiment with the pricing of the bank’s services for clients.
 
 #### 🔗 [**NATIONAL BANK OF MAURITANIA**](http://www.bnm.mr/)
 ##### 🔗 [**Mobile Payment Platform**](http://www.click.mr/)
