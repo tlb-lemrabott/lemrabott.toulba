@@ -10,11 +10,11 @@ weight: 303
 
 ### Main Tasks
 
-- Built a responsive web application using Reactjs, HTML, CSS, and JavaScript, focusing on accessibility and UX. 
-- Used AWS Amplify, IAM, and Lambda to deploy React.js UI and enable Lambda read/write access to AWS S3.
+- Built a responsive web application using Reactjs, HTML, CSS, and JavaScript, focusing on UI/UX.
+- Used AWS Amplify, IAM, and Lambda to deploy the UI and enable Lambda read/write access to AWS S3.
 - Implemented semantic HTML standards to improve accessibility for users with assistive technologies.
-- Collaborated with team members for scalable frontend architecture and debugging. 
-- Maintained documentation and user manuals for improved usability and knowledge transfer. 
+- Collaborated with team members for scalable frontend architecture and debugging.
+- Maintained documentation and user manuals for improved usability and knowledge transfer.
 - Used Git, Bitbucket, and Trello to manage tasks and source control effectively.
 
 #### 🔗 [**MAURIBIT**](https://www.mauribit.com/)
