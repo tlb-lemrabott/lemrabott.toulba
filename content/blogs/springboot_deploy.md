@@ -1,5 +1,5 @@
 ---
-title: "Spring Boot Deployment - My Personal Perspective"
+title: "My Experience Deploying Spring Boot with Docker, GitHub Actions, and AWS ECS Fargate"
 description: "Sharing my experience deploying Spring Boot applications with Docker, GitHub Actions, and AWS ECS Fargate - what worked for me and what I learned along the way"
 dateString: Sep 2025
 draft: false
