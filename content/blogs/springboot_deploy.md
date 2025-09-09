@@ -7,6 +7,11 @@ tags: ["Spring Boot", "DevOps", "GitHub", "Git", "Github Actions", "CI/CD", "Doc
 weight: 199
 ---
 
+## Architecture Overview
+
+![Spring Boot Deployment Overview](/blogs/springboot_deploy/springboot_deploy.png)
+
+
 ## My Experience
 
 Hey there! I'm a Software Engineer who recently went through the process of setting up deployment for a Spring Boot application leveraging Docker, GitHub Actions, and AWS ECS Fargate. I wanted to share my experience and the approach that worked well for me. This isn't meant to be the "definitive guide" or anything like that - just my personal journey and what I found helpful along the way.
