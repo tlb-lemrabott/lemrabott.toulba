@@ -10,9 +10,8 @@ weight: 300
 
 ### Main Tasks
 
-- Full-Stack Development: Dedicated full-time to mastering modern cloud-native development, resulting in over 730 GitHub contributions through architecting, building, and deploying full-stack applications.
-- AI Application Development: Engineered an AI-powered job matching tool (JobMatchEngine) using Java, Spring Boot, Angular, and Python.
-- Backend API Development: Developed a secure RESTful API for an e-commerce platform featuring JWT authentication, cart management, and order processing with Spring Boot and PostgreSQL.
-- Microservices Architecture: Designed and implemented a real-time stock trading platform using a microservices design (Java, Spring Boot) with a core matching engine and payment service.
+- Contributed to the Operaton open-source project by developing a JVM process engine, implementing core workflow automation and human task management capabilities, with integration support for Spring, Spring Boot, Quarkus, and Jakarta EE.
+- Developed and deployed a full-stack portfolio application using Hugo, Node.js, TypeScript, and AWS serverless architecture, featuring a real-time LeetCode statistics API with custom rate limiting and an CI/CD pipeline.
+- Designed and built a full-stack web application to track LeetCode progress for multiple users with administrative oversight, using Spring Boot, React.js, PostgreSQL, and Spring Security, Docker, Git, CI/CD, AWS ECS Fargate.
 
 #### 🔗 [**Personal Projects**](https://github.com/tlb-lemrabott)
