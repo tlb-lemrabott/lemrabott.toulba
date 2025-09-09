@@ -10,8 +10,8 @@ weight: 302
 
 ### Main Tasks
 
-- Developed a microservice architecture with inter-service communication using Java, Spring Boot, and REST API.
-- Built a real-time hybrid monitoring dashboard for mobile and web using Ionic, Angular, and Cordova.
+- Developed a microservice based architecture (3 services) using Java, Spring Boot, and REST API.
+- Built a real-time hybrid (Mobile and Web) monitoring dashboard application using Ionic, Angular, and Cordova.
 - Developed the mobile application backend using Node.js and Firebase Cloud Functions.
 - Implemented authentication and authorization using Firebase Auth Service with JWT and bcrypt.
 - Integrated Firebase Cloud Messaging for real-time alerts and push notifications in the mobile and web apps.
