@@ -232,10 +232,8 @@
 {{ $ts := resources.Get "js/leetcodeService.ts" | js.Build | minify | fingerprint }}
 <script src="{{ $ts.RelPermalink }}" integrity="{{ $ts.Data.Integrity }}"></script>
 
-<!-- Service Worker Registration (Temporarily Disabled for CORS Debug) -->
+<!-- Service Worker Registration -->
 <script>
-// Temporarily disable service worker to isolate CORS issue
-/*
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/sw.js')
@@ -247,5 +245,4 @@ if ('serviceWorker' in navigator) {
       });
   });
 }
-*/
 </script>
