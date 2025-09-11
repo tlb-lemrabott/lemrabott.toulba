@@ -8,11 +8,9 @@ const CACHE_EXPIRATION = 7 * 24 * 60 * 60 * 1000; // 7 days
 
 // Service Worker Lifecycle Events
 self.addEventListener('install', (event) => {
-  console.log('[SW] Installing service worker...');
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => {
-        console.log('[SW] Cache opened');
         return cache;
       })
   );
@@ -20,13 +18,11 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener('activate', (event) => {
-  console.log('[SW] Activating service worker...');
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
           if (cacheName !== CACHE_NAME && cacheName !== IMAGE_CACHE_NAME) {
-            console.log('[SW] Deleting old cache:', cacheName);
             return caches.delete(cacheName);
           }
         })
@@ -39,12 +35,10 @@ self.addEventListener('activate', (event) => {
 // Main image preloading logic
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'PRELOAD_IMAGES') {
-    console.log('[SW] Received preload request:', event.data.images.length, 'images');
     event.waitUntil(preloadImages(event.data.images, event.data.priority));
   }
   
   if (event.data && event.data.type === 'CLEAR_CACHE') {
-    console.log('[SW] Clearing image cache...');
     event.waitUntil(clearImageCache());
   }
 });
@@ -59,14 +53,11 @@ async function preloadImages(images, priority = 'low') {
     total: images.length
   };
 
-  console.log(`[SW] Starting to preload ${images.length} images with priority: ${priority}`);
-
   for (const imageUrl of images) {
     try {
       // Check if already cached
       const existingResponse = await imageCache.match(imageUrl);
       if (existingResponse) {
-        console.log(`[SW] Image already cached: ${imageUrl}`);
         results.skipped++;
         continue;
       }
@@ -74,7 +65,6 @@ async function preloadImages(images, priority = 'low') {
       // Check cache size before adding new images
       const cacheSize = await getCacheSize(imageCache);
       if (cacheSize > CACHE_SIZE_LIMIT) {
-        console.log('[SW] Cache size limit reached, skipping remaining images');
         break;
       }
 
@@ -89,9 +79,6 @@ async function preloadImages(images, priority = 'low') {
         // Only cache if the URL is cacheable (not chrome-extension://)
         if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
           await imageCache.put(imageUrl, response.clone());
-          console.log(`[SW] Successfully cached: ${imageUrl}`);
-        } else {
-          console.log(`[SW] Skipping cache for non-HTTP URL: ${imageUrl}`);
         }
         results.success++;
         
@@ -113,11 +100,9 @@ async function preloadImages(images, priority = 'low') {
           });
         });
       } else {
-        console.warn(`[SW] Failed to fetch image: ${imageUrl}`, response.status);
         results.failed++;
       }
     } catch (error) {
-      console.error(`[SW] Error preloading image: ${imageUrl}`, error);
       results.failed++;
     }
 
@@ -125,8 +110,6 @@ async function preloadImages(images, priority = 'low') {
     await new Promise(resolve => setTimeout(resolve, 100));
   }
 
-  console.log(`[SW] Preloading completed:`, results);
-  
   // Send completion message to main thread
   self.clients.matchAll().then((clients) => {
     clients.forEach((client) => {
@@ -165,7 +148,6 @@ async function clearImageCache() {
     await imageCache.delete(request);
   }
   
-  console.log('[SW] Image cache cleared');
   return { cleared: keys.length };
 }
 
@@ -176,7 +158,6 @@ self.addEventListener('fetch', (event) => {
       caches.match(event.request)
         .then((response) => {
           if (response) {
-            console.log(`[SW] Serving cached image: ${event.request.url}`);
             return response;
           }
           

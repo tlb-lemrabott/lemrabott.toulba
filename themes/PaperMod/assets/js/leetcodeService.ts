@@ -56,9 +56,7 @@ const showLoading = () => {
 
   // Set timeout for loading state
   loadingTimeout = setTimeout(() => {
-    if (isLoading) {
-      debug("Loading timeout reached");
-    }
+    // Loading timeout reached
   }, 10000);
 };
 
@@ -85,14 +83,12 @@ const hideLoading = () => {
 const getCachedData = (): LeetCodeData | null => {
   // Check if user has consented to cookies
   if (!cookieConsent.canUseCookies()) {
-    debug('Cookie consent not given, skipping cache');
     return null;
   }
 
   try {
     const cached = localStorage.getItem(CACHE_KEY);
     if (!cached) {
-      debug('No cached data found');
       return null;
     }
 
@@ -100,7 +96,6 @@ const getCachedData = (): LeetCodeData | null => {
     
     // Check version compatibility
     if (parsed.version !== CACHE_VERSION) {
-      debug('Cache version mismatch, clearing cache');
       localStorage.removeItem(CACHE_KEY);
       return null;
     }
@@ -108,12 +103,10 @@ const getCachedData = (): LeetCodeData | null => {
     // Check TTL
     const age = Date.now() - parsed.timestamp;
     if (age > CACHE_TTL) {
-      debug(`Cache expired (age: ${Math.round(age / 1000)}s, TTL: ${CACHE_TTL / 1000}s)`);
       localStorage.removeItem(CACHE_KEY);
       return null;
     }
 
-    debug(`Using cached data (age: ${Math.round(age / 1000)}s)`);
     return parsed.data;
   } catch (err) {
     error('Error reading cache:', err);
@@ -130,7 +123,6 @@ const getCachedData = (): LeetCodeData | null => {
 const setCachedData = (data: LeetCodeData): void => {
   // Check if user has consented to cookies
   if (!cookieConsent.canUseCookies()) {
-    debug('Cookie consent not given, skipping cache write');
     return;
   }
 
@@ -160,7 +152,6 @@ const renderSubmissionChart = (submissions: SubmissionStats[], totalSolved: numb
   try {
     const canvas = document.getElementById("submissionChart") as HTMLCanvasElement;
     if (!canvas) {
-      debug('Chart canvas not found');
       return;
     }
 
@@ -181,7 +172,6 @@ const renderSubmissionChart = (submissions: SubmissionStats[], totalSolved: numb
     ];
     
     if (totalSolved === 0) {
-      debug('No solved problems data to display');
       return;
     }
     
@@ -234,7 +224,6 @@ const renderSubmissionChart = (submissions: SubmissionStats[], totalSolved: numb
     if (canvas.parentNode) {
       canvas.parentNode.replaceChild(chartContainer, canvas);
     }
-    debug('HTML chart rendered successfully');
     
       } catch (err) {
       error('Error rendering HTML chart:', err);
@@ -257,8 +246,6 @@ const renderSubmissionChart = (submissions: SubmissionStats[], totalSolved: numb
 // Simplified data rendering
 const renderFromData = (data: LeetCodeData) => {
   try {
-    debug('Rendering data:', data);
-    
     // Set values directly without animations
     setValue("totalSolved", data.totalSolved);
     setValue("easySolved", data.easySolved);
@@ -280,7 +267,6 @@ const fetchWithTimeout = async (url: string, timeout: number = 10000): Promise<R
   const controller = new AbortController();
   const timeoutId = setTimeout(() => {
     controller.abort();
-    debug(`Request timeout after ${timeout}ms for URL: ${url}`);
   }, timeout);
 
   try {
@@ -318,7 +304,6 @@ const fetchLeetCodeStats = async (retryCount: number = 0): Promise<void> => {
   // Check cache first
   const cached = getCachedData();
   if (cached) {
-    info("Using cached LeetCode data");
     renderFromData(cached);
     return;
   }
@@ -327,8 +312,6 @@ const fetchLeetCodeStats = async (retryCount: number = 0): Promise<void> => {
   showLoading();
 
   try {
-    info(`Fetching fresh LeetCode data... (attempt ${retryCount + 1})`);
-    
     const response = await fetchWithTimeout(`${API_URL}${USERNAME}`, 15000);
     
     if (!response.ok) {
@@ -339,7 +322,6 @@ const fetchLeetCodeStats = async (retryCount: number = 0): Promise<void> => {
         const delay = retryAfter ? parseInt(retryAfter) * 1000 : 5000;
         
         if (retryCount < 2) { // Max 3 attempts
-          warn(`Service temporarily unavailable, retrying in ${delay/1000}s...`);
           hideLoading();
           setTimeout(() => fetchLeetCodeStats(retryCount + 1), delay);
           return;
@@ -364,8 +346,6 @@ const fetchLeetCodeStats = async (retryCount: number = 0): Promise<void> => {
     
     // Render the data
     renderFromData(data);
-    
-    info("LeetCode data loaded successfully");
   } catch (err) {
     const errorMessage = err instanceof Error ? err.message : 'Unknown error';
     error("Error fetching LeetCode stats:", err);
@@ -373,7 +353,6 @@ const fetchLeetCodeStats = async (retryCount: number = 0): Promise<void> => {
     // Try to use cached data as fallback
     const fallbackData = getCachedData();
     if (fallbackData) {
-      warn("Using fallback cached data due to fetch error");
       renderFromData(fallbackData);
     } else {
       // Show specific error state based on error type
@@ -394,10 +373,6 @@ const fetchLeetCodeStats = async (retryCount: number = 0): Promise<void> => {
         }
       });
       
-      // Log specific error details for debugging
-      if (errorMessage.includes('chrome-extension')) {
-        warn('Chrome extension cache error detected - this should be fixed by the service worker updates');
-      }
     }
   } finally {
     hideLoading();

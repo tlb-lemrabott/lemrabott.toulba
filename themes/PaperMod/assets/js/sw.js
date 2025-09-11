@@ -15,11 +15,9 @@ const API_ENDPOINTS = [
 
 // Install event - cache static assets
 self.addEventListener('install', (event) => {
-  console.log('Service Worker installing...');
   event.waitUntil(
     caches.open(STATIC_CACHE_NAME)
       .then((cache) => {
-        console.log('Caching static assets');
         return cache.addAll(STATIC_ASSETS);
       })
       .catch((error) => {
@@ -31,7 +29,6 @@ self.addEventListener('install', (event) => {
 
 // Activate event - clean up old caches
 self.addEventListener('activate', (event) => {
-  console.log('Service Worker activating...');
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
@@ -39,7 +36,6 @@ self.addEventListener('activate', (event) => {
           if (cacheName !== STATIC_CACHE_NAME && 
               cacheName !== API_CACHE_NAME && 
               cacheName !== CACHE_NAME) {
-            console.log('Deleting old cache:', cacheName);
             return caches.delete(cacheName);
           }
         })
@@ -80,21 +76,15 @@ async function handleApiRequest(request) {
       if (request.url.startsWith('http://') || request.url.startsWith('https://')) {
         const responseClone = networkResponse.clone();
         cache.put(request, responseClone);
-        console.log('API response cached successfully');
-      } else {
-        console.log('Skipping cache for non-HTTP URL:', request.url);
       }
       return networkResponse;
     } else {
       throw new Error('Network response not ok');
     }
   } catch (error) {
-    console.log('Network failed, trying cache:', error);
-    
     // Try cache as fallback
     const cachedResponse = await cache.match(request);
     if (cachedResponse) {
-      console.log('Serving from cache');
       return cachedResponse;
     }
     
@@ -127,8 +117,6 @@ async function handleStaticRequest(request) {
       if (request.url.startsWith('http://') || request.url.startsWith('https://')) {
         const responseClone = networkResponse.clone();
         cache.put(request, responseClone);
-      } else {
-        console.log('Skipping cache for non-HTTP URL:', request.url);
       }
     }
     return networkResponse;
@@ -141,7 +129,6 @@ async function handleStaticRequest(request) {
 // Background sync for API updates
 self.addEventListener('sync', (event) => {
   if (event.tag === 'background-sync-leetcode') {
-    console.log('Background sync triggered');
     event.waitUntil(backgroundSyncLeetCode());
   }
 });
@@ -155,7 +142,6 @@ async function backgroundSyncLeetCode() {
       // Create a proper Request object for caching
       const request = new Request(url);
       await cache.put(request, response.clone());
-      console.log('Background sync completed successfully');
     }
   } catch (error) {
     console.error('Background sync failed:', error);
