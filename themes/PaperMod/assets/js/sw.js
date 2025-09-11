@@ -76,10 +76,14 @@ async function handleApiRequest(request) {
     const networkResponse = await fetch(request);
     
     if (networkResponse.ok) {
-      // Cache the successful response
-      const responseClone = networkResponse.clone();
-      cache.put(request, responseClone);
-      console.log('API response cached successfully');
+      // Only cache if the request URL is cacheable (not chrome-extension://)
+      if (request.url.startsWith('http://') || request.url.startsWith('https://')) {
+        const responseClone = networkResponse.clone();
+        cache.put(request, responseClone);
+        console.log('API response cached successfully');
+      } else {
+        console.log('Skipping cache for non-HTTP URL:', request.url);
+      }
       return networkResponse;
     } else {
       throw new Error('Network response not ok');
@@ -119,8 +123,13 @@ async function handleStaticRequest(request) {
   try {
     const networkResponse = await fetch(request);
     if (networkResponse.ok) {
-      const responseClone = networkResponse.clone();
-      cache.put(request, responseClone);
+      // Only cache if the request URL is cacheable (not chrome-extension://)
+      if (request.url.startsWith('http://') || request.url.startsWith('https://')) {
+        const responseClone = networkResponse.clone();
+        cache.put(request, responseClone);
+      } else {
+        console.log('Skipping cache for non-HTTP URL:', request.url);
+      }
     }
     return networkResponse;
   } catch (error) {
@@ -139,13 +148,13 @@ self.addEventListener('sync', (event) => {
 
 async function backgroundSyncLeetCode() {
   try {
-    const response = await fetch('https://82ci0zfx68.execute-api.us-east-1.amazonaws.com/api/v1/leetcode/vRCcb0Nnvp');
+    const url = 'https://82ci0zfx68.execute-api.us-east-1.amazonaws.com/api/v1/leetcode/vRCcb0Nnvp';
+    const response = await fetch(url);
     if (response.ok) {
       const cache = await caches.open(API_CACHE_NAME);
-      await cache.put(
-        'https://82ci0zfx68.execute-api.us-east-1.amazonaws.com/api/v1/leetcode/vRCcb0Nnvp',
-        response.clone()
-      );
+      // Create a proper Request object for caching
+      const request = new Request(url);
+      await cache.put(request, response.clone());
       console.log('Background sync completed successfully');
     }
   } catch (error) {

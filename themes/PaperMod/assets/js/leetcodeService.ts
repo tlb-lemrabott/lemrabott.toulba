@@ -91,26 +91,38 @@ const getCachedData = (): LeetCodeData | null => {
 
   try {
     const cached = localStorage.getItem(CACHE_KEY);
-    if (!cached) return null;
+    if (!cached) {
+      debug('No cached data found');
+      return null;
+    }
 
     const parsed: CacheEntry = JSON.parse(cached);
     
     // Check version compatibility
     if (parsed.version !== CACHE_VERSION) {
+      debug('Cache version mismatch, clearing cache');
       localStorage.removeItem(CACHE_KEY);
       return null;
     }
 
     // Check TTL
-    if (Date.now() - parsed.timestamp > CACHE_TTL) {
+    const age = Date.now() - parsed.timestamp;
+    if (age > CACHE_TTL) {
+      debug(`Cache expired (age: ${Math.round(age / 1000)}s, TTL: ${CACHE_TTL / 1000}s)`);
       localStorage.removeItem(CACHE_KEY);
       return null;
     }
 
+    debug(`Using cached data (age: ${Math.round(age / 1000)}s)`);
     return parsed.data;
   } catch (err) {
     error('Error reading cache:', err);
-    localStorage.removeItem(CACHE_KEY);
+    // Clear corrupted cache
+    try {
+      localStorage.removeItem(CACHE_KEY);
+    } catch (clearErr) {
+      error('Failed to clear corrupted cache:', clearErr);
+    }
     return null;
   }
 };
@@ -266,13 +278,17 @@ const renderFromData = (data: LeetCodeData) => {
 // Enhanced fetch with timeout and retry logic
 const fetchWithTimeout = async (url: string, timeout: number = 10000): Promise<Response> => {
   const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), timeout);
+  const timeoutId = setTimeout(() => {
+    controller.abort();
+    debug(`Request timeout after ${timeout}ms for URL: ${url}`);
+  }, timeout);
 
   try {
     const response = await fetch(url, {
       signal: controller.signal,
       headers: {
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        'User-Agent': 'Mozilla/5.0 (compatible; LeetCodeStats/1.0)'
       },
       mode: 'cors',
       credentials: 'omit'
@@ -281,6 +297,18 @@ const fetchWithTimeout = async (url: string, timeout: number = 10000): Promise<R
     return response;
   } catch (error) {
     clearTimeout(timeoutId);
+    
+    // Provide more specific error messages
+    if (error instanceof Error) {
+      if (error.name === 'AbortError') {
+        throw new Error(`Request timeout after ${timeout}ms`);
+      } else if (error.message.includes('Failed to fetch')) {
+        throw new Error('Network error: Unable to connect to server');
+      } else if (error.message.includes('chrome-extension')) {
+        throw new Error('Chrome extension cache error - service worker issue');
+      }
+    }
+    
     throw error;
   }
 };
@@ -339,23 +367,37 @@ const fetchLeetCodeStats = async (retryCount: number = 0): Promise<void> => {
     
     info("LeetCode data loaded successfully");
   } catch (err) {
+    const errorMessage = err instanceof Error ? err.message : 'Unknown error';
     error("Error fetching LeetCode stats:", err);
     
     // Try to use cached data as fallback
     const fallbackData = getCachedData();
     if (fallbackData) {
-      warn("Using fallback cached data");
+      warn("Using fallback cached data due to fetch error");
       renderFromData(fallbackData);
     } else {
-      // Show error state
+      // Show specific error state based on error type
       const elements = ['totalSolved', 'easySolved', 'mediumSolved', 'hardSolved', 'totalSubmissions', 'ranking', 'acceptanceRate'];
       elements.forEach(id => {
         const el = document.getElementById(id);
         if (el) {
-          el.innerHTML = '<span class="error">Failed to load</span>';
+          if (errorMessage.includes('timeout') || errorMessage.includes('aborted')) {
+            el.innerHTML = '<span class="error">Timeout</span>';
+          } else if (errorMessage.includes('500')) {
+            el.innerHTML = '<span class="error">Server Error</span>';
+          } else if (errorMessage.includes('404')) {
+            el.innerHTML = '<span class="error">Not Found</span>';
+          } else {
+            el.innerHTML = '<span class="error">Failed to load</span>';
+          }
           el.classList.add('error');
         }
       });
+      
+      // Log specific error details for debugging
+      if (errorMessage.includes('chrome-extension')) {
+        warn('Chrome extension cache error detected - this should be fixed by the service worker updates');
+      }
     }
   } finally {
     hideLoading();
