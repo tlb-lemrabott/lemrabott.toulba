@@ -115,7 +115,6 @@ class ImageOptimizer {
           this.handleServiceWorkerMessage(event.data);
         });
         
-        console.log('[ImageOptimizer] Service worker registered successfully');
       } catch (error) {
         console.error('[ImageOptimizer] Service worker registration failed:', error);
         this.isPreloadingEnabled = false;
@@ -130,7 +129,6 @@ class ImageOptimizer {
   private async initCache(): Promise<void> {
     try {
       await imageCacheManager.init();
-      console.log('[ImageOptimizer] Cache initialized successfully');
     } catch (error) {
       console.error('[ImageOptimizer] Cache initialization failed:', error);
     }

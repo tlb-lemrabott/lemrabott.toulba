@@ -80,7 +80,6 @@ export class ErrorHandler {
     } else {
       this.networkQuality = 'good';
     }
-    console.log(`[ErrorHandler] Network quality: ${this.networkQuality}`);
   }
 
   // Handle image loading error

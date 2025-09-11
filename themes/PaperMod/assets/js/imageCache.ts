@@ -48,7 +48,6 @@ export class ImageCacheManager {
 
       request.onsuccess = () => {
         this.db = request.result;
-        console.log('[ImageCache] IndexedDB initialized successfully');
         resolve();
       };
 

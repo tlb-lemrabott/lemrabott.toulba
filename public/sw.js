@@ -168,7 +168,10 @@ self.addEventListener('fetch', (event) => {
                 const responseClone = fetchResponse.clone();
                 caches.open(IMAGE_CACHE_NAME)
                   .then((cache) => {
-                    cache.put(event.request, responseClone);
+                    // Only cache if the request URL is cacheable (not chrome-extension://)
+                    if (event.request.url.startsWith('http://') || event.request.url.startsWith('https://')) {
+                      cache.put(event.request, responseClone);
+                    }
                   });
               }
               return fetchResponse;
