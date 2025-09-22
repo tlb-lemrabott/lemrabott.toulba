@@ -8,9 +8,21 @@ const CACHE_EXPIRATION = 7 * 24 * 60 * 60 * 1000; // 7 days
 
 // Service Worker Lifecycle Events
 self.addEventListener('install', (event) => {
+  // Only log in development
+  if (self.location.hostname === 'localhost' || 
+      self.location.hostname === '127.0.0.1' ||
+      self.location.hostname.includes('dev')) {
+    console.log('[SW] Installing service worker...');
+  }
+  
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => {
+        if (self.location.hostname === 'localhost' || 
+            self.location.hostname === '127.0.0.1' ||
+            self.location.hostname.includes('dev')) {
+          console.log('[SW] Cache opened');
+        }
         return cache;
       })
   );
@@ -18,11 +30,23 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener('activate', (event) => {
+  // Only log in development
+  if (self.location.hostname === 'localhost' || 
+      self.location.hostname === '127.0.0.1' ||
+      self.location.hostname.includes('dev')) {
+    console.log('[SW] Activating service worker...');
+  }
+  
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
           if (cacheName !== CACHE_NAME && cacheName !== IMAGE_CACHE_NAME) {
+            if (self.location.hostname === 'localhost' || 
+                self.location.hostname === '127.0.0.1' ||
+                self.location.hostname.includes('dev')) {
+              console.log('[SW] Deleting old cache:', cacheName);
+            }
             return caches.delete(cacheName);
           }
         })
