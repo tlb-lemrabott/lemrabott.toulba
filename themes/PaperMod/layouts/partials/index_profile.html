@@ -238,6 +238,13 @@ if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/sw.js')
       .then((registration) => {
+        // Only log in development
+        if (window.location.hostname === 'localhost' || 
+            window.location.hostname === '127.0.0.1' ||
+            window.location.hostname.includes('dev') ||
+            window.location.search.includes('dev=true')) {
+          console.log('Service Worker registered successfully:', registration.scope);
+        }
       })
       .catch((error) => {
         console.error('Service Worker registration failed:', error);
