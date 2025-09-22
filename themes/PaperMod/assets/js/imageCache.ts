@@ -1,6 +1,8 @@
 // IndexedDB Cache Management for Progressive Image Preloading
 // Handles image storage, retrieval, and cache lifecycle management
 
+import { debug, info, warn, error } from './logger';
+
 export interface CachedImage {
   url: string;
   blob: Blob;
@@ -48,6 +50,7 @@ export class ImageCacheManager {
 
       request.onsuccess = () => {
         this.db = request.result;
+        info('[ImageCache] IndexedDB initialized successfully');
         resolve();
       };
 
