@@ -1,6 +1,8 @@
 // Error Handling and Retry Logic for Image Preloading
 // Manages errors, retries, and fallback strategies
 
+import { debug, info, warn, error } from './logger';
+
 export interface ErrorInfo {
   type: 'network' | 'timeout' | 'storage' | 'permission' | 'quota' | 'unknown';
   message: string;
@@ -80,6 +82,7 @@ export class ErrorHandler {
     } else {
       this.networkQuality = 'good';
     }
+    debug(`[ErrorHandler] Network quality: ${this.networkQuality}`);
   }
 
   // Handle image loading error
