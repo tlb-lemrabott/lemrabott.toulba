@@ -113,7 +113,7 @@ For more information: https://developers.google.com/custom-search/v1/overview
         - location: NYC → expand to: New York City, "New York, NY", Manhattan, Brooklyn
         - temporal scope: last 7–30 days
         - Construct multi-query set (precision + recall optimization):
-        ```lua
+        ```yaml
         1) "Java Software Engineer" "New York, NY" site:linkedin.com/jobs
         2) ("Java" AND ("Software Engineer" OR "Backend Engineer")) "New York City" site:indeed.com
         3) "Java developer" (NYC OR "New York, NY") site:glassdoor.com
@@ -213,8 +213,7 @@ return final[:30]
         - Rank by user intent alignment and summarize each role (requirements, visa indicators if present, remote/hybrid specifications).
         - Generate clean, deduplicated shortlist with reasoning.
 - Example LLM-Generated Query Set
-
-```mathematica
+```yaml
 A) "Java Software Engineer" "New York, NY" site:linkedin.com/jobs -senior -staff -principal -lead -intern
 B) (Java AND ("Software Engineer" OR "Backend")) ("New York" OR NYC) site:lever.co
 C) (Java AND Spring) ("New York" OR "NYC") site:greenhouse.io
