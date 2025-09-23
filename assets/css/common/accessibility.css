@@ -1,0 +1,91 @@
+/* Accessibility Improvements for Better Contrast */
+
+/* Improved tag colors for better WCAG compliance */
+.blog-tag,
+.project-tag,
+.post-tags a {
+  /* Use higher contrast colors */
+  background: linear-gradient(135deg, #4c51bf 0%, #553c9a 100%);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Dark mode specific improvements */
+.dark .blog-tag,
+.dark .project-tag,
+.dark .post-tags a {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  /* Ensure sufficient contrast in dark mode */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Hover states with better contrast */
+.blog-tag:hover,
+.project-tag:hover,
+.post-tags a:hover {
+  background: linear-gradient(135deg, #434190 0%, #4c1d95 100%);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(76, 81, 191, 0.4);
+}
+
+.dark .blog-tag:hover,
+.dark .project-tag:hover,
+.dark .post-tags a:hover {
+  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Focus states for keyboard navigation */
+.blog-tag:focus,
+.project-tag:focus,
+.post-tags a:focus {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}
+
+/* Improved contrast for secondary text in dark mode */
+.dark .entry-content,
+.dark .blog-description,
+.dark .project-description {
+  color: var(--content);
+  opacity: 0.9;
+}
+
+/* Better contrast for note boxes and code blocks */
+.dark .toc {
+  background: var(--entry);
+  border-color: var(--tertiary);
+}
+
+.dark .toc .inner {
+  color: var(--content);
+}
+
+/* Improved readability for form elements */
+.dark .email-form input,
+.dark .email-form textarea {
+  background: var(--entry);
+  border-color: var(--tertiary);
+  color: var(--primary);
+}
+
+.dark .email-form input:focus,
+.dark .email-form textarea:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.3);
+}
+
+/* Better contrast for pagination */
+.dark .pagination a {
+  background: var(--entry);
+  color: var(--primary);
+  border: 1px solid var(--border);
+}
+
+.dark .pagination a:hover {
+  background: var(--tertiary);
+  color: var(--primary);
+}
