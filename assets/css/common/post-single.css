@@ -315,12 +315,13 @@
 
 .post-tags a {
     display: block;
-    padding-inline-start: 14px;
-    padding-inline-end: 14px;
+    padding: 0.75rem 1.25rem;
     color: var(--secondary);
     font-size: 14px;
-    line-height: 34px;
+    line-height: 1.2;
     background: var(--code-bg);
+    border-radius: 15px;
+    transition: all 0.2s ease;
 }
 
 .post-tags a:hover,

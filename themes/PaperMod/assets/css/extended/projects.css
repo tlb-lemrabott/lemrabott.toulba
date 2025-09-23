@@ -164,7 +164,7 @@ body .main .projects-container {
 .project-tag {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: var(--cta-color);
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1.25rem;
   border-radius: 15px;
   font-size: 0.9rem;
   font-weight: 500;
