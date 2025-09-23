@@ -49,15 +49,27 @@
     background-color: var(--cta-background);
     color: var(--cta-color);
     padding: 4px 20px;
+    border: none;
+    border-radius: var(--radius);
+    transition: all 0.3s ease;
+}
+
+.email-form button:disabled {
+    background-color: #ff0000 !important;
+    color: #ffffff !important;
+    cursor: not-allowed !important;
+    border: 3px solid #ffff00 !important;
 }
 
 .error-message {
-    color: #ef4444;
-    background: var(--entry);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 4px 8px;
-    font-size: 0.8em;
+    color: #ff0000 !important;
+    background: #ffff00 !important;
+    border: 3px solid #ff0000 !important;
+    border-radius: 8px !important;
+    padding: 8px 12px !important;
+    font-size: 1.2em !important;
+    font-weight: bold !important;
+    z-index: 10 !important;
 }
 
 .page-header h1 {
