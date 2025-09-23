@@ -117,7 +117,7 @@ body .main .blogs-container {
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
-  height: 280px; /* Increased height for better visual impact */
+  height: 200px; /* Reduced height for more compact design */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -260,7 +260,7 @@ body .main .blogs-container {
   
   .blog-image {
     margin-bottom: 1rem;
-    height: 220px; /* Increased mobile height for better visual impact */
+    height: 160px; /* Reduced mobile height for more compact design */
   }
   
   .read-more-link {
