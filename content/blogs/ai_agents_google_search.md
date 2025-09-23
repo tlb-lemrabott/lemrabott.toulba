@@ -6,7 +6,7 @@ draft: false
 tags: ["AI Agents", "Search Algorithms", "Google Search API", "LLM Integration", "Web Scraping", "Query Optimization", "Machine Learning"]
 weight: 198
 cover:
-    image: "blogs/ai_agents_google_search/ai_agents_google_search.svg"
+    image: "blogs/ai_agents_google_search/image.png"
 ---
 
 ## Overview
