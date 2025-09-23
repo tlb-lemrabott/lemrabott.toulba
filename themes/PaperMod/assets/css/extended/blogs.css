@@ -143,14 +143,12 @@ body .main .blogs-container {
 
 /* Blog Description */
 .blog-description {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: var(--secondary);
-  font-weight: 500;
-  margin-bottom: 2rem;
-  padding: 1rem 1.25rem;
-  background: rgba(102, 126, 234, 0.05);
-  border-radius: 12px;
-  border-left: 5px solid #667eea;
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  padding: 0.75rem 0;
 }
 
 /* Technology Tags */
@@ -179,63 +177,18 @@ body .main .blogs-container {
   box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }
 
-/* Content Preview Section */
-.blog-content-preview {
-  margin-top: 2rem;
-  margin-bottom: 1.5rem;
-}
-
-.content-preview-title {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--primary);
-  margin-bottom: 1.25rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.content-preview-title::before {
-  content: '📝';
-  font-size: 1.2rem;
-}
-
-.content-preview-text {
-  color: var(--content);
-  line-height: 1.7;
-  margin-bottom: 1rem;
-  font-size: 1rem;
-}
-
-.content-preview-text p {
-  margin: 0;
-  color: var(--secondary);
-}
-
-.read-more {
-  text-align: right;
-  margin-top: 1rem;
-}
-
-.read-more-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.25rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: var(--cta-color);
-  text-decoration: none;
-  border-radius: 12px;
-  font-weight: 500;
-  font-size: 0.95rem;
+/* Simplified Blog Card Layout */
+.blog-card {
   transition: all 0.3s ease;
-  box-shadow: 0 3px 12px rgba(102, 126, 234, 0.25);
 }
 
-.read-more-link:hover {
+.blog-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.35);
-  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.dark .blog-card:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 /* Responsive Design */
@@ -281,11 +234,6 @@ body .main .blogs-container {
   .blog-image {
     margin-bottom: 1rem;
     height: 180px; /* Slightly smaller height on mobile */
-  }
-  
-  .read-more-link {
-    padding: 0.6rem 1rem;
-    font-size: 0.9rem;
   }
 }
 
