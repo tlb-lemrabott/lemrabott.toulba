@@ -177,6 +177,33 @@ body .main .blogs-container {
   box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }
 
+/* Read More Button */
+.read-more {
+  text-align: right;
+  margin-top: 1.5rem;
+}
+
+.read-more-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: var(--cta-color);
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 12px rgba(102, 126, 234, 0.25);
+}
+
+.read-more-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.35);
+  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+}
+
 /* Simplified Blog Card Layout */
 .blog-card {
   transition: all 0.3s ease;
@@ -234,6 +261,11 @@ body .main .blogs-container {
   .blog-image {
     margin-bottom: 1rem;
     height: 220px; /* Increased mobile height for better visual impact */
+  }
+  
+  .read-more-link {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
   }
 }
 
