@@ -6,8 +6,10 @@ draft: false
 tags: ["AI Agents", "Search Algorithms", "Google Search API", "LLM Integration", "Web Scraping", "Query Optimization", "Machine Learning"]
 weight: 198
 cover:
-    image: "blogs/ai_agents_google_search/image.png"
+    image: "blogs/ai_agents_google_search/title.png"
 ---
+
+![Spring Boot Deployment Overview](/blogs/ai_agents_google_search/title.png)
 
 ## Overview
 
@@ -33,6 +35,9 @@ I was curious about the mechanisms by which AI agents execute Google searches wh
 - [References](#references)
 
 ## Search Strategies Employed by AI Agents
+
+![Spring Boot Deployment Overview](/blogs/ai_agents_google_search/image.png)
+
 When an AI agent determines that the user query requires Google search capabilities, it implements one of these methodologies:
 1. Custom Search APIs
     - Google offers the Custom Search JSON API: https://developers.google.com/custom-search/v1/overview
