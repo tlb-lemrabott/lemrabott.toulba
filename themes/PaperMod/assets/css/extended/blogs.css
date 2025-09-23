@@ -117,7 +117,7 @@ body .main .blogs-container {
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
-  height: 200px; /* Standardized height for all blog images */
+  height: 280px; /* Increased height for better visual impact */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -233,7 +233,7 @@ body .main .blogs-container {
   
   .blog-image {
     margin-bottom: 1rem;
-    height: 180px; /* Slightly smaller height on mobile */
+    height: 220px; /* Increased mobile height for better visual impact */
   }
 }
 
