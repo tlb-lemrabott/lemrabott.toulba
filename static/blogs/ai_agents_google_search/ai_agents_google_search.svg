@@ -1,0 +1,42 @@
+<svg width='980' height='320' viewBox='0 0 980 320' xmlns='http://www.w3.org/2000/svg'>
+  <defs>
+    <style>
+      .box { fill: #f4f7ff; stroke: #1f3c88; stroke-width: 2; rx: 14; ry: 14; }
+      .box-api { fill: #e9f7f2; stroke: #1f3c88; stroke-width: 2; rx: 14; ry: 14; }
+      .label { font-family: 'Helvetica', 'Arial', sans-serif; font-size: 18px; fill: #1f2a44; }
+      .small { font-size: 16px; }
+      .arrow { stroke: #1f3c88; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+    </style>
+    <marker id='arrowhead' markerWidth='10' markerHeight='7' refX='10' refY='3.5' orient='auto'>
+      <polygon points='0 0, 10 3.5, 0 7' fill='#1f3c88' />
+    </marker>
+  </defs>
+  <rect class='box' x='80' y='40' width='180' height='90' />
+  <text class='label' x='170.0' y='78' text-anchor='middle'>User Input</text>
+  <rect class='box' x='280' y='40' width='180' height='90' />
+  <text class='label' x='370.0' y='78' text-anchor='middle'>Agent Brain</text>
+  <text class='label small' x='370.0' y='104' text-anchor='middle'>intent detect</text>
+  <rect class='box' x='480' y='40' width='180' height='90' />
+  <text class='label' x='570.0' y='78' text-anchor='middle'>Query Builder</text>
+  <text class='label small' x='570.0' y='104' text-anchor='middle'>operators &amp; variants</text>
+  <rect class='box-api' x='680' y='40' width='180' height='90' />
+  <text class='label' x='770.0' y='78' text-anchor='middle'>Search API Call</text>
+  <text class='label small' x='770.0' y='104' text-anchor='middle'>Google CSE / SerpAPI</text>
+  <rect class='box' x='680' y='200' width='180' height='90' />
+  <text class='label' x='770.0' y='238' text-anchor='middle'>Result Parsing</text>
+  <text class='label small' x='770.0' y='264' text-anchor='middle'>dedupe &amp; extract</text>
+  <rect class='box' x='480' y='200' width='180' height='90' />
+  <text class='label' x='570.0' y='238' text-anchor='middle'>LLM Summary</text>
+  <text class='label small' x='570.0' y='264' text-anchor='middle'>rank &amp; explain</text>
+  <rect class='box' x='280' y='200' width='180' height='90' />
+  <text class='label' x='370.0' y='238' text-anchor='middle'>Final Answer</text>
+  <text class='label small' x='370.0' y='264' text-anchor='middle'>sent to user</text>
+  <line class='arrow' x1='260' y1='85' x2='280' y2='85' />
+  <line class='arrow' x1='460' y1='85' x2='480' y2='85' />
+  <line class='arrow' x1='660' y1='85' x2='680' y2='85' />
+  <line class='arrow' x1='770.0' y1='130' x2='770.0' y2='200' />
+  <line class='arrow' x1='680' y1='245' x2='660' y2='245' />
+  <line class='arrow' x1='480' y1='245' x2='460' y2='245' />
+  <polyline class='arrow' points='280,245 170,245 170,130' />
+  <text class='label small' x='770' y='150' text-anchor='middle'>HTTP GET → JSON</text>
+</svg>

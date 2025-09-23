@@ -103,7 +103,7 @@ body .main .experience-container {
 
 .experience-date {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  color: var(--cta-color);
   padding: 0.5rem 1rem;
   border-radius: 20px;
   font-size: 0.875rem;
@@ -186,7 +186,7 @@ body .main .experience-container {
 
 .experience-tag {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  color: var(--cta-color);
   padding: 0.5rem 1rem;
   border-radius: 15px;
   font-size: 0.9rem;
@@ -227,7 +227,7 @@ body .main .experience-container {
 
 .experience-link:hover {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  color: var(--cta-color);
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
   border-color: transparent;

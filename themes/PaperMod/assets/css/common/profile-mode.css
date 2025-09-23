@@ -132,7 +132,7 @@
 .leetcode-card {
     flex: 1 1 150px;
     background: linear-gradient(135deg, #f3ec78, #af4261);
-    color: white;
+    color: var(--cta-color);
     padding: 20px;
     border-radius: 16px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);

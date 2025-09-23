@@ -101,7 +101,7 @@ body .main .education-container {
 
 .education-date {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  color: var(--cta-color);
   padding: 0.5rem 1rem;
   border-radius: 20px;
   font-size: 0.875rem;
@@ -132,7 +132,7 @@ body .main .education-container {
 
 .education-tag {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  color: var(--cta-color);
   padding: 0.5rem 1rem;
   border-radius: 15px;
   font-size: 0.9rem;
