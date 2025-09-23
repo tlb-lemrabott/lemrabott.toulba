@@ -9,7 +9,7 @@ cover:
     image: "blogs/ai_agents_google_search/title.png"
 ---
 
-![Spring Boot Deployment Overview](/blogs/ai_agents_google_search/title.png)
+![AI Agents Google Search Overview](/blogs/ai_agents_google_search/title.png)
 
 ## Overview
 
@@ -36,7 +36,7 @@ I was curious about the mechanisms by which AI agents execute Google searches wh
 
 ## Search Strategies Employed by AI Agents
 
-![Spring Boot Deployment Overview](/blogs/ai_agents_google_search/image.png)
+![AI Agents Search Strategies](/blogs/ai_agents_google_search/image.png)
 
 When an AI agent determines that the user query requires Google search capabilities, it implements one of these methodologies:
 1. Custom Search APIs
@@ -76,11 +76,11 @@ AI agents typically employ sophisticated query construction strategies rather th
         - "Java Developer New York"
         - "Backend Engineer New York City"
 4. Temporal Filtering Mechanisms
-- Methodology: Implement filters that prioritize recent results.
-- Implementation examples:
-    - Google search operators: past week, past month (via APIs or UI filters).
-    - Bing API / SerpAPI: freshness=Month parameter.
-    - Framework-specific implementations (LangChain, internal search rerankers): --QDF=3 parameter, boosting documents updated within the past ~3 months.
+    - Methodology: Implement filters that prioritize recent results.
+    - Implementation examples:
+        - Google search operators: past week, past month (via APIs or UI filters).
+        - Bing API / SerpAPI: freshness=Month parameter.
+        - Framework-specific implementations (LangChain, internal search rerankers): --QDF=3 parameter, boosting documents updated within the past ~3 months.
 
 ## Direct Google UI Simulation vs Custom Search API Integration
 
