@@ -1,4 +1,5 @@
 import { LeetCode } from "leetcode-query";
+import { debug, info, warn, error } from "./logger";
 
 interface SubmissionStats {
   difficulty: string;
@@ -68,12 +69,12 @@ const cache = new LeetCodeCache();
 let leetcodeClient: LeetCode | null = null;
 let clientInitialized = false;
 
-const getLeetCodeClient = (): LeetCode => {
+export const getLeetCodeClient = (): LeetCode => {
   if (!leetcodeClient) {
-    console.log("Initializing LeetCode client...");
+    debug("Initializing LeetCode client...");
     leetcodeClient = new LeetCode();
     clientInitialized = true;
-    console.log("LeetCode client initialized successfully");
+    debug("LeetCode client initialized successfully");
   }
   return leetcodeClient;
 };
@@ -85,16 +86,30 @@ const initializeClient = (): void => {
   }
 };
 
-// Enhanced error handling with retry logic
-const fetchWithRetry = async <T>(fn: () => Promise<T>, retries: number = 3): Promise<T> => {
+// Enhanced error handling with retry logic for cold starts
+const fetchWithRetry = async <T>(fn: () => Promise<T>, retries: number = 5): Promise<T> => {
   for (let i = 0; i < retries; i++) {
     try {
       return await fn();
     } catch (error) {
+      debug(`Retry attempt ${i + 1}/${retries} failed:`, error);
+      
       if (i === retries - 1) throw error;
       
-      // Exponential backoff
-      const delay = Math.pow(2, i) * 1000;
+      // Enhanced backoff strategy for cold starts
+      let delay: number;
+      if (i === 0) {
+        // First retry after 1 second (cold start detection)
+        delay = 1000;
+      } else if (i === 1) {
+        // Second retry after 2 seconds
+        delay = 2000;
+      } else {
+        // Exponential backoff for subsequent retries
+        delay = Math.pow(2, i) * 1000;
+      }
+      
+      debug(`Waiting ${delay}ms before retry ${i + 2}...`);
       await new Promise(resolve => setTimeout(resolve, delay));
     }
   }
@@ -105,11 +120,11 @@ export async function fetchLeetCodeData(username: string): Promise<LeetCodeData>
   // Check cache first
   const cached = cache.get(username);
   if (cached) {
-    console.log(`Cache hit for user: ${username}`);
+    debug(`Cache hit for user: ${username}`);
     return cached;
   }
 
-  console.log(`Cache miss for user: ${username}, fetching from LeetCode API`);
+  debug(`Cache miss for user: ${username}, fetching from LeetCode API`);
 
   try {
     const data = await fetchWithRetry(async () => {
@@ -160,13 +175,13 @@ export async function fetchLeetCodeData(username: string): Promise<LeetCodeData>
 // Pre-warm cache function for main user
 export async function prewarmCache(): Promise<void> {
   try {
-    console.log("Starting cache pre-warming...");
+    debug("Starting cache pre-warming...");
     // Initialize client first
     initializeClient();
     await fetchLeetCodeData("vRCcb0Nnvp");
-    console.log("Cache pre-warmed successfully");
-  } catch (error) {
-    console.error("Failed to pre-warm cache:", error);
+    debug("Cache pre-warmed successfully");
+  } catch (err) {
+    error("Failed to pre-warm cache:", err);
     // Don't throw - this is a best-effort operation
   }
 }
