@@ -36,8 +36,8 @@ class BackendLogger {
     // Check if we're in development mode
     const isDev = process.env.NODE_ENV === 'development' || 
                  process.env.NODE_ENV === 'dev' ||
-                 process.env.AWS_LAMBDA_FUNCTION_NAME?.includes('dev') ||
-                 process.env.AWS_LAMBDA_FUNCTION_NAME?.includes('test');
+                 (process.env.AWS_LAMBDA_FUNCTION_NAME?.includes('dev') ?? false) ||
+                 (process.env.AWS_LAMBDA_FUNCTION_NAME?.includes('test') ?? false);
     
     return isDev;
   }
