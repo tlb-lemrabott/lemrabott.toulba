@@ -312,16 +312,30 @@ const fetchLeetCodeStats = async (retryCount: number = 0): Promise<void> => {
   showLoading();
 
   try {
-    const response = await fetchWithTimeout(`${API_URL}${USERNAME}`, 15000);
+    const response = await fetchWithTimeout(`${API_URL}${USERNAME}`, 20000); // Increased timeout for cold starts
     
     if (!response.ok) {
-      // Handle specific status codes
-      if (response.status === 503) {
+      // Handle specific status codes with enhanced cold start detection
+      if (response.status === 503 || response.status === 500) {
         // Service temporarily unavailable (likely cold start)
         const retryAfter = response.headers.get('retry-after');
-        const delay = retryAfter ? parseInt(retryAfter) * 1000 : 5000;
+        let delay: number;
         
-        if (retryCount < 2) { // Max 3 attempts
+        if (retryAfter) {
+          delay = parseInt(retryAfter) * 1000;
+        } else {
+          // Enhanced delay strategy for cold starts
+          if (retryCount === 0) {
+            delay = 2000; // First retry after 2 seconds
+          } else if (retryCount === 1) {
+            delay = 4000; // Second retry after 4 seconds
+          } else {
+            delay = 6000; // Third retry after 6 seconds
+          }
+        }
+        
+        if (retryCount < 3) { // Max 4 attempts for cold starts
+          debug(`Cold start detected, retrying in ${delay}ms (attempt ${retryCount + 1}/4)`);
           hideLoading();
           setTimeout(() => fetchLeetCodeStats(retryCount + 1), delay);
           return;
@@ -379,6 +393,28 @@ const fetchLeetCodeStats = async (retryCount: number = 0): Promise<void> => {
   }
 };
 
+// Proactive warm-up function to prevent cold starts
+const proactiveWarmup = async () => {
+  try {
+    // Make a lightweight request to warm up the Lambda
+    const response = await fetch(`${API_URL}${USERNAME}`, {
+      method: 'HEAD', // Use HEAD request to minimize payload
+      headers: {
+        'Accept': 'application/json',
+        'User-Agent': 'Mozilla/5.0 (compatible; LeetCodeStats/1.0)'
+      },
+      mode: 'cors',
+      credentials: 'omit'
+    });
+    
+    if (response.ok || response.status === 503) {
+      debug('Proactive warm-up completed');
+    }
+  } catch (error) {
+    debug('Proactive warm-up failed (this is expected for cold starts):', error);
+  }
+};
+
 // Initialize when DOM is ready
 const initializeLeetCodeStats = () => {
   // Add CSS for loading states
@@ -402,8 +438,13 @@ const initializeLeetCodeStats = () => {
   `;
   document.head.appendChild(style);
 
-  // Start the process
-  fetchLeetCodeStats();
+  // Proactive warm-up to reduce cold start impact
+  proactiveWarmup();
+  
+  // Start the main process after a short delay to allow warm-up
+  setTimeout(() => {
+    fetchLeetCodeStats();
+  }, 1000);
 };
 
 // Initialize when DOM is ready
