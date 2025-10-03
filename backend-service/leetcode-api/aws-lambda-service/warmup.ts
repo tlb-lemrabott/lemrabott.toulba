@@ -1,8 +1,9 @@
 import { fetchLeetCodeData, prewarmCache } from "./service";
+import { debug, info, warn, error } from "./logger";
 
-// Warm-up function to keep Lambda container alive
+// Enhanced warm-up function to keep Lambda container alive
 export const warmup = async (event: any, context: any) => {
-  console.log('Warm-up function triggered');
+  debug('Enhanced warm-up function triggered');
   
   try {
     // Pre-warm the cache with main user data
@@ -14,26 +15,37 @@ export const warmup = async (event: any, context: any) => {
     for (const username of commonUsernames) {
       try {
         await fetchLeetCodeData(username);
-        console.log(`Warmed up cache for user: ${username}`);
-      } catch (error) {
-        console.error(`Failed to warm up for user ${username}:`, error);
+        debug(`Warmed up cache for user: ${username}`);
+      } catch (err) {
+        error(`Failed to warm up for user ${username}:`, err);
+        // Continue with other usernames even if one fails
       }
+    }
+    
+    // Additional warm-up: make sure the client is fully initialized
+    try {
+      const { getLeetCodeClient } = await import('./service');
+      getLeetCodeClient();
+      debug('LeetCode client warmed up successfully');
+    } catch (err) {
+      error('Failed to warm up LeetCode client:', err);
     }
     
     return {
       statusCode: 200,
       body: JSON.stringify({
-        message: 'Warm-up completed successfully',
-        timestamp: new Date().toISOString()
+        message: 'Enhanced warm-up completed successfully',
+        timestamp: new Date().toISOString(),
+        cache_size: 'warmed'
       })
     };
-  } catch (error) {
-    console.error('Warm-up failed:', error);
+  } catch (err) {
+    error('Enhanced warm-up failed:', err);
     return {
       statusCode: 500,
       body: JSON.stringify({
-        error: 'Warm-up failed',
-        message: error instanceof Error ? error.message : 'Unknown error'
+        error: 'Enhanced warm-up failed',
+        message: err instanceof Error ? err.message : 'Unknown error'
       })
     };
   }
@@ -41,6 +53,6 @@ export const warmup = async (event: any, context: any) => {
 
 // CloudWatch Events trigger function
 export const scheduledWarmup = async (event: any, context: any) => {
-  console.log('Scheduled warm-up triggered');
+  debug('Scheduled warm-up triggered');
   return await warmup(event, context);
 }; 
