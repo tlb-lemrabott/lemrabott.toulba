@@ -3,6 +3,7 @@ import cors from "cors";
 import rateLimit from "express-rate-limit";
 import { fetchLeetCodeData, prewarmCache, healthCheck } from "./service";
 import { config, getCorsOptions } from "./config";
+import { debug, info, warn, error } from "./logger";
 
 const app = express();
 
@@ -11,7 +12,7 @@ app.use(cors(getCorsOptions()));
 
 // Enhanced logging middleware
 app.use((req, res, next) => {
-  console.log(`${new Date().toISOString()} - ${req.method} ${req.url} - Origin: ${req.headers.origin || 'No origin'}`);
+  debug(`${new Date().toISOString()} - ${req.method} ${req.url} - Origin: ${req.headers.origin || 'No origin'}`);
   next();
 });
 
@@ -100,19 +101,19 @@ app.get("/api/v1/leetcode/:username", strictLimiter, async (req, res) => {
       response_time_ms: responseTime,
       timestamp: new Date().toISOString()
     });
-  } catch (error) {
-    const err = error as Error;
-    console.error("Error fetching user:", err.message);
+  } catch (err) {
+    const errorObj = err as Error;
+    error("Error fetching user:", errorObj.message);
     
     // More specific error responses with better cold start handling
-    if (err.message.includes("Invalid or missing user data")) {
+    if (errorObj.message.includes("Invalid or missing user data")) {
       res.status(404).json({ 
         error: "User not found or profile is private",
         response_code: 404
       });
-    } else if (err.message.includes("Max retries exceeded") || err.message.includes("timeout")) {
+    } else if (errorObj.message.includes("Max retries exceeded") || errorObj.message.includes("timeout")) {
       // Likely a cold start or network issue
-      console.log("Detected potential cold start issue, attempting retry...");
+      debug("Detected potential cold start issue, attempting retry...");
       res.status(503).json({ 
         error: "Service temporarily unavailable, please try again",
         response_code: 503,
