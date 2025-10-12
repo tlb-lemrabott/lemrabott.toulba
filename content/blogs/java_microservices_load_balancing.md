@@ -89,3 +89,4 @@ Server-side balancing offloads complexity from the client, improves observabilit
 - [AWS Application Load Balancer](https://aws.amazon.com/elasticloadbalancing/)  
 - [NGINX Load Balancing Guide](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/)  
 - [Martin Fowler – Microservice Patterns](https://martinfowler.com/articles/microservice-patterns.html)
+- [Spring Cloud - Difference Between Client Side and Server Side Load Balancer](https://www.geeksforgeeks.org/advance-java/spring-cloud-difference-between-client-side-and-server-side-load-balancer/)
