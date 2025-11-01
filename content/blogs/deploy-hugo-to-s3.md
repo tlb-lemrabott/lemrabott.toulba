@@ -3,7 +3,7 @@ title: "Deploy a Hugo site to Amazon S3 with CI/CD Pipeline"
 description: "Full guide on how to deploy a static hugo website to Amazon S3 using Github Actions CI/CD Pipeline in 2024"
 dateString: May 2024
 draft: false
-tags: ["Hogo", "StaticSiteGenerator", "HTML", "CSS", "JavaScript", "Nodejs", "GithubActions", "AWS", "S3"]
+tags: ["Hugo", "StaticSiteGenerator", "HTML", "CSS", "JavaScript", "Nodejs", "GithubActions", "AWS", "S3", "Lambda", "APIGateway", "CloudFront"]
 weight: 202
 cover:
     image: "blogs/deploy-hugo-to-s3/deploy-hugo-site-on-s3.png"
