@@ -75,7 +75,7 @@ params:
     stacks:
       backend:
         - stack1: Java
-        - stack2: Spring boot
+        - stack2: Spring Boot
         - stack3: Spring Cloud
         - stack4: Java EE
       frontend:
@@ -90,12 +90,12 @@ params:
         - db4: DynamoDB
       webServices:
         - ws1: RESTful APIs
-        - ws2: RabbbitMQ
+        - ws2: RabbitMQ
         - ws3: Eureka
         - ws4: Docker
       cloud:
         - cloud1: AWS Services
-        - cloud2: GC Firebase
+        - cloud2: Firebase
         - cloud3: Github Actions
       webSecurity:
         - security1: OAuth2
