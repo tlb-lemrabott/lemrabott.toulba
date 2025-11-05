@@ -1,5 +1,5 @@
 ---
-title: "Mauribit & Operaton Project"
+title: "MAURIBIT & OPERATON PROJECT"
 description: "Independent Software Engineer - Full time "
 dateString: Oct 2022 - Present
 draft: false
