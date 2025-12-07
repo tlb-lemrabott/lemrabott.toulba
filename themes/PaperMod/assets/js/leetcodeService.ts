@@ -304,12 +304,13 @@ const fetchLeetCodeStats = async (retryCount: number = 0): Promise<void> => {
   // Check cache first
   const cached = getCachedData();
   if (cached) {
+    // If we have cached data, render it immediately (loading state already shown)
     renderFromData(cached);
+    hideLoading();
     return;
   }
 
-  // Show loading state
-  showLoading();
+  // Loading state already shown in initializeLeetCodeStats, no need to show again
 
   try {
     const response = await fetchWithTimeout(`${API_URL}${USERNAME}`, 20000); // Increased timeout for cold starts
@@ -336,7 +337,8 @@ const fetchLeetCodeStats = async (retryCount: number = 0): Promise<void> => {
         
         if (retryCount < 3) { // Max 4 attempts for cold starts
           debug(`Cold start detected, retrying in ${delay}ms (attempt ${retryCount + 1}/4)`);
-          hideLoading();
+          // Show loading state again for retry
+          showLoading();
           setTimeout(() => fetchLeetCodeStats(retryCount + 1), delay);
           return;
         } else {
@@ -368,6 +370,7 @@ const fetchLeetCodeStats = async (retryCount: number = 0): Promise<void> => {
     const fallbackData = getCachedData();
     if (fallbackData) {
       renderFromData(fallbackData);
+      // Loading will be hidden in finally block
     } else {
       // Show specific error state based on error type
       const elements = ['totalSolved', 'easySolved', 'mediumSolved', 'hardSolved', 'totalSubmissions', 'ranking', 'acceptanceRate'];
@@ -390,28 +393,6 @@ const fetchLeetCodeStats = async (retryCount: number = 0): Promise<void> => {
     }
   } finally {
     hideLoading();
-  }
-};
-
-// Proactive warm-up function to prevent cold starts
-const proactiveWarmup = async () => {
-  try {
-    // Make a lightweight request to warm up the Lambda
-    const response = await fetch(`${API_URL}${USERNAME}`, {
-      method: 'HEAD', // Use HEAD request to minimize payload
-      headers: {
-        'Accept': 'application/json',
-        'User-Agent': 'Mozilla/5.0 (compatible; LeetCodeStats/1.0)'
-      },
-      mode: 'cors',
-      credentials: 'omit'
-    });
-    
-    if (response.ok || response.status === 503) {
-      debug('Proactive warm-up completed');
-    }
-  } catch (error) {
-    debug('Proactive warm-up failed (this is expected for cold starts):', error);
   }
 };
 
@@ -438,13 +419,11 @@ const initializeLeetCodeStats = () => {
   `;
   document.head.appendChild(style);
 
-  // Proactive warm-up to reduce cold start impact
-  proactiveWarmup();
+  // Show loading state immediately before checking cache or fetching
+  showLoading();
   
-  // Start the main process after a short delay to allow warm-up
-  setTimeout(() => {
-    fetchLeetCodeStats();
-  }, 1000);
+  // Start fetching data immediately
+  fetchLeetCodeStats();
 };
 
 // Initialize when DOM is ready
