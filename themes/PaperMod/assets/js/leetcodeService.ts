@@ -284,12 +284,18 @@ const fetchWithTimeout = async (url: string, timeout: number = 10000): Promise<R
   } catch (error) {
     clearTimeout(timeoutId);
     
-    // Provide more specific error messages
+    // Provide more specific error messages for better retry logic
     if (error instanceof Error) {
       if (error.name === 'AbortError') {
         throw new Error(`Request timeout after ${timeout}ms`);
-      } else if (error.message.includes('Failed to fetch')) {
+      } else if (error.message.includes('Failed to fetch') || 
+                 error.message.includes('NetworkError') ||
+                 error.message.includes('Network request failed')) {
         throw new Error('Network error: Unable to connect to server');
+      } else if (error.message.includes('CORS') || 
+                 error.message.includes('Access-Control') ||
+                 error.message.includes('access-control-allow-origin')) {
+        throw new Error('CORS error: Cross-origin request blocked');
       } else if (error.message.includes('chrome-extension')) {
         throw new Error('Chrome extension cache error - service worker issue');
       }
@@ -297,6 +303,43 @@ const fetchWithTimeout = async (url: string, timeout: number = 10000): Promise<R
     
     throw error;
   }
+};
+
+// Helper function to determine if error is retryable
+const isRetryableError = (error: Error, response?: Response): boolean => {
+  const errorMessage = error.message.toLowerCase();
+  
+  // Network errors that should be retried
+  if (errorMessage.includes('failed to fetch') || 
+      errorMessage.includes('network error') ||
+      errorMessage.includes('networkerror') ||
+      errorMessage.includes('timeout') ||
+      errorMessage.includes('aborted')) {
+    return true;
+  }
+  
+  // CORS errors (Chrome-specific issue)
+  if (errorMessage.includes('cors') || 
+      errorMessage.includes('access-control')) {
+    return true;
+  }
+  
+  // Server errors
+  if (response && (response.status === 503 || response.status === 500)) {
+    return true;
+  }
+  
+  return false;
+};
+
+// Calculate retry delay with exponential backoff
+const getRetryDelay = (retryCount: number, retryAfter?: string): number => {
+  if (retryAfter) {
+    return parseInt(retryAfter) * 1000;
+  }
+  
+  // Exponential backoff: 1s, 2s, 4s, 8s
+  return Math.min(1000 * Math.pow(2, retryCount), 8000);
 };
 
 // Main fetch function with enhanced error handling and retry logic
@@ -320,24 +363,10 @@ const fetchLeetCodeStats = async (retryCount: number = 0): Promise<void> => {
       if (response.status === 503 || response.status === 500) {
         // Service temporarily unavailable (likely cold start)
         const retryAfter = response.headers.get('retry-after');
-        let delay: number;
+        const delay = getRetryDelay(retryCount, retryAfter || undefined);
         
-        if (retryAfter) {
-          delay = parseInt(retryAfter) * 1000;
-        } else {
-          // Enhanced delay strategy for cold starts
-          if (retryCount === 0) {
-            delay = 2000; // First retry after 2 seconds
-          } else if (retryCount === 1) {
-            delay = 4000; // Second retry after 4 seconds
-          } else {
-            delay = 6000; // Third retry after 6 seconds
-          }
-        }
-        
-        if (retryCount < 3) { // Max 4 attempts for cold starts
-          debug(`Cold start detected, retrying in ${delay}ms (attempt ${retryCount + 1}/4)`);
-          // Show loading state again for retry
+        if (retryCount < 4) { // Max 5 attempts
+          debug(`Server error detected, retrying in ${delay}ms (attempt ${retryCount + 1}/5)`);
           showLoading();
           setTimeout(() => fetchLeetCodeStats(retryCount + 1), delay);
           return;
@@ -357,16 +386,26 @@ const fetchLeetCodeStats = async (retryCount: number = 0): Promise<void> => {
 
     const data: LeetCodeData = json.leetcode_data;
     
-    // Cache the data
+    // Cache the data (only if consent given)
     setCachedData(data);
     
     // Render the data
     renderFromData(data);
   } catch (err) {
-    const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+    const errorObj = err instanceof Error ? err : new Error(String(err));
+    const errorMessage = errorObj.message;
     error("Error fetching LeetCode stats:", err);
     
-    // Try to use cached data as fallback
+    // Check if error is retryable (network/CORS issues)
+    if (isRetryableError(errorObj) && retryCount < 4) {
+      const delay = getRetryDelay(retryCount);
+      debug(`Network/CORS error detected (likely Chrome issue), retrying in ${delay}ms (attempt ${retryCount + 1}/5)`);
+      showLoading();
+      setTimeout(() => fetchLeetCodeStats(retryCount + 1), delay);
+      return;
+    }
+    
+    // Try to use cached data as fallback (even if consent not given, try once)
     const fallbackData = getCachedData();
     if (fallbackData) {
       renderFromData(fallbackData);
@@ -379,17 +418,20 @@ const fetchLeetCodeStats = async (retryCount: number = 0): Promise<void> => {
         if (el) {
           if (errorMessage.includes('timeout') || errorMessage.includes('aborted')) {
             el.innerHTML = '<span class="error">Timeout</span>';
+          } else if (errorMessage.includes('cors') || errorMessage.includes('access-control')) {
+            el.innerHTML = '<span class="error">Network Error</span>';
           } else if (errorMessage.includes('500')) {
             el.innerHTML = '<span class="error">Server Error</span>';
           } else if (errorMessage.includes('404')) {
             el.innerHTML = '<span class="error">Not Found</span>';
+          } else if (errorMessage.includes('failed to fetch') || errorMessage.includes('network')) {
+            el.innerHTML = '<span class="error">Network Error</span>';
           } else {
             el.innerHTML = '<span class="error">Failed to load</span>';
           }
           el.classList.add('error');
         }
       });
-      
     }
   } finally {
     hideLoading();
