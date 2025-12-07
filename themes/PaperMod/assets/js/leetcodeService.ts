@@ -34,6 +34,48 @@ const API_URL = "https://82ci0zfx68.execute-api.us-east-1.amazonaws.com/api/v1/l
 const USERNAME = "vRCcb0Nnvp";
 const CACHE_VERSION = "1.0.0";
 
+// Detect if running in embedded browser (WebView, Custom Tabs, Google app browser, etc.)
+const isEmbeddedBrowser = (): boolean => {
+  const ua = navigator.userAgent.toLowerCase();
+  
+  // Check for WebView indicators
+  const hasWebView = ua.includes('wv') || // Android WebView
+                      ua.includes('webview') ||
+                      ua.includes('; wv)'); // Chrome WebView format
+  
+  // Check for Custom Tabs (often used by Google app, LinkedIn, etc.)
+  const hasCustomTabs = (ua.includes('chrome') && ua.includes('version/')) ||
+                        ua.includes('customtabs');
+  
+  // Check for Google app browser (often opens links in embedded browser)
+  const isGoogleApp = ua.includes('googleapp') || 
+                       ua.includes('google-app');
+  
+  // Check for iOS standalone mode (TypeScript-safe)
+  const nav = window.navigator as any;
+  const isIOSStandalone = nav.standalone === true;
+  
+  // Check for PWA standalone mode
+  const isPWAStandalone = window.matchMedia && window.matchMedia('(display-mode: standalone)').matches;
+  
+  // Check if opened from another app (referrer might be different)
+  const openedFromApp = document.referrer === '' && window.location.href.includes('utm_source');
+  
+  return hasWebView || hasCustomTabs || isGoogleApp || isIOSStandalone || isPWAStandalone || openedFromApp;
+};
+
+// Get appropriate timeout based on browser type
+const getTimeout = (): number => {
+  // Embedded browsers often need longer timeouts
+  return isEmbeddedBrowser() ? 30000 : 20000; // 30s for embedded, 20s for regular
+};
+
+// Get max retry count based on browser type
+const getMaxRetries = (): number => {
+  // Embedded browsers need more retries
+  return isEmbeddedBrowser() ? 6 : 4; // 7 attempts for embedded, 5 for regular
+};
+
 // Loading state management
 let isLoading = false;
 let loadingTimeout: NodeJS.Timeout | null = null;
@@ -356,7 +398,8 @@ const fetchLeetCodeStats = async (retryCount: number = 0): Promise<void> => {
   // Loading state already shown in initializeLeetCodeStats, no need to show again
 
   try {
-    const response = await fetchWithTimeout(`${API_URL}${USERNAME}`, 20000); // Increased timeout for cold starts
+    const timeout = getTimeout();
+    const response = await fetchWithTimeout(`${API_URL}${USERNAME}`, timeout);
     
     if (!response.ok) {
       // Handle specific status codes with enhanced cold start detection
@@ -365,8 +408,9 @@ const fetchLeetCodeStats = async (retryCount: number = 0): Promise<void> => {
         const retryAfter = response.headers.get('retry-after');
         const delay = getRetryDelay(retryCount, retryAfter || undefined);
         
-        if (retryCount < 4) { // Max 5 attempts
-          debug(`Server error detected, retrying in ${delay}ms (attempt ${retryCount + 1}/5)`);
+        const maxRetries = getMaxRetries();
+        if (retryCount < maxRetries) {
+          debug(`Server error detected, retrying in ${delay}ms (attempt ${retryCount + 1}/${maxRetries + 1})`);
           showLoading();
           setTimeout(() => fetchLeetCodeStats(retryCount + 1), delay);
           return;
@@ -397,9 +441,11 @@ const fetchLeetCodeStats = async (retryCount: number = 0): Promise<void> => {
     error("Error fetching LeetCode stats:", err);
     
     // Check if error is retryable (network/CORS issues)
-    if (isRetryableError(errorObj) && retryCount < 4) {
+    const maxRetries = getMaxRetries();
+    if (isRetryableError(errorObj) && retryCount < maxRetries) {
       const delay = getRetryDelay(retryCount);
-      debug(`Network/CORS error detected (likely Chrome issue), retrying in ${delay}ms (attempt ${retryCount + 1}/5)`);
+      const browserType = isEmbeddedBrowser() ? 'embedded browser' : 'browser';
+      debug(`Network/CORS error detected (${browserType}), retrying in ${delay}ms (attempt ${retryCount + 1}/${maxRetries + 1})`);
       showLoading();
       setTimeout(() => fetchLeetCodeStats(retryCount + 1), delay);
       return;
@@ -464,8 +510,17 @@ const initializeLeetCodeStats = () => {
   // Show loading state immediately before checking cache or fetching
   showLoading();
   
-  // Start fetching data immediately
-  fetchLeetCodeStats();
+  // For embedded browsers, add a small delay to allow network initialization
+  const isEmbedded = isEmbeddedBrowser();
+  if (isEmbedded) {
+    debug('Embedded browser detected, adding initialization delay');
+    setTimeout(() => {
+      fetchLeetCodeStats();
+    }, 500); // Small delay for embedded browsers
+  } else {
+    // Start fetching data immediately for regular browsers
+    fetchLeetCodeStats();
+  }
 };
 
 // Initialize when DOM is ready
