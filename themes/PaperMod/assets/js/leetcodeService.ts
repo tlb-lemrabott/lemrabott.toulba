@@ -360,9 +360,11 @@ const isRetryableError = (error: Error, response?: Response): boolean => {
     return true;
   }
   
-  // CORS errors (Chrome-specific issue)
+  // CORS errors (common in Firefox and embedded browsers)
   if (errorMessage.includes('cors') || 
-      errorMessage.includes('access-control')) {
+      errorMessage.includes('access-control') ||
+      errorMessage.includes('cross-origin') ||
+      errorMessage.includes('same origin policy')) {
     return true;
   }
   
@@ -400,6 +402,36 @@ const fetchLeetCodeStats = async (retryCount: number = 0): Promise<void> => {
   try {
     const timeout = getTimeout();
     const response = await fetchWithTimeout(`${API_URL}${USERNAME}`, timeout);
+    
+    // Handle 204 (No Content) - often from OPTIONS preflight or CORS issues
+    if (response.status === 204) {
+      // Check if this is a CORS issue (no CORS headers in response)
+      const hasCorsHeaders = response.headers.has('access-control-allow-origin');
+      if (!hasCorsHeaders) {
+        // This is likely a CORS configuration issue - retry might help
+        const maxRetries = getMaxRetries();
+        if (retryCount < maxRetries) {
+          const delay = getRetryDelay(retryCount);
+          debug(`CORS issue detected (204 without CORS headers), retrying in ${delay}ms (attempt ${retryCount + 1}/${maxRetries + 1})`);
+          showLoading();
+          setTimeout(() => fetchLeetCodeStats(retryCount + 1), delay);
+          return;
+        } else {
+          throw new Error('CORS error: Missing Access-Control-Allow-Origin header');
+        }
+      }
+      // If 204 has CORS headers, it's a valid preflight - but we need actual data, so retry
+      const maxRetries = getMaxRetries();
+      if (retryCount < maxRetries) {
+        const delay = getRetryDelay(retryCount);
+        debug(`Received 204 response, retrying for actual data in ${delay}ms (attempt ${retryCount + 1}/${maxRetries + 1})`);
+        showLoading();
+        setTimeout(() => fetchLeetCodeStats(retryCount + 1), delay);
+        return;
+      } else {
+        throw new Error('HTTP 204: No content returned after multiple attempts');
+      }
+    }
     
     if (!response.ok) {
       // Handle specific status codes with enhanced cold start detection
@@ -464,12 +496,17 @@ const fetchLeetCodeStats = async (retryCount: number = 0): Promise<void> => {
         if (el) {
           if (errorMessage.includes('timeout') || errorMessage.includes('aborted')) {
             el.innerHTML = '<span class="error">Timeout</span>';
-          } else if (errorMessage.includes('cors') || errorMessage.includes('access-control')) {
-            el.innerHTML = '<span class="error">Network Error</span>';
+          } else if (errorMessage.includes('cors') || 
+                     errorMessage.includes('access-control') ||
+                     errorMessage.includes('cross-origin') ||
+                     errorMessage.includes('same origin policy')) {
+            el.innerHTML = '<span class="error">CORS Error</span>';
           } else if (errorMessage.includes('500')) {
             el.innerHTML = '<span class="error">Server Error</span>';
           } else if (errorMessage.includes('404')) {
             el.innerHTML = '<span class="error">Not Found</span>';
+          } else if (errorMessage.includes('204') && errorMessage.includes('cors')) {
+            el.innerHTML = '<span class="error">CORS Config Error</span>';
           } else if (errorMessage.includes('failed to fetch') || errorMessage.includes('network')) {
             el.innerHTML = '<span class="error">Network Error</span>';
           } else {
