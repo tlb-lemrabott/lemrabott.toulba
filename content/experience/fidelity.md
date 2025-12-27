@@ -1,5 +1,5 @@
 ---
-title: "fidelity investments"
+title: "Fidelity Investments"
 description: "Principal Software Engineer - Full time "
 dateString: Dec 2025 - Present
 draft: false

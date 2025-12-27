@@ -216,10 +216,6 @@
 
 
 <!-- Chart.js removed to prevent browser crashes -->
-<!-- Cookie Consent Script -->
-{{ $cookieConsent := resources.Get "js/cookieConsent.ts" | js.Build | minify | fingerprint }}
-<script src="{{ $cookieConsent.RelPermalink }}" integrity="{{ $cookieConsent.Data.Integrity }}"></script>
-
 <!-- Logger Script -->
 {{ $logger := resources.Get "js/logger.ts" | js.Build | minify | fingerprint }}
 <script src="{{ $logger.RelPermalink }}" integrity="{{ $logger.Data.Integrity }}"></script>

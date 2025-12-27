@@ -15,11 +15,10 @@ This Privacy Policy explains how we collect, use, and protect your information w
 
 ## Information We Collect
 
-### Cookies and Local Storage
+### Local Storage
 We use browser storage (localStorage) to enhance your experience:
 
 - **LeetCode Statistics Cache**: We cache your LeetCode statistics to improve loading times
-- **Cookie Consent**: We store your cookie preferences
 - **User Preferences**: Any settings you choose on our website
 
 ### Information We Don't Collect
@@ -40,12 +39,6 @@ We use browser storage (localStorage) to enhance your experience:
 - Local storage helps provide a better user experience
 
 ## Your Rights
-
-### Cookie Consent
-You have the right to:
-- Accept or deny cookie usage
-- Change your consent at any time
-- Request deletion of stored data
 
 ### Data Access
 You can:
@@ -84,4 +77,4 @@ If you have any questions about this Privacy Policy, please contact us through:
 
 ## Your Consent
 
-By using our website, you consent to this Privacy Policy and our use of cookies as described above. 
+By using our website, you consent to this Privacy Policy and our use of local storage as described above. 

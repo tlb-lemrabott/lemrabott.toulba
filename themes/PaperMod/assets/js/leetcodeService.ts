@@ -1,8 +1,5 @@
 import { CountUp } from "countup.js";
 
-// Import cookie consent manager
-import { cookieConsent } from './cookieConsent';
-
 // Import logger
 import { debug, info, warn, error } from './logger';
 
@@ -121,13 +118,8 @@ const hideLoading = () => {
   });
 };
 
-// Enhanced cache management with cookie consent
+// Enhanced cache management
 const getCachedData = (): LeetCodeData | null => {
-  // Check if user has consented to cookies
-  if (!cookieConsent.canUseCookies()) {
-    return null;
-  }
-
   try {
     const cached = localStorage.getItem(CACHE_KEY);
     if (!cached) {
@@ -163,11 +155,6 @@ const getCachedData = (): LeetCodeData | null => {
 };
 
 const setCachedData = (data: LeetCodeData): void => {
-  // Check if user has consented to cookies
-  if (!cookieConsent.canUseCookies()) {
-    return;
-  }
-
   try {
     const cacheEntry: CacheEntry = {
       timestamp: Date.now(),
@@ -462,7 +449,7 @@ const fetchLeetCodeStats = async (retryCount: number = 0): Promise<void> => {
 
     const data: LeetCodeData = json.leetcode_data;
     
-    // Cache the data (only if consent given)
+    // Cache the data
     setCachedData(data);
     
     // Render the data
