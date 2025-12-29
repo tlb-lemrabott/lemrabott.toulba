@@ -56,11 +56,11 @@ params:
   # Home Page
   profileMode:
     enabled: true
-    title: "Software Engineer"
+    title: "Principal Software Engineer"
     subtitle: Java | Spring Boot | RESTful APIs | SQL | Microservices
     text: |- 
-      👨‍💻 Full-satck Developer with an M.S. in Computer Science. 📍 New York City <br/>
-      ℹ️ Eligible for Full-time W2 Employment in the US
+      Principal Software Engineer specializing in building highly scalable distributed systems and robust backend architectures. 
+      Focused on high-performance Java ecosystems and cloud-native solutions.
     subtext1: I have a proven track record of delivering efficient solutions and achieving measurable results, 
       including optimizing performance and contributing to successful project completion. 
     achievements_title: ACHIEVEMENTS DONE
