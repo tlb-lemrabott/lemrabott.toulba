@@ -2,6 +2,3 @@
 
 # Hugo build output
 public/
-
-# Cold start fix documentation
-backend-service/leetcode-api/aws-lambda-service/COLD_START_FIX.md
