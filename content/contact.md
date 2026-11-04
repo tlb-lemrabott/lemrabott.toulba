@@ -7,4 +7,4 @@ summary: "contact"
 ---
 
 
-Kindly write you message down and I will get back to you soon ...
+Send a note about a system, a role, or a collaboration. I read every message.

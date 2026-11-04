@@ -12,11 +12,11 @@ menu:
     - identifier: education
       name: Education
       url: /education
-      weight: 30
+      weight: 50
     - identifier: projects
       name: Projects
       url: /projects
-      weight: 40
+      weight: 30
     - identifier: experience
       name: Experience
       url: /experience
@@ -26,9 +26,9 @@ menu:
       url: /contact
       weight: 60
     - identifier: blogs
-      name: Blogs
+      name: Blog
       url: /blogs
-      weight: 50
+      weight: 40
     - identifier: search
       name: Search
       url: /search
@@ -56,54 +56,32 @@ params:
   # Home Page
   profileMode:
     enabled: true
-    title: "Principal Software Engineer"
-    subtitle: Java | Spring Boot | RESTful APIs | SQL | Microservices
-    text: |- 
-      Principal Software Engineer specializing in building highly scalable distributed systems and robust backend architectures. 
-      Focused on high-performance Java ecosystems and cloud-native solutions.
-    subtext1: I have a proven track record of delivering efficient solutions and achieving measurable results, 
-      including optimizing performance and contributing to successful project completion. 
-    achievements_title: ACHIEVEMENTS DONE
-    achievements: |-     
-      ✅ Successfully managed and designed the creation and integration of a mobile payment platform with third-party companies for BNM Bank, resulting in the streamlining of payments to the bank.
-        
-      ✅ Designed and implemented a system that effectively addresses a critical issue encountered within BPM Bank's banking system.
-
-      ✅ Collaborated on developing a scalable web app for Mauribit, capable of handling 500K simultaneous users during national exam result announcements.
-    subtext2: |-
-      Committed to continuous growth and maintaining high-quality standards. Focused on exceptional quality and scalability.
-    stacks:
-      backend:
-        - stack1: Java
-        - stack2: Spring Boot
-        - stack3: Spring Cloud
-        - stack4: Java EE
-      frontend:
-        - stack1: HTML
-        - stack2: CSS
-        - stack3: Angular
-        - stack4: Reactjs
-      databases:
-        - db1: MySQL
-        - db2: PostgreSQL
-        - db3: MongoDB
-        - db4: DynamoDB
-      webServices:
-        - ws1: RESTful APIs
-        - ws2: RabbitMQ
-        - ws3: Eureka
-        - ws4: Docker
-      cloud:
-        - cloud1: AWS Services
-        - cloud2: Firebase
-        - cloud3: Github Actions
-      webSecurity:
-        - security1: OAuth2
-        - security2: JWT
-        - security3: IAM
-    imageUrl: "home/image.png"
-    imageWidth: 220
-    imageHeight: 220
+    title: "Lemrabott Toulba"
+    role: "Principal Software Engineer"
+    now: "Currently at Fidelity Investments"
+    years: "8+ years"
+    education: "M.S. Computer Science, Maharishi International University"
+    text: "I design and build scalable enterprise applications, integrate systems through APIs and event-driven messaging, develop batch processing solutions, and modernize legacy software."
+    skills:
+      - Java
+      - Spring Boot
+      - Kafka
+      - AWS
+    highlights:
+      - org: Fidelity Investments
+        title: Financial integrations and modernization
+        period: 2025 — Present
+        tags: ["Java", "Spring Boot", "Kafka", "AWS"]
+        url: /experience/fidelity/
+    focus:
+      - title: Enterprise integration
+        text: REST APIs for financial systems, including external authentication, database connectivity, and money movement workflows.
+      - title: Backend platforms
+        text: Java, Spring Boot, and Spring Batch, including modernization of existing applications and their build dependencies.
+      - title: Event-driven systems
+        text: Kafka, RabbitMQ, and microservices for workflows that have to stay reliable in production.
+      - title: Cloud delivery
+        text: AWS, including ECS, EventBridge, and CloudWatch, with Jenkins and GitHub Actions, and Datadog for production monitoring.
     # buttons:
     #   - name: Resume
     #     url: ""

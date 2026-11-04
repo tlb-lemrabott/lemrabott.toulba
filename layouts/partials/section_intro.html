@@ -1,0 +1,16 @@
+<header class="page-header section-intro">
+    <h1>{{ .Title }}</h1>
+    {{- with .Description }}
+    {{- $desc := . -}}
+    {{- $matches := findRE `https://github\.com/\S+` $desc 1 -}}
+    <p class="section-lede">
+        {{- if $matches -}}
+        {{- $url := index $matches 0 -}}
+        {{- $parts := split $desc $url -}}
+        {{- index $parts 0 -}}<a class="lede-button" href="{{ $url }}" target="_blank" rel="noopener noreferrer">{{ partial "svg.html" (dict "name" "github") }}GitHub Repos</a>{{- index $parts 1 -}}
+        {{- else -}}
+        {{ $desc }}
+        {{- end -}}
+    </p>
+    {{- end }}
+</header>

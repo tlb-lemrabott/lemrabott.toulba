@@ -7,63 +7,64 @@ document.addEventListener('DOMContentLoaded', function() {
     const contentInput = document.getElementById('content');
     const submitButton = document.getElementById('submitButton');
     const emailError = document.getElementById('emailError');
+    const subjectError = document.getElementById('subjectError');
+    const contentError = document.getElementById('contentError');
+    const formError = document.getElementById('formError');
     const contactContent = document.querySelector('.contact-content');
+    const buttonText = submitButton.querySelector('.button-text');
 
-    // Form validation function
-    function validateField(inputElement, validationFn, errorMessage) {
-        const isValid = validationFn(inputElement.value.trim());
-        if (inputElement === emailInput) {
-            emailError.textContent = isValid ? '' : errorMessage;
-            emailError.style.display = isValid ? 'none' : 'block';
-        }
-        return isValid;
-    }
-
-    // Email validation regex
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const touched = { email: false, subject: false, message: false };
+    let submitAttempted = false;
 
-    // Form validation
-    function validateForm() {
-        const isEmailValid = validateField(
-            emailInput, 
-            (value) => emailRegex.test(value), 
-            'Please enter a valid email address.'
-        );
-        const isSubjectValid = subjectInput.value.trim() !== '';
-        const isContentValid = contentInput.value.trim() !== '';
-        
-        const isValid = isEmailValid && isSubjectValid && isContentValid;
-        submitButton.disabled = !isValid;
-        
-        // Update button text based on validation
-        if (isValid) {
-            submitButton.querySelector('.button-text').textContent = 'Send Message';
-            submitButton.classList.remove('invalid');
-        } else {
-            submitButton.querySelector('.button-text').textContent = 'Fill all fields';
-            submitButton.classList.add('invalid');
-        }
-        
-        return isValid;
+    function emailMessage(value) {
+        if (!value) return 'Email is required.';
+        if (!emailRegex.test(value)) return 'Enter a valid email address, such as name@example.com.';
+        return '';
     }
 
-    // Real-time validation
-    emailForm.addEventListener('input', validateForm);
+    function setFieldError(input, errorEl, message) {
+        errorEl.textContent = message;
+        errorEl.hidden = !message;
+        input.setAttribute('aria-invalid', message ? 'true' : 'false');
+    }
 
-    // Enhanced focus effects
+    function validateForm(showAll) {
+        const email = emailInput.value.trim();
+        const subject = subjectInput.value.trim();
+        const message = contentInput.value.trim();
+        const errors = {
+            email: emailMessage(email),
+            subject: subject ? '' : 'Subject is required.',
+            message: message ? '' : 'Message is required.'
+        };
+
+        if (showAll || touched.email) setFieldError(emailInput, emailError, errors.email);
+        if (showAll || touched.subject) setFieldError(subjectInput, subjectError, errors.subject);
+        if (showAll || touched.message) setFieldError(contentInput, contentError, errors.message);
+
+        return !errors.email && !errors.subject && !errors.message;
+    }
+
+    function refreshErrors() {
+        if (formError) formError.hidden = true;
+        validateForm(false);
+    }
+
+    emailInput.addEventListener('input', refreshErrors);
+    subjectInput.addEventListener('input', refreshErrors);
+    contentInput.addEventListener('input', refreshErrors);
+    emailInput.addEventListener('blur', () => { touched.email = true; refreshErrors(); });
+    subjectInput.addEventListener('blur', () => { touched.subject = true; refreshErrors(); });
+    contentInput.addEventListener('blur', () => { touched.message = true; refreshErrors(); });
+
     [emailInput, subjectInput, contentInput].forEach(input => {
         input.addEventListener('focus', function() {
             this.parentElement.style.transform = 'translateY(-2px)';
-            if (this === emailInput && emailError.textContent) {
-                emailError.style.display = 'block';
-            }
         });
 
         input.addEventListener('blur', function() {
             this.parentElement.style.transform = 'translateY(0)';
-            if (this === emailInput) {
-                emailError.style.display = 'none';
-            }
         });
 
         // Add character count for textarea
@@ -89,14 +90,18 @@ document.addEventListener('DOMContentLoaded', function() {
     async function submitForm(event) {
         event.preventDefault();
         
-        if (!validateForm()) {
+        submitAttempted = true;
+        if (!validateForm(true)) {
+            const firstInvalid = emailForm.querySelector('[aria-invalid="true"]');
+            if (firstInvalid) firstInvalid.focus();
             return;
         }
 
+        if (formError) formError.hidden = true;
+
         // Show loading state
         submitButton.disabled = true;
-        submitButton.querySelector('.button-text').textContent = 'Sending...';
-        submitButton.querySelector('.button-icon').textContent = '⏳';
+        buttonText.textContent = 'Sending...';
         contactContent.classList.add('loading');
 
         const formData = {
@@ -118,14 +123,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 throw new Error('Network response was not ok');
             }
 
-            const result = await response.json();
-            
-            // Show success state
+            await response.json().catch(() => ({}));
             showSuccessMessage();
-            
         } catch (error) {
-            // Show success message even on error (as per original logic)
-            showSuccessMessage();
+            submitButton.disabled = false;
+            buttonText.textContent = 'Send Message';
+            contactContent.classList.remove('loading');
+            if (formError) {
+                formError.textContent = 'The message could not be sent. Try again, or email lemrabott.toulba@gmail.com.';
+                formError.hidden = false;
+            }
         }
     }
 
@@ -133,12 +140,19 @@ document.addEventListener('DOMContentLoaded', function() {
     function showSuccessMessage() {
         // Reset form
         emailForm.reset();
+        touched.email = false;
+        touched.subject = false;
+        touched.message = false;
+        submitAttempted = false;
+        [emailError, subjectError, contentError].forEach((el) => {
+            el.textContent = '';
+            el.hidden = true;
+        });
+        [emailInput, subjectInput, contentInput].forEach((input) => {
+            input.setAttribute('aria-invalid', 'false');
+        });
         submitButton.disabled = true;
-        
-        // Update button to show success
-        submitButton.querySelector('.button-text').textContent = 'Message Sent!';
-        submitButton.querySelector('.button-icon').textContent = '✅';
-        submitButton.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+        buttonText.textContent = 'Message Sent!';
         
         // Add success animation to container
         contactContent.classList.remove('loading');
@@ -149,11 +163,10 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Reset button after 3 seconds
         setTimeout(() => {
-            submitButton.querySelector('.button-text').textContent = 'Send Message';
-            submitButton.querySelector('.button-icon').textContent = '📧';
-            submitButton.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+            buttonText.textContent = 'Send Message';
+            submitButton.disabled = false;
+            submitButton.style.background = '';
             contactContent.classList.remove('success');
-            validateForm();
         }, 3000);
     }
 
@@ -293,8 +306,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 if (currentIndex < inputs.length - 1) {
                     inputs[currentIndex + 1].focus();
-                } else if (validateForm()) {
-                    submitForm(new Event('submit'));
+                } else {
+                    submitAttempted = true;
+                    if (validateForm(true)) {
+                        submitForm(new Event('submit'));
+                    }
                 }
             }
         }

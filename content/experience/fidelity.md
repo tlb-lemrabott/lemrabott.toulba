@@ -1,14 +1,11 @@
 ---
 title: "Fidelity Investments"
-description: "Principal Software Engineer - Full time "
-dateString: Dec 2025 - Present
+description: "Principal Software Engineer"
+dateString: Nov 2025 - Present
 draft: false
-tags: ["Java", "Spring Boot"]
+tags: ["Java", "Spring Boot", "Spring Batch", "Kafka", "AWS", "Jenkins", "REST APIs"]
 showToc: false
 weight: 299
 ---
 
-### Main Tasks
-- Principal Software Engineer 
-
-#### 🔗 [**Company Link**](https://www.fidelity.com/)
+[Fidelity Investments](https://www.fidelity.com/)

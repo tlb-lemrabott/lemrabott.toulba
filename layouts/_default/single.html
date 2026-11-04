@@ -23,33 +23,36 @@
 
       <div class="contact-form-section">
         
-        <form id="emailForm" class="contact-form">
+        <form id="emailForm" class="contact-form" novalidate>
           <div class="form-group">
+            <label class="field-label" for="fromEmail">Email</label>
             <div class="input-container">
-              <input id="fromEmail" class="form-input" type="email" placeholder="Your Email" required/>
-              <span class="required-star">*</span>
-              <div class="error-message" id="emailError"></div>
+              <input id="fromEmail" class="form-input" type="email" name="email" autocomplete="email" placeholder="name@example.com" required aria-describedby="emailError"/>
             </div>
+            <p class="field-error" id="emailError" role="alert" hidden></p>
           </div>
-          
+
           <div class="form-group">
+            <label class="field-label" for="subject">Subject</label>
             <div class="input-container">
-              <input id="subject" class="form-input" type="text" placeholder="Subject" required/>
-              <span class="required-star">*</span>
+              <input id="subject" class="form-input" type="text" name="subject" autocomplete="off" placeholder="Subject" required aria-describedby="subjectError"/>
             </div>
+            <p class="field-error" id="subjectError" role="alert" hidden></p>
           </div>
-          
+
           <div class="form-group">
+            <label class="field-label" for="content">Message</label>
             <div class="input-container">
-              <textarea id="content" class="form-textarea" placeholder="Your message" rows="6" required></textarea>
-              <span class="required-star">*</span>
+              <textarea id="content" class="form-textarea" name="message" placeholder="Your message" rows="6" required aria-describedby="contentError"></textarea>
             </div>
+            <p class="field-error" id="contentError" role="alert" hidden></p>
           </div>
-          
+
+          <p class="field-error form-error" id="formError" role="alert" hidden></p>
+
           <div class="form-actions">
-            <button type="submit" id="submitButton" class="submit-button" disabled>
+            <button type="submit" id="submitButton" class="submit-button">
               <span class="button-text">Send Message</span>
-              <span class="button-icon">📧</span>
             </button>
           </div>
         </form>
@@ -68,14 +71,14 @@
             <span class="info-icon">📍</span>
             <div class="info-content">
               <h4>Location</h4>
-              <p>New York City, USA</p>
+              <p>Jersey City, NJ</p>
             </div>
           </div>
           <div class="info-item">
             <span class="info-icon">💼</span>
             <div class="info-content">
-              <h4>Availability</h4>
-              <p>Open to new opportunities</p>
+              <h4>Role</h4>
+              <p>Principal Software Engineer, Fidelity Investments</p>
             </div>
           </div>
         </div>
@@ -84,7 +87,8 @@
   </div>
 
   <!-- Contact Page JavaScript -->
-  <script src="{{ "js/contact.js" | absURL }}"></script>
+  {{- $contactJS := resources.Get "js/contact.js" -}}
+  <script src="{{ $contactJS.RelPermalink }}"></script>
 
 {{- else }}
   <!-- Default Single Layout for other pages -->
@@ -114,9 +118,13 @@
 
   {{- if .Content }}
   <div class="post-content">
+    {{- $content := .Content -}}
+    {{- if eq .Section "experience" -}}
+    {{- $content = $content | replaceRE "(?s)<h[23][^>]*>\\s*Main Tasks\\s*</h[23]>(?:\\s*<ul[^>]*>.*?</ul>)?" "" -}}
+    {{- end -}}
     {{- if not (.Param "disableAnchoredHeadings") }}
-    {{- partial "anchored_headings.html" .Content -}}
-    {{- else }}{{ .Content }}{{ end }}
+    {{- partial "anchored_headings.html" $content -}}
+    {{- else }}{{ $content }}{{ end }}
   </div>
   {{- end }}
 {{- end }}

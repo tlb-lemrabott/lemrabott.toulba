@@ -3,40 +3,32 @@
 {{- $pages := union .RegularPages .Sections }}
 {{- $paginator := .Paginate $pages }}
 
-<div class="blogs-container">
-  <div class="blogs-timeline">
+{{- partial "section_intro.html" . }}
+
+<div class="experience-container">
+  <div class="experience-timeline">
     {{- range $index, $page := $paginator.Pages }}
-    <article class="blog-card">
-      <div class="blog-header">
-        <h2 class="blog-title"><a href="{{ $page.RelPermalink }}" class="blog-title-link">{{ $page.Title }}</a></h2>
+    <article class="experience-card">
+      <div class="experience-header">
+        <h2 class="experience-title"><a href="{{ $page.RelPermalink }}" class="experience-title-link">{{ $page.Title }}</a></h2>
         {{- if $page.Params.dateString }}
-        <span class="blog-date">{{ $page.Params.dateString }}</span>
+        <span class="experience-date">{{ $page.Params.dateString }}</span>
         {{- end }}
       </div>
-      
-      {{- if $page.Params.cover.image }}
-      <div class="blog-image">
-        <img src="{{ $page.Params.cover.image | absURL }}" alt="{{ $page.Title }}" loading="lazy">
-      </div>
-      {{- end }}
-      
+
       {{- if $page.Description }}
-      <div class="blog-description">
+      <div class="experience-description">
         {{ $page.Description }}
       </div>
       {{- end }}
-      
+
       {{- if $page.Params.tags }}
-      <div class="blog-tags">
-        {{- range $page.Params.tags }}
-        <span class="blog-tag">{{ . }}</span>
+      <div class="experience-tags">
+        {{- range first 6 $page.Params.tags }}
+        <span class="experience-tag">{{ . }}</span>
         {{- end }}
       </div>
       {{- end }}
-      
-      <div class="read-more">
-        <a href="{{ $page.RelPermalink }}" class="read-more-link">Read Full Article →</a>
-      </div>
     </article>
     {{- end }}
   </div>
@@ -55,7 +47,4 @@
 </footer>
 {{- end }}
 
-<!-- Blogs Page JavaScript -->
-<script src="{{ "js/blogs.js" | absURL }}"></script>
-
-{{- end }}{{- /* end main */ -}} 
+{{- end }}{{- /* end main */ -}}

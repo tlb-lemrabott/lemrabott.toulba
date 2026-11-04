@@ -1,0 +1,152 @@
+{{- $email := "" -}}
+{{- $linkedin := "" -}}
+{{- $github := "" -}}
+{{- range site.Params.socialIcons -}}
+    {{- if eq .name "email" }}{{ $email = .url }}{{ end -}}
+    {{- if eq .name "linkedin" }}{{ $linkedin = .url }}{{ end -}}
+    {{- if eq .name "github" }}{{ $github = .url }}{{ end -}}
+{{- end -}}
+
+<div class="profile principal">
+    {{- with site.Params.profileMode }}
+    <div class="profile_inner">
+        <header class="principal-hero">
+            <p class="eyebrow">{{ .role }}</p>
+            <h1>{{ .title }}</h1>
+            {{- if or .now .years }}
+            <p class="status">
+                {{- with .now }}<span>{{ . }}</span>{{ end }}
+                {{- with .years }}<span>{{ . }}</span>{{ end }}
+            </p>
+            {{- end }}
+            <p class="lede">{{ .text }}</p>
+            {{- with .skills }}
+            <ul class="skill-row">
+                {{- range . }}
+                <li>{{ . }}</li>
+                {{- end }}
+            </ul>
+            {{- end }}
+            <div class="principal-actions">
+                {{- with $email }}
+                <a class="action primary" href="{{ . }}">Email</a>
+                {{- end }}
+                {{- with $linkedin }}
+                <a class="action" href="{{ . }}" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                {{- end }}
+                {{- with $github }}
+                <a class="action" href="{{ . }}" target="_blank" rel="noopener noreferrer">GitHub</a>
+                {{- end }}
+            </div>
+        </header>
+
+        {{- with .highlights }}
+        <section class="principal-section" aria-labelledby="latest-experience">
+            <div class="section-head">
+                <h2 id="latest-experience">Latest experience</h2>
+                <a class="section-link" href="{{ "experience/" | relURL }}">All experience</a>
+            </div>
+            <div class="work-list">
+                {{- range first 1 . }}
+                <a class="work-item" href="{{ .url | relURL }}">
+                    <div class="work-index">
+                        <span class="work-org">{{ .org }}</span>
+                        <span class="work-period">{{ .period }}</span>
+                    </div>
+                    <div class="work-body">
+                        <h3>{{ .title }}</h3>
+                        {{- with .tags }}
+                        <ul class="work-tags">
+                            {{- range . }}
+                            <li>{{ . }}</li>
+                            {{- end }}
+                        </ul>
+                        {{- end }}
+                    </div>
+                    <span class="work-go" aria-hidden="true">View</span>
+                </a>
+                {{- end }}
+            </div>
+        </section>
+        {{- end }}
+
+        {{- with .focus }}
+        <section class="principal-section" aria-labelledby="focus-areas">
+            <div class="section-head">
+                <h2 id="focus-areas">Focus</h2>
+            </div>
+            <div class="focus-list">
+                {{- range . }}
+                <div class="focus-item">
+                    <h3>{{ .title }}</h3>
+                    <p>{{ .text }}</p>
+                </div>
+                {{- end }}
+            </div>
+        </section>
+        {{- end }}
+
+        <section class="principal-section" aria-labelledby="experience-heading">
+            <div class="section-head">
+                <h2 id="experience-heading">Experience</h2>
+                <a class="section-link" href="{{ "experience/" | relURL }}">View all</a>
+            </div>
+            <div class="role-list">
+                {{- range (where site.RegularPages "Section" "experience").ByWeight }}
+                <a class="role-row" href="{{ .RelPermalink }}">
+                    <span class="role-date">{{ .Params.dateString }}</span>
+                    <span class="role-title">{{ .Description }}</span>
+                    <span class="role-org">{{ .Title }}</span>
+                </a>
+                {{- end }}
+            </div>
+            {{- with .education }}
+            <p class="education-line"><a href="{{ "education/" | relURL }}">{{ . }}</a></p>
+            {{- end }}
+        </section>
+
+        <section class="principal-section" aria-labelledby="writing-heading">
+            <div class="section-head">
+                <h2 id="writing-heading">Blog</h2>
+                <a class="section-link" href="{{ "blogs/" | relURL }}">All notes</a>
+            </div>
+            <div class="writing-list">
+                {{- $notes := slice "blogs/java_microservices_load_balancing.md" "blogs/cognito-auth.md" "blogs/springboot_deploy.md" -}}
+                {{- range $notes }}
+                {{- with site.GetPage . }}
+                <a class="writing-item" href="{{ .RelPermalink }}">
+                    <h3>{{ .Title }}</h3>
+                    <span class="work-go" aria-hidden="true">Read</span>
+                </a>
+                {{- end }}
+                {{- end }}
+            </div>
+        </section>
+    </div>
+    {{- end }}
+</div>
+
+{{ $logger := resources.Get "js/logger.ts" | js.Build | minify | fingerprint }}
+<script src="{{ $logger.RelPermalink }}" integrity="{{ $logger.Data.Integrity }}"></script>
+
+{{ $imageOptimizer := resources.Get "js/imageOptimizer.ts" | js.Build | minify | fingerprint }}
+<script src="{{ $imageOptimizer.RelPermalink }}" integrity="{{ $imageOptimizer.Data.Integrity }}"></script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then((registration) => {
+        if (window.location.hostname === 'localhost' ||
+            window.location.hostname === '127.0.0.1' ||
+            window.location.hostname.includes('dev') ||
+            window.location.search.includes('dev=true')) {
+          console.log('Service Worker registered successfully:', registration.scope);
+        }
+      })
+      .catch((error) => {
+        console.error('Service Worker registration failed:', error);
+      });
+  });
+}
+</script>

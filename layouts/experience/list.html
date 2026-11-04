@@ -3,6 +3,8 @@
 {{- $pages := union .RegularPages .Sections }}
 {{- $paginator := .Paginate $pages }}
 
+{{- partial "section_intro.html" . }}
+
 <div class="experience-container">
   <div class="experience-timeline">
     {{- range $index, $page := $paginator.Pages }}
@@ -22,7 +24,7 @@
       
       {{- if $page.Params.tags }}
       <div class="experience-tags">
-        {{- range $page.Params.tags }}
+        {{- range first 6 $page.Params.tags }}
         <span class="experience-tag">{{ . }}</span>
         {{- end }}
       </div>
@@ -46,8 +48,5 @@
   </nav>
 </footer>
 {{- end }}
-
-<!-- Experience Page JavaScript -->
-<script src="{{ "js/experience.js" | absURL }}"></script>
 
 {{- end }}{{- /* end main */ -}} 
