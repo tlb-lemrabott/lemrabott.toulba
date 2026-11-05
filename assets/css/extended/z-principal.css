@@ -299,6 +299,8 @@ body.list .main:has(.profile.principal) {
 }
 
 .work-go {
+    flex-shrink: 0;
+    white-space: nowrap;
     margin-top: 0.12rem;
     color: var(--secondary);
     font-size: 0.88rem;
