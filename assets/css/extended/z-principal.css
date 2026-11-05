@@ -695,7 +695,7 @@ body.list .main:has(.profile.principal) {
         justify-content: flex-start;
         overflow: visible;
         column-gap: 0.9rem;
-        margin-top: 0;
+        margin-top: 0.4rem;
         margin-bottom: 0.2rem;
         line-height: 2;
     }
@@ -705,8 +705,18 @@ body.list .main:has(.profile.principal) {
         margin: 0;
     }
 
+    /* The wrapped nav has no fixed height, so keep it in flow instead of padding for it. */
+    .sticky-header {
+        position: sticky;
+        top: 0;
+    }
+
     .main {
-        padding-top: calc(var(--header-height) * 2 + var(--gap));
+        padding-top: var(--gap);
+    }
+
+    .principal-hero {
+        padding-top: 0.25rem;
     }
 }
 
