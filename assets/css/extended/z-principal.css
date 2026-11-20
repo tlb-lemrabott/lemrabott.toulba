@@ -663,6 +663,30 @@ body.list .main:has(.profile.principal) {
     margin-top: 0.25rem;
 }
 
+.contact-form .form-success {
+    margin: 1rem 0 0;
+    text-align: center;
+    color: #3fb27f;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.contact-form .form-success[hidden] {
+    display: none;
+}
+
+.contact-form .hp-field {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.contact-form .cf-turnstile {
+    margin-top: 1.25rem;
+}
+
 .contact-form .form-input[aria-invalid="true"],
 .contact-form .form-textarea[aria-invalid="true"] {
     border-color: #e36a62;

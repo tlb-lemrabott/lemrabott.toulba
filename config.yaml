@@ -43,6 +43,18 @@ menu:
     #   weight: 70
 
 params:
+  description: "Principal Software Engineer. I design and build scalable enterprise applications, integrate systems through APIs and event-driven messaging, and modernize legacy software."
+  author: "Lemrabott Toulba"
+
+  # Shared preview when a page has no cover image of its own.
+  # Facebook, LinkedIn, X, and iMessage read this.
+  images:
+    - images/social-card.png
+  socialImage:
+    alt: "Lemrabott Toulba, Principal Software Engineer"
+    width: 1200
+    height: 630
+
   # theme
   showToc: true
   TocOpen: false
@@ -52,6 +64,10 @@ params:
 
   # for enchanced SEO
   env: production
+
+  # Cloudflare Turnstile site key for the contact form. Leave empty here; it is injected at build
+  # time from the HUGO_PARAMS_TURNSTILESITEKEY env var. The secret key lives only in the Lambda env.
+  turnstileSiteKey: ""
 
   # Home Page
   profileMode:

@@ -10,6 +10,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const subjectError = document.getElementById('subjectError');
     const contentError = document.getElementById('contentError');
     const formError = document.getElementById('formError');
+    const formSuccess = document.getElementById('formSuccess');
+    const honeypotInput = document.getElementById('website');
+    let successTimer;
     const contactContent = document.querySelector('.contact-content');
     const buttonText = submitButton.querySelector('.button-text');
 
@@ -48,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function refreshErrors() {
         if (formError) formError.hidden = true;
+        if (formSuccess) formSuccess.hidden = true;
         validateForm(false);
     }
 
@@ -99,6 +103,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (formError) formError.hidden = true;
 
+        const turnstileInput = emailForm.querySelector('[name="cf-turnstile-response"]');
+        const turnstileToken = turnstileInput ? turnstileInput.value : '';
+        if (emailForm.querySelector('.cf-turnstile') && !turnstileToken) {
+            if (formError) {
+                formError.textContent = 'Please wait for the verification check to finish, then send again.';
+                formError.hidden = false;
+            }
+            return;
+        }
+
         // Show loading state
         submitButton.disabled = true;
         buttonText.textContent = 'Sending...';
@@ -107,7 +121,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const formData = {
             sender: emailInput.value.trim(),
             subject: subjectInput.value.trim(),
-            message: contentInput.value.trim()
+            message: contentInput.value.trim(),
+            website: honeypotInput ? honeypotInput.value : '',
+            turnstileToken
         };
 
         try {
@@ -120,7 +136,9 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                const error = new Error('Network response was not ok');
+                error.status = response.status;
+                throw error;
             }
 
             await response.json().catch(() => ({}));
@@ -130,8 +148,18 @@ document.addEventListener('DOMContentLoaded', function() {
             buttonText.textContent = 'Send Message';
             contactContent.classList.remove('loading');
             if (formError) {
-                formError.textContent = 'The message could not be sent. Try again, or email lemrabott.toulba@gmail.com.';
+                if (error.status === 403) {
+                    formError.textContent = 'The verification check failed. Please try again.';
+                } else if (error.status === 429) {
+                    formError.textContent = 'The contact form has reached its daily limit. Please email lemrabott.toulba@gmail.com directly.';
+                } else {
+                    formError.textContent = 'The message could not be sent. Try again, or email lemrabott.toulba@gmail.com.';
+                }
                 formError.hidden = false;
+            }
+        } finally {
+            if (window.turnstile && emailForm.querySelector('.cf-turnstile')) {
+                window.turnstile.reset();
             }
         }
     }
@@ -158,8 +186,12 @@ document.addEventListener('DOMContentLoaded', function() {
         contactContent.classList.remove('loading');
         contactContent.classList.add('success');
         
-        // Show success notification
-        showNotification('Message sent successfully!', 'success');
+        if (formSuccess) {
+            formSuccess.textContent = 'Thanks, your message was sent. I\'ll reply to your email as soon as possible.';
+            formSuccess.hidden = false;
+            clearTimeout(successTimer);
+            successTimer = setTimeout(() => { formSuccess.hidden = true; }, 6000);
+        }
         
         // Reset button after 3 seconds
         setTimeout(() => {
@@ -187,10 +219,22 @@ document.addEventListener('DOMContentLoaded', function() {
         style.textContent = `
             .notification {
                 position: fixed;
-                top: 20px;
+                top: calc(var(--header-height) + 16px);
                 right: 20px;
-                z-index: 1000;
+                z-index: 10000;
                 animation: slideInRight 0.3s ease;
+            }
+
+            @media (max-width: 800px) {
+                .notification {
+                    top: 16px;
+                    left: 12px;
+                    right: 12px;
+                }
+
+                .notification-content {
+                    min-width: 0;
+                }
             }
             
             .notification-content {

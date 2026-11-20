@@ -27,7 +27,7 @@
           <div class="form-group">
             <label class="field-label" for="fromEmail">Email</label>
             <div class="input-container">
-              <input id="fromEmail" class="form-input" type="email" name="email" autocomplete="email" placeholder="name@example.com" required aria-describedby="emailError"/>
+              <input id="fromEmail" class="form-input" type="email" name="email" autocomplete="email" placeholder="name@example.com" maxlength="254" required aria-describedby="emailError"/>
             </div>
             <p class="field-error" id="emailError" role="alert" hidden></p>
           </div>
@@ -35,7 +35,7 @@
           <div class="form-group">
             <label class="field-label" for="subject">Subject</label>
             <div class="input-container">
-              <input id="subject" class="form-input" type="text" name="subject" autocomplete="off" placeholder="Subject" required aria-describedby="subjectError"/>
+              <input id="subject" class="form-input" type="text" name="subject" autocomplete="off" placeholder="Subject" maxlength="150" required aria-describedby="subjectError"/>
             </div>
             <p class="field-error" id="subjectError" role="alert" hidden></p>
           </div>
@@ -43,10 +43,19 @@
           <div class="form-group">
             <label class="field-label" for="content">Message</label>
             <div class="input-container">
-              <textarea id="content" class="form-textarea" name="message" placeholder="Your message" rows="6" required aria-describedby="contentError"></textarea>
+              <textarea id="content" class="form-textarea" name="message" placeholder="Your message" rows="6" maxlength="1000" required aria-describedby="contentError"></textarea>
             </div>
             <p class="field-error" id="contentError" role="alert" hidden></p>
           </div>
+
+          <div class="hp-field" aria-hidden="true">
+            <label for="website">Website</label>
+            <input id="website" type="text" name="website" tabindex="-1" autocomplete="off"/>
+          </div>
+
+          {{- with site.Params.turnstileSiteKey }}
+          <div class="cf-turnstile" data-sitekey="{{ . }}" data-theme="auto" data-size="flexible"></div>
+          {{- end }}
 
           <p class="field-error form-error" id="formError" role="alert" hidden></p>
 
@@ -55,6 +64,8 @@
               <span class="button-text">Send Message</span>
             </button>
           </div>
+
+          <p class="form-success" id="formSuccess" role="status" hidden></p>
         </form>
       </div>
 
@@ -87,7 +98,10 @@
   </div>
 
   <!-- Contact Page JavaScript -->
-  {{- $contactJS := resources.Get "js/contact.js" -}}
+  {{- if site.Params.turnstileSiteKey }}
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  {{- end }}
+  {{- $contactJS := resources.Get "js/contact.js" | fingerprint -}}
   <script src="{{ $contactJS.RelPermalink }}"></script>
 
 {{- else }}

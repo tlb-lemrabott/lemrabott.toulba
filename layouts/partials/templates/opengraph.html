@@ -1,0 +1,70 @@
+{{- $desc := "" -}}
+{{- if .Description -}}
+    {{- $desc = .Description -}}
+{{- else if .IsPage -}}
+    {{- $desc = .Summary -}}
+{{- else -}}
+    {{- $desc = site.Params.description | default site.Params.profileMode.text -}}
+{{- end -}}
+{{- if lt (len $desc) 12 -}}
+    {{- with site.Params.description | default site.Params.profileMode.text -}}
+        {{- $desc = . -}}
+    {{- end -}}
+{{- end -}}
+{{- $desc = $desc | plainify -}}
+{{- $desc = replaceRE `\s+` " " $desc -}}
+{{- $desc = $desc | truncate 300 | htmlEscape -}}
+{{- $title := .Title | plainify | htmlEscape -}}
+
+<meta property="og:title" content="{{ $title }}" />
+<meta property="og:description" content="{{ $desc }}" />
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
+<meta property="og:url" content="{{ .Permalink }}" />
+<meta property="og:locale" content="en_US" />
+{{- with site.Title }}<meta property="og:site_name" content="{{ . | htmlEscape }}" />{{ end }}
+
+{{- $image := "" -}}
+{{- if .Params.cover.image -}}
+    {{- if ne .Params.cover.relative true -}}
+        {{- $image = .Params.cover.image | absURL -}}
+    {{- else -}}
+        {{- $image = (path.Join .RelPermalink .Params.cover.image) | absURL -}}
+    {{- end -}}
+{{- else -}}
+    {{- with .Params.images -}}
+        {{- $image = index . 0 | absURL -}}
+    {{- else -}}
+        {{- $images := $.Resources.ByType "image" -}}
+        {{- $featured := $images.GetMatch "*feature*" -}}
+        {{- if not $featured }}{{ $featured = $images.GetMatch "{*cover*,*thumbnail*}" }}{{ end -}}
+        {{- with $featured -}}
+            {{- $image = .Permalink -}}
+        {{- else -}}
+            {{- with site.Params.images -}}
+                {{- $image = index . 0 | absURL -}}
+            {{- end -}}
+        {{- end -}}
+    {{- end -}}
+{{- end -}}
+
+{{- with $image }}
+<meta property="og:image" content="{{ . }}" />
+<meta property="og:image:secure_url" content="{{ . }}" />
+{{- $social := "" -}}
+{{- with site.Params.images }}{{ $social = index . 0 | absURL }}{{ end -}}
+{{- if eq . $social -}}
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="{{ site.Params.socialImage.width | default 1200 }}" />
+<meta property="og:image:height" content="{{ site.Params.socialImage.height | default 630 }}" />
+<meta property="og:image:alt" content="{{ site.Params.socialImage.alt | default site.Title | htmlEscape }}" />
+{{- else -}}
+<meta property="og:image:alt" content="{{ $title }}" />
+{{- end -}}
+{{- end }}
+
+{{- if .IsPage }}
+{{- $iso8601 := "2006-01-02T15:04:05-07:00" -}}
+<meta property="article:section" content="{{ .Section }}" />
+{{ with .PublishDate }}<meta property="article:published_time" {{ .Format $iso8601 | printf "content=%q" | safeHTMLAttr }} />{{ end }}
+{{ with .Lastmod }}<meta property="article:modified_time" {{ .Format $iso8601 | printf "content=%q" | safeHTMLAttr }} />{{ end }}
+{{- end -}}

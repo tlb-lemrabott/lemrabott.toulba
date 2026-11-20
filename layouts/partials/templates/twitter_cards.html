@@ -1,0 +1,58 @@
+{{- $desc := "" -}}
+{{- if .Description -}}
+    {{- $desc = .Description -}}
+{{- else if .IsPage -}}
+    {{- $desc = .Summary -}}
+{{- else -}}
+    {{- $desc = site.Params.description | default site.Params.profileMode.text -}}
+{{- end -}}
+{{- if lt (len $desc) 12 -}}
+    {{- with site.Params.description | default site.Params.profileMode.text -}}
+        {{- $desc = . -}}
+    {{- end -}}
+{{- end -}}
+{{- $desc = $desc | plainify -}}
+{{- $desc = replaceRE `\s+` " " $desc -}}
+{{- $desc = $desc | truncate 200 | htmlEscape -}}
+{{- $title := .Title | plainify | htmlEscape -}}
+
+{{- $image := "" -}}
+{{- if .Params.cover.image -}}
+    {{- if ne .Params.cover.relative true -}}
+        {{- $image = .Params.cover.image | absURL -}}
+    {{- else -}}
+        {{- $image = (path.Join .RelPermalink .Params.cover.image) | absURL -}}
+    {{- end -}}
+{{- else -}}
+    {{- with .Params.images -}}
+        {{- $image = index . 0 | absURL -}}
+    {{- else -}}
+        {{- $images := $.Resources.ByType "image" -}}
+        {{- $featured := $images.GetMatch "*feature*" -}}
+        {{- if not $featured }}{{ $featured = $images.GetMatch "{*cover*,*thumbnail*}" }}{{ end -}}
+        {{- with $featured -}}
+            {{- $image = .Permalink -}}
+        {{- else -}}
+            {{- with site.Params.images -}}
+                {{- $image = index . 0 | absURL -}}
+            {{- end -}}
+        {{- end -}}
+    {{- end -}}
+{{- end -}}
+
+<meta name="twitter:card" content="{{ if $image }}summary_large_image{{ else }}summary{{ end }}" />
+<meta name="twitter:title" content="{{ $title }}" />
+<meta name="twitter:description" content="{{ $desc }}" />
+{{- with $image }}
+<meta name="twitter:image" content="{{ . }}" />
+{{- $social := "" -}}
+{{- with site.Params.images }}{{ $social = index . 0 | absURL }}{{ end -}}
+{{- if eq . $social -}}
+<meta name="twitter:image:alt" content="{{ site.Params.socialImage.alt | default site.Title | htmlEscape }}" />
+{{- else -}}
+<meta name="twitter:image:alt" content="{{ $title }}" />
+{{- end -}}
+{{- end }}
+{{ with site.Social.twitter -}}
+<meta name="twitter:site" content="@{{ . }}" />
+{{ end -}}
