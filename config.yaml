@@ -49,11 +49,11 @@ params:
   # Shared preview when a page has no cover image of its own.
   # Facebook, LinkedIn, X, and iMessage read this.
   images:
-    - images/social-card-v4.png
+    - images/social-card-v5.png
   socialImage:
     alt: "Lemrabott Toulba, Principal Software Engineer"
     width: 1200
-    height: 630
+    height: 1200
 
   # theme
   showToc: true
